@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IA · Buenas Noticias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #faf8f4; --bg-alt: #f2efe7; --ink: #201f1c; --ink-soft: #6b675e;
+    --line: #e5e0d5; --accent: #6b7a5e; --accent-deep: #3f4a37; --card-bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Inter', -apple-system, sans-serif; line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  .serif { font-family: 'Fraunces', Georgia, serif; }
+  a { color: inherit; text-decoration: none; }
+  em { font-style: italic; }
+
+  header.site-header { background: var(--bg); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
+  .header-inner { max-width: 1180px; margin: 0 auto; padding: 22px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .logo { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.5rem; color: var(--ink); letter-spacing: -0.01em; }
+  .logo em { color: var(--accent-deep); }
+  nav.categories { display: flex; gap: 20px; flex-wrap: wrap; }
+  nav.categories a { font-size: 0.82rem; font-weight: 500; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; padding-bottom: 3px; border-bottom: 1px solid transparent; transition: all .15s; }
+  nav.categories a:hover, nav.categories a.active { color: var(--ink); border-color: var(--accent); }
+  .menu-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: 0.8rem; cursor: pointer; font-family: 'Inter', sans-serif; }
+  @media (max-width: 900px) { nav.categories { display: none; width: 100%; order: 3; flex-direction: column; gap: 14px; padding-top: 14px; border-top: 1px solid var(--line); margin-top: 6px; } nav.categories.open { display: flex; } .menu-toggle { display: inline-block; } }
+
+  main { max-width: 1180px; margin: 0 auto; padding: 0 32px 80px; }
+  .hero-text { padding: 40px 0 40px; max-width: 640px; }
+  .hero-text .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.75rem; color: var(--accent-deep); font-weight: 600; margin-bottom: 16px; display: block; }
+  .hero-text h1 { font-weight: 500; font-size: 2.1rem; line-height: 1.2; margin: 0 0 12px; letter-spacing: -0.01em; }
+  .hero-text p.sub { color: var(--ink-soft); font-size: 0.98rem; margin: 0; max-width: 560px; }
+
+  /* ---- foto real (Pexels, licencia gratuita) ---- */
+  .photo { position: relative; overflow: hidden; background: var(--bg-alt); border-radius: 6px; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo.fallback { display: flex; align-items: center; justify-content: center; }
+  .photo.fallback .emoji { font-size: 2.4rem; }
+  .photo-credit { position: absolute; bottom: 8px; right: 10px; font-size: 0.65rem; color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.35); padding: 2px 8px; border-radius: 999px; z-index: 3; }
+
+  /* ---- avatar de fuente (iniciales, no foto de periodista) ---- */
+  .avatar { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+
+  /* ---- hero destacada (Home) ---- */
+  .featured-hero { position: relative; border-radius: 6px; overflow: hidden; margin-bottom: 56px; min-height: 380px; }
+  .featured-hero .photo { position: absolute; inset: 0; border-radius: 0; }
+  .featured-hero .photo.fallback { background: var(--bg-alt); }
+  .featured-hero .photo.fallback .emoji { font-size: 4rem; }
+  .featured-hero .overlay {
+    position: relative; z-index: 2; padding: 36px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 65%, rgba(0,0,0,0) 100%);
+    color: #fff; display: flex; flex-direction: column; justify-content: flex-end; min-height: 380px;
+  }
+  .featured-hero.no-photo .overlay { background: none; color: var(--ink); }
+  .featured-hero .cat-pill {
+    display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.18); backdrop-filter: blur(4px);
+    color: #fff; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 6px 12px; border-radius: 999px; width: fit-content; margin-bottom: 16px;
+  }
+  .featured-hero.no-photo .cat-pill { background: var(--bg-alt); color: var(--accent-deep); }
+  .featured-hero h2 { font-weight: 500; font-size: 1.8rem; line-height: 1.25; margin: 0 0 12px; max-width: 680px; }
+  .featured-hero p { margin: 0 0 16px; font-size: 0.95rem; max-width: 560px; }
+  .featured-hero .overlay p { color: rgba(255,255,255,0.85); }
+  .featured-hero.no-photo .overlay p { color: var(--ink-soft); }
+  .byline { display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--ink-soft); }
+  .featured-hero .overlay .byline { color: rgba(255,255,255,0.85); }
+  .byline .source-name { font-weight: 600; }
+  .byline a.readmore { text-decoration: underline; text-underline-offset: 3px; font-weight: 600; margin-left: 4px; }
+
+  /* ---- grid de tarjetas (Home y relacionadas) ---- */
+  .secondary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .story-card .photo { aspect-ratio: 16/10; margin-bottom: 16px; }
+  .story-card .cat-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent-deep); font-weight: 700; display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+  .story-card h3 { font-weight: 500; font-size: 1.1rem; line-height: 1.35; margin: 0 0 10px; }
+  .story-card p.summary { font-size: 0.88rem; color: var(--ink-soft); margin: 0 0 14px; }
+  .story-card .byline a.readmore { color: var(--accent-deep); }
+
+  .category-section { margin-top: 56px; margin-bottom: 16px; }
+  .category-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 30px; border-bottom: 1px solid var(--line); padding-bottom: 18px; }
+  .category-head h2 { font-weight: 500; font-size: 1.5rem; margin: 0; display: flex; align-items: baseline; gap: 10px; }
+  .category-head .cat-emoji { font-size: 1.2rem; }
+  .category-head a.ver-todas { font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid transparent; transition: all .15s; white-space: nowrap; }
+  .category-head a.ver-todas:hover { color: var(--ink); border-color: var(--ink); }
+  .empty-note { color: var(--ink-soft); font-size: 0.92rem; padding: 8px 0 32px; }
+
+  .stats-line { color: var(--ink-soft); font-size: 0.85rem; margin: 0 0 12px; }
+
+  /* ---- botones estilo píldora ---- */
+  .btn-pill { display: inline-block; background: var(--ink); color: #fff; border: none; padding: 14px 28px; border-radius: 999px; font-weight: 600; font-size: 0.85rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; transition: background .15s; }
+  .btn-pill:hover { background: var(--accent-deep); }
+
+  /* ---- página de categoría: feed horizontal ---- */
+  .breadcrumb { padding: 20px 0 0; font-size: 0.8rem; color: var(--ink-soft); }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .cat-hero { padding: 20px 0 40px; border-bottom: 1px solid var(--line); margin-bottom: 44px; display: flex; align-items: center; gap: 24px; }
+  .cat-hero .icon-badge { width: 76px; height: 76px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; flex-shrink: 0; }
+  .cat-hero h1 { font-weight: 500; font-size: 2.1rem; margin: 0 0 8px; }
+  .cat-hero p { margin: 0; color: var(--ink-soft); font-size: 0.95rem; }
+  .feed { display: flex; flex-direction: column; }
+  .feed-item { display: grid; grid-template-columns: 220px 1fr; gap: 28px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+  .feed-item .photo { aspect-ratio: 4/3; }
+  .feed-item .cat-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 700; margin-bottom: 8px; display: block; }
+  .feed-item h3 { font-weight: 500; font-size: 1.25rem; line-height: 1.35; margin: 0 0 10px; }
+  .feed-item p.summary { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 14px; }
+  .feed-item .byline a.readmore { font-weight: 600; }
+
+  /* --- página de nota individual (permalink) --- */
+  .note-photo { aspect-ratio: 16/9; border-radius: 6px; overflow: hidden; margin-bottom: 28px; background: var(--bg-alt); position: relative; }
+  .note-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .note-photo.fallback { display: flex; align-items: center; justify-content: center; }
+  .note-photo.fallback .emoji { font-size: 4.5rem; }
+  .note-cat-badge { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #fff; padding: 5px 14px; border-radius: 999px; margin-bottom: 18px; }
+  h1.note-title { font-weight: 500; font-size: 2rem; line-height: 1.25; margin: 0 0 18px; max-width: 760px; }
+  .note-summary { font-size: 1.08rem; line-height: 1.7; color: var(--ink); margin: 0 0 22px; max-width: 760px; }
+  .note-byline { margin-bottom: 32px; }
+  .related-head { font-weight: 500; font-size: 1.3rem; margin: 64px 0 28px; border-top: 1px solid var(--line); padding-top: 40px; }
+
+  footer { border-top: 1px solid var(--line); padding: 56px 32px 40px; text-align: center; color: var(--ink-soft); font-size: 0.85rem; margin-top: 60px; }
+  footer .foot-inner { max-width: 640px; margin: 0 auto; }
+  footer .logo { font-size: 1.2rem; }
+  footer .foot-links { margin: 26px 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  footer .foot-links a { color: var(--ink-soft); }
+  footer p.legal { font-size: 0.85rem; margin: 0 0 8px; }
+  footer .disclaimer { font-size: 0.75rem; color: #a7a293; margin-top: 18px; line-height: 1.6; }
+
+  @media (max-width: 860px) {
+    .secondary-grid { grid-template-columns: 1fr; }
+    .hero-text h1 { font-size: 1.7rem; }
+    .featured-hero .overlay, .featured-hero { min-height: 320px; }
+  }
+  @media (max-width: 640px) {
+    .feed-item { grid-template-columns: 1fr; }
+    .feed-item .photo { aspect-ratio: 16/9; }
+    .cat-hero { flex-direction: column; align-items: flex-start; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="../" class="logo">Buenas <em>Noticias</em></a>
+    <button class="menu-toggle" onclick="document.querySelector('nav.categories').classList.toggle('open')">Categorías &darr;</button>
+    <nav class="categories"><a href="../deportes/">Deportes</a><a href="../economia/">Economía</a><a href="../ciencia-y-salud/">Ciencia y Salud</a><a href="../medio-ambiente/">Medio Ambiente</a><a href="../sociedad/">Sociedad</a><a href="../tecnologia/">Tecnología</a><a href="../cultura/">Cultura</a><a href="../ia/" class="active">IA</a></nav>
+  </div>
+</header>
+<div class="breadcrumb"><a href="../">Inicio</a> / IA</div>
+<main>
+
+    <div class="cat-hero">
+      <div class="icon-badge" style="background:#e9e5f5">✨</div>
+      <div>
+        <h1 class="serif">IA</h1>
+        <p>0 notas de los últimos 14 días.</p>
+      </div>
+    </div>
+    <p class="empty-note">Todavía no hay notas recientes en esta categoría. Vuelve pronto.</p>
+</main>
+<footer>
+  <div class="foot-inner">
+    <a href="../" class="logo serif">Buenas <em>Noticias</em></a>
+    <div class="foot-links"><nav class="categories"><a href="../deportes/">Deportes</a><a href="../economia/">Economía</a><a href="../ciencia-y-salud/">Ciencia y Salud</a><a href="../medio-ambiente/">Medio Ambiente</a><a href="../sociedad/">Sociedad</a><a href="../tecnologia/">Tecnología</a><a href="../cultura/">Cultura</a><a href="../ia/">IA</a></nav></div>
+    <p class="legal">Buenas Noticias no aloja el contenido completo de las notas; siempre enlazamos a la fuente original.</p>
+    <p class="disclaimer">Cada resumen es una redacción original a partir de la nota fuente, nunca una copia. Los avatares muestran las iniciales del medio, no fotos de periodistas -- este portal no tiene reporteros propios, solo selecciona y resume buenas noticias ya publicadas por medios reales.</p>
+  </div>
+</footer>
+</body>
+</html>
