@@ -72,12 +72,32 @@ except ImportError:
 def search_pexels(query, api_key, timeout=15):
     """Devuelve (url, photographer, source_url) o None si no hay un buen resultado."""
     url = f"{PEXELS_SEARCH_URL}?query={urllib.parse.quote(query)}&per_page=5&orientation=landscape"
-    req = urllib.request.Request(url, headers={"Authorization": api_key})
+    # Pexels (como muchas APIs detras de un WAF/Cloudflare) puede rechazar
+    # con 403 peticiones que traen el User-Agent generico por defecto de
+    # urllib ("Python-urllib/3.x"). Se manda un User-Agent de navegador
+    # real para evitar ese bloqueo -- la clave sigue yendo en el header
+    # Authorization tal como lo documenta Pexels.
+    req = urllib.request.Request(
+        url,
+        headers={
+            "Authorization": api_key,
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+            ),
+            "Accept": "application/json",
+        },
+    )
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             data = json.loads(resp.read().decode("utf-8"))
     except urllib.error.HTTPError as e:
-        print(f"  Pexels devolvió HTTP {e.code} para '{query}': {e.reason}", file=sys.stderr)
+        body = ""
+        try:
+            body = e.read().decode("utf-8", errors="replace")[:300]
+        except Exception:
+            pass
+        print(f"  Pexels devolvió HTTP {e.code} para '{query}': {e.reason} | body={body}", file=sys.stderr)
         return None
     except Exception as e:
         print(f"  Error de red buscando '{query}': {e}", file=sys.stderr)
