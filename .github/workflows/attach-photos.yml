@@ -5,11 +5,16 @@ name: Buscar fotos en Pexels y regenerar el sitio
 # workflow corre en un runner de GitHub con salida de red normal -- por
 # eso puede llamar a la API de Pexels con el header Authorization, cosa
 # que el entorno donde corren las skills de Claude no puede hacer.
+#
+# También se puede disparar manualmente (workflow_dispatch) desde la
+# pestaña Actions de GitHub, por si una corrida anterior falló y hace
+# falta reintentar sin necesidad de tocar data/site_data.json de nuevo.
 on:
   push:
     branches: [main]
     paths:
       - "data/site_data.json"
+  workflow_dispatch: {}
 
 # Evita que dos corridas se pisen si hay dos pushes seguidos muy rápido.
 concurrency:
