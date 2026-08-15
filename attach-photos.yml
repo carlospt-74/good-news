@@ -1,0 +1,55 @@
+name: Buscar fotos en Pexels y regenerar el sitio
+
+# Se dispara cada vez que la fase de publicación (fase 4 del pipeline de
+# Claude) sube una versión nueva de data/site_data.json al repo. Este
+# workflow corre en un runner de GitHub con salida de red normal -- por
+# eso puede llamar a la API de Pexels con el header Authorization, cosa
+# que el entorno donde corren las skills de Claude no puede hacer.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/site_data.json"
+
+# Evita que dos corridas se pisen si hay dos pushes seguidos muy rápido.
+concurrency:
+  group: attach-photos
+  cancel-in-progress: false
+
+jobs:
+  attach-photos:
+    runs-on: ubuntu-latest
+    # Si el último commit ya lo hizo este mismo workflow, no vuelvas a
+    # correr -- evita un loop infinito de commit -> push -> trigger -> commit.
+    if: github.event.head_commit.author.name != 'github-actions[bot]'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Buscar fotos faltantes en Pexels y regenerar el HTML
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: python3 .github/scripts/attach_photos.py --site-dir .
+
+      - name: Commit y push si hubo cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # El sitio ahora es multi-página (home + una carpeta por
+          # categoría + una carpeta por nota), así que una corrida normal
+          # puede tocar decenas de archivos HTML además de
+          # data/site_data.json. En vez de listar cada ruta a mano, se
+          # agrega todo lo que build_site() pudo haber escrito o
+          # sobreescrito -- este workflow corre en un repo dedicado
+          # exclusivamente al sitio, así que "todo lo que cambió" es
+          # seguro aquí.
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Sin cambios que subir (no había fotos pendientes)."
+          else
+            git commit -m "Agrega fotos de Pexels a notas nuevas [skip ci]"
+            git push
+          fi
