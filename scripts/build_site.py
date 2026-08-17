@@ -205,8 +205,8 @@ def shared_css():
   .header-inner { max-width: 1180px; margin: 0 auto; padding: 22px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
   .logo { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.5rem; color: var(--ink); letter-spacing: -0.01em; display: inline-flex; align-items: center; }
   .logo em { color: var(--accent-deep); }
-  .logo-img { height: 34px; width: auto; display: block; }
-  footer .logo-img { height: 30px; }
+  .logo-img { height: 52px; width: auto; display: block; }
+  footer .logo-img { height: 44px; }
   nav.categories { display: flex; gap: 20px; flex-wrap: wrap; }
   nav.categories a { font-size: 0.82rem; font-weight: 500; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; padding-bottom: 3px; border-bottom: 1px solid transparent; transition: all .15s; }
   nav.categories a:hover, nav.categories a.active { color: var(--ink); border-color: var(--accent); }
@@ -272,7 +272,7 @@ def shared_css():
   .btn-pill { display: inline-block; background: var(--ink); color: #fff; border: none; padding: 14px 28px; border-radius: 999px; font-weight: 600; font-size: 0.85rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; transition: background .15s; }
   .btn-pill:hover { background: var(--accent-deep); }
 
-  .breadcrumb { padding: 20px 0 0; font-size: 0.8rem; color: var(--ink-soft); }
+  .breadcrumb { max-width: 1180px; margin: 0 auto; padding: 20px 32px 0; font-size: 0.8rem; color: var(--ink-soft); }
   .breadcrumb a:hover { text-decoration: underline; }
   .cat-hero { padding: 20px 0 40px; border-bottom: 1px solid var(--line); margin-bottom: 44px; display: flex; align-items: center; gap: 24px; }
   .cat-hero .icon-badge { width: 76px; height: 76px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; flex-shrink: 0; }
