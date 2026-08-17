@@ -50,7 +50,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 from pathlib import Path
 
-RETENTION_DAYS = 14
+RETENTION_DAYS = 120
 
 # Cuántas notas entran en el bloque "Destacadas de hoy" del Home, y cómo
 # se eligen: por ahora, simplemente las más recientes de todo el sitio sin
