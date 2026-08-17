@@ -62,9 +62,6 @@ FEATURED_COUNT = 3
 
 CATEGORY_ORDER = ["Deportes", "Economía", "Ciencia y Salud", "Medio Ambiente", "Sociedad", "Tecnología", "Cultura", "IA", "Otros"]
 
-# Slugs fijos (no autogenerados) para que la URL de cada categoría sea
-# predecible y coincida exactamente con el documento de propuesta de
-# estructura, sección 3.
 CATEGORY_SLUGS = {
     "Deportes": "deportes",
     "Economía": "economia",
@@ -87,10 +84,6 @@ CATEGORY_COLORS = {
     "IA": "#5b4fa0",
     "Otros": "#555555",
 }
-# Tinte pastel de cada color, para el fondo del icono de categoría y para
-# el respaldo ilustrado cuando una nota todavía no tiene foto real --
-# mismo patrón que "--cat-light" en el mockup v4 aprobado (ahí solo se
-# definió para Tecnología; aquí se completa para las 9 categorías).
 CATEGORY_LIGHT = {
     "Deportes": "#e2f0e8",
     "Economía": "#e1ecf7",
@@ -102,11 +95,6 @@ CATEGORY_LIGHT = {
     "IA": "#e9e5f5",
     "Otros": "#ececeb",
 }
-# Emoji de respaldo para cuando una nota no tiene foto real todavía (ver
-# attach_photos.py -- ese script, que corre en GitHub Actions y no aquí,
-# es el que rellena image_url llamando a la API de Pexels con el header
-# Authorization correcto; este script solo sabe RENDERIZAR lo que ya
-# exista, nunca llama a la API él mismo).
 CATEGORY_EMOJI = {
     "Deportes": "🏆",
     "Economía": "📈",
@@ -119,10 +107,6 @@ CATEGORY_EMOJI = {
     "Otros": "📰",
 }
 
-
-# ---------------------------------------------------------------------
-# Utilidades
-# ---------------------------------------------------------------------
 
 def load_json(path, default):
     p = Path(path)
@@ -139,9 +123,6 @@ def save_json(path, data):
 
 
 def slugify(text, max_len=70):
-    """Convierte un titular en la parte de URL de su permalink.
-    'Celeste Espino atajó el penal decisivo' -> 'celeste-espino-atajo-el-penal-decisivo'
-    """
     text = unicodedata.normalize("NFKD", text)
     text = text.encode("ascii", "ignore").decode("ascii")
     text = text.lower()
@@ -153,8 +134,6 @@ def slugify(text, max_len=70):
 
 
 def unique_slug(base, used_slugs):
-    """Evita choques cuando dos titulares distintos generan el mismo slug
-    (ej. dos notas tituladas casi igual en días distintos)."""
     slug = base
     n = 2
     while slug in used_slugs:
@@ -167,10 +146,6 @@ def unique_slug(base, used_slugs):
 def category_slug(cat):
     return CATEGORY_SLUGS.get(cat, slugify(cat))
 
-
-# ---------------------------------------------------------------------
-# Datos: fusionar lo nuevo, asignar slugs, podar lo viejo
-# ---------------------------------------------------------------------
 
 def merge_articles(existing, new_articles):
     by_url = {a["url"]: a for a in existing}
@@ -197,7 +172,7 @@ def prune_old(articles, retention_days=RETENTION_DAYS):
         try:
             d = datetime.strptime(a.get("published_date", a.get("date_added", "1970-01-01")), "%Y-%m-%d")
         except ValueError:
-            d = datetime.now()  # si la fecha viene mal formada, no la tires por eso
+            d = datetime.now()
         if d >= cutoff:
             kept.append(a)
     return kept
@@ -207,14 +182,6 @@ def choose_featured(articles, count=FEATURED_COUNT):
     ordered = sorted(articles, key=lambda a: a.get("published_date", ""), reverse=True)
     return ordered[:count]
 
-
-# ---------------------------------------------------------------------
-# CSS compartido por las tres plantillas (Home, categoría, nota) --
-# puerto directo del mockup v4 aprobado por el usuario (tipografías
-# Fraunces + Inter, paleta verde salvia, tarjetas con foto real y avatar
-# de iniciales de la fuente). Ver /mockup/v4_home.html y
-# /mockup/v4_tecnologia.html en el repo de trabajo para el original.
-# ---------------------------------------------------------------------
 
 FONT_LINKS = """<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -236,8 +203,10 @@ def shared_css():
 
   header.site-header { background: var(--bg); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
   .header-inner { max-width: 1180px; margin: 0 auto; padding: 22px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-  .logo { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.5rem; color: var(--ink); letter-spacing: -0.01em; }
+  .logo { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.5rem; color: var(--ink); letter-spacing: -0.01em; display: inline-flex; align-items: center; }
   .logo em { color: var(--accent-deep); }
+  .logo-img { height: 34px; width: auto; display: block; }
+  footer .logo-img { height: 30px; }
   nav.categories { display: flex; gap: 20px; flex-wrap: wrap; }
   nav.categories a { font-size: 0.82rem; font-weight: 500; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; padding-bottom: 3px; border-bottom: 1px solid transparent; transition: all .15s; }
   nav.categories a:hover, nav.categories a.active { color: var(--ink); border-color: var(--accent); }
@@ -250,17 +219,14 @@ def shared_css():
   .hero-text h1 { font-weight: 500; font-size: 2.1rem; line-height: 1.2; margin: 0 0 12px; letter-spacing: -0.01em; }
   .hero-text p.sub { color: var(--ink-soft); font-size: 0.98rem; margin: 0; max-width: 560px; }
 
-  /* ---- foto real (Pexels, licencia gratuita) ---- */
   .photo { position: relative; overflow: hidden; background: var(--bg-alt); border-radius: 6px; }
   .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .photo.fallback { display: flex; align-items: center; justify-content: center; }
   .photo.fallback .emoji { font-size: 2.4rem; }
   .photo-credit { position: absolute; bottom: 8px; right: 10px; font-size: 0.65rem; color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.35); padding: 2px 8px; border-radius: 999px; z-index: 3; }
 
-  /* ---- avatar de fuente (iniciales, no foto de periodista) ---- */
   .avatar { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 700; color: #fff; flex-shrink: 0; }
 
-  /* ---- hero destacada (Home) ---- */
   .featured-hero { position: relative; border-radius: 6px; overflow: hidden; margin-bottom: 56px; min-height: 380px; }
   .featured-hero .photo { position: absolute; inset: 0; border-radius: 0; }
   .featured-hero .photo.fallback { background: var(--bg-alt); }
@@ -286,7 +252,6 @@ def shared_css():
   .byline .source-name { font-weight: 600; }
   .byline a.readmore { text-decoration: underline; text-underline-offset: 3px; font-weight: 600; margin-left: 4px; }
 
-  /* ---- grid de tarjetas (Home y relacionadas) ---- */
   .secondary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
   .story-card .photo { aspect-ratio: 16/10; margin-bottom: 16px; }
   .story-card .cat-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent-deep); font-weight: 700; display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
@@ -304,11 +269,9 @@ def shared_css():
 
   .stats-line { color: var(--ink-soft); font-size: 0.85rem; margin: 0 0 12px; }
 
-  /* ---- botones estilo píldora ---- */
   .btn-pill { display: inline-block; background: var(--ink); color: #fff; border: none; padding: 14px 28px; border-radius: 999px; font-weight: 600; font-size: 0.85rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; transition: background .15s; }
   .btn-pill:hover { background: var(--accent-deep); }
 
-  /* ---- página de categoría: feed horizontal ---- */
   .breadcrumb { padding: 20px 0 0; font-size: 0.8rem; color: var(--ink-soft); }
   .breadcrumb a:hover { text-decoration: underline; }
   .cat-hero { padding: 20px 0 40px; border-bottom: 1px solid var(--line); margin-bottom: 44px; display: flex; align-items: center; gap: 24px; }
@@ -323,7 +286,6 @@ def shared_css():
   .feed-item p.summary { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 14px; }
   .feed-item .byline a.readmore { font-weight: 600; }
 
-  /* --- página de nota individual (permalink) --- */
   .note-photo { aspect-ratio: 16/9; border-radius: 6px; overflow: hidden; margin-bottom: 28px; background: var(--bg-alt); position: relative; }
   .note-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .note-photo.fallback { display: flex; align-items: center; justify-content: center; }
@@ -356,7 +318,6 @@ def shared_css():
 
 
 def get_avatar_initials(source):
-    """De 'Infobae (Colombia)' -> 'IN'; de 'El Economista (México)' -> 'EE'."""
     name = source.split("(")[0].strip()
     words = [w for w in re.split(r"\s+", name) if w]
     if not words:
@@ -385,12 +346,13 @@ def page_shell(*, title, base_prefix, body_html, active_category=None, breadcrum
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title} · Buenas Noticias</title>
 {FONT_LINKS}
+<link rel="icon" type="image/png" href="{base_prefix}assets/favicon.png">
 <style>{shared_css()}</style>
 </head>
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a href="{base_prefix}" class="logo">Buenas <em>Noticias</em></a>
+    <a href="{base_prefix}" class="logo"><img src="{base_prefix}assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
     <button class="menu-toggle" onclick="document.querySelector('nav.categories').classList.toggle('open')">Categorías &darr;</button>
     {site_nav_html(base_prefix, active_category)}
   </div>
@@ -401,7 +363,7 @@ def page_shell(*, title, base_prefix, body_html, active_category=None, breadcrum
 </main>
 <footer>
   <div class="foot-inner">
-    <a href="{base_prefix}" class="logo serif">Buenas <em>Noticias</em></a>
+    <a href="{base_prefix}" class="logo"><img src="{base_prefix}assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
     <div class="foot-links">{site_nav_html(base_prefix)}</div>
     <p class="legal">Buenas Noticias no aloja el contenido completo de las notas; siempre enlazamos a la fuente original.</p>
     <p class="disclaimer">Cada resumen es una redacción original a partir de la nota fuente, nunca una copia. Los avatares muestran las iniciales del medio, no fotos de periodistas -- este portal no tiene reporteros propios, solo selecciona y resume buenas noticias ya publicadas por medios reales.</p>
@@ -410,12 +372,6 @@ def page_shell(*, title, base_prefix, body_html, active_category=None, breadcrum
 </body>
 </html>"""
 
-
-# ---------------------------------------------------------------------
-# Tarjeta reutilizable -- dos variantes: "grid" (vertical, para Home y
-# relacionadas) y "feed" (horizontal, para el listado de categoría),
-# igual que en el mockup v4 aprobado.
-# ---------------------------------------------------------------------
 
 def card_html(a, base_prefix, layout="grid"):
     cat = a.get("category", "Otros")
@@ -502,10 +458,6 @@ def featured_hero_html(a, base_prefix):
   </div>"""
 
 
-# ---------------------------------------------------------------------
-# Home
-# ---------------------------------------------------------------------
-
 def build_home_html(articles, today_str):
     base_prefix = ""
     by_category = defaultdict(list)
@@ -555,10 +507,6 @@ def build_home_html(articles, today_str):
     return page_shell(title="Inicio", base_prefix=base_prefix, body_html=body)
 
 
-# ---------------------------------------------------------------------
-# Página de categoría
-# ---------------------------------------------------------------------
-
 def build_category_html(cat, arts, today_str):
     base_prefix = "../"
     color = CATEGORY_COLORS.get(cat, "#555")
@@ -570,10 +518,6 @@ def build_category_html(cat, arts, today_str):
         feed_html = f'<div class="feed">{"".join(card_html(a, base_prefix, layout="feed") for a in arts_sorted)}</div>'
         desc = f"{len(arts_sorted)} nota(s) de los últimos {RETENTION_DAYS} días."
     else:
-        # Sin notas vigentes ahora mismo (todas las anteriores salieron por
-        # antigüedad). Regeneramos igual esta página -- si no lo hiciéramos,
-        # se quedaría mostrando para siempre la última nota que tuvo, ya
-        # retirada de los datos, lo cual sería información obsoleta.
         feed_html = '<p class="empty-note">Todavía no hay notas recientes en esta categoría. Vuelve pronto.</p>'
         desc = f"0 notas de los últimos {RETENTION_DAYS} días."
 
@@ -589,10 +533,6 @@ def build_category_html(cat, arts, today_str):
     {feed_html}"""
     return page_shell(title=cat, base_prefix=base_prefix, body_html=body, active_category=cat, breadcrumb_html=breadcrumb)
 
-
-# ---------------------------------------------------------------------
-# Página de nota individual (permalink)
-# ---------------------------------------------------------------------
 
 def build_note_html(a, related, today_str):
     base_prefix = "../../"
@@ -639,14 +579,7 @@ def build_note_html(a, related, today_str):
     return page_shell(title=a["title"], base_prefix=base_prefix, body_html=body, active_category=cat, breadcrumb_html=breadcrumb)
 
 
-# ---------------------------------------------------------------------
-# Orquestación: genera TODAS las páginas a partir de la lista vigente
-# ---------------------------------------------------------------------
-
 def build_site(articles, site_dir, today_str):
-    """Escribe index.html, <categoria>/index.html y
-    <categoria>/<slug>/index.html para cada nota vigente. No borra nada
-    -- solo escribe/sobreescribe lo que corresponde a `articles`."""
     site_dir = Path(site_dir)
 
     by_category = defaultdict(list)
@@ -658,12 +591,6 @@ def build_site(articles, site_dir, today_str):
     (site_dir / "index.html").write_text(build_home_html(articles, today_str), encoding="utf-8")
     pages_written += 1
 
-    # Recorremos TODAS las categorías conocidas (no solo las que tienen
-    # notas vigentes ahora mismo) para que la página de una categoría que
-    # se quedó momentáneamente sin notas se regenere igual -- si solo
-    # recorriéramos by_category, esa página se quedaría congelada
-    # mostrando para siempre la última nota que tuvo, ya retirada de los
-    # datos por antigüedad.
     all_categories = list(CATEGORY_ORDER)
     for cat in by_category:
         if cat not in all_categories:
@@ -686,10 +613,6 @@ def build_site(articles, site_dir, today_str):
 
     return pages_written
 
-
-# ---------------------------------------------------------------------
-# main
-# ---------------------------------------------------------------------
 
 def main():
     ap = argparse.ArgumentParser()
