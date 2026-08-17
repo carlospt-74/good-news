@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
 <style>
   :root {
     color-scheme: light;
@@ -21,8 +22,10 @@
 
   header.site-header { background: var(--bg); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 20; }
   .header-inner { max-width: 1180px; margin: 0 auto; padding: 22px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-  .logo { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.5rem; color: var(--ink); letter-spacing: -0.01em; }
+  .logo { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.5rem; color: var(--ink); letter-spacing: -0.01em; display: inline-flex; align-items: center; }
   .logo em { color: var(--accent-deep); }
+  .logo-img { height: 34px; width: auto; display: block; }
+  footer .logo-img { height: 30px; }
   nav.categories { display: flex; gap: 20px; flex-wrap: wrap; }
   nav.categories a { font-size: 0.82rem; font-weight: 500; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; padding-bottom: 3px; border-bottom: 1px solid transparent; transition: all .15s; }
   nav.categories a:hover, nav.categories a.active { color: var(--ink); border-color: var(--accent); }
@@ -142,7 +145,7 @@
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a href="../" class="logo">Buenas <em>Noticias</em></a>
+    <a href="../" class="logo"><img src="../assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
     <button class="menu-toggle" onclick="document.querySelector('nav.categories').classList.toggle('open')">Categorías &darr;</button>
     <nav class="categories"><a href="../deportes/">Deportes</a><a href="../economia/">Economía</a><a href="../ciencia-y-salud/">Ciencia y Salud</a><a href="../medio-ambiente/">Medio Ambiente</a><a href="../sociedad/">Sociedad</a><a href="../tecnologia/">Tecnología</a><a href="../cultura/">Cultura</a><a href="../ia/" class="active">IA</a></nav>
   </div>
@@ -154,14 +157,14 @@
       <div class="icon-badge" style="background:#e9e5f5">✨</div>
       <div>
         <h1 class="serif">IA</h1>
-        <p>0 notas de los últimos 14 días.</p>
+        <p>0 notas de los últimos 120 días.</p>
       </div>
     </div>
     <p class="empty-note">Todavía no hay notas recientes en esta categoría. Vuelve pronto.</p>
 </main>
 <footer>
   <div class="foot-inner">
-    <a href="../" class="logo serif">Buenas <em>Noticias</em></a>
+    <a href="../" class="logo"><img src="../assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
     <div class="foot-links"><nav class="categories"><a href="../deportes/">Deportes</a><a href="../economia/">Economía</a><a href="../ciencia-y-salud/">Ciencia y Salud</a><a href="../medio-ambiente/">Medio Ambiente</a><a href="../sociedad/">Sociedad</a><a href="../tecnologia/">Tecnología</a><a href="../cultura/">Cultura</a><a href="../ia/">IA</a></nav></div>
     <p class="legal">Buenas Noticias no aloja el contenido completo de las notas; siempre enlazamos a la fuente original.</p>
     <p class="disclaimer">Cada resumen es una redacción original a partir de la nota fuente, nunca una copia. Los avatares muestran las iniciales del medio, no fotos de periodistas -- este portal no tiene reporteros propios, solo selecciona y resume buenas noticias ya publicadas por medios reales.</p>
