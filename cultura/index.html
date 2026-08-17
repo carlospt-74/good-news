@@ -24,8 +24,8 @@
   .header-inner { max-width: 1180px; margin: 0 auto; padding: 22px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
   .logo { font-family: 'Fraunces', serif; font-weight: 500; font-size: 1.5rem; color: var(--ink); letter-spacing: -0.01em; display: inline-flex; align-items: center; }
   .logo em { color: var(--accent-deep); }
-  .logo-img { height: 34px; width: auto; display: block; }
-  footer .logo-img { height: 30px; }
+  .logo-img { height: 52px; width: auto; display: block; }
+  footer .logo-img { height: 44px; }
   nav.categories { display: flex; gap: 20px; flex-wrap: wrap; }
   nav.categories a { font-size: 0.82rem; font-weight: 500; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; padding-bottom: 3px; border-bottom: 1px solid transparent; transition: all .15s; }
   nav.categories a:hover, nav.categories a.active { color: var(--ink); border-color: var(--accent); }
@@ -38,17 +38,14 @@
   .hero-text h1 { font-weight: 500; font-size: 2.1rem; line-height: 1.2; margin: 0 0 12px; letter-spacing: -0.01em; }
   .hero-text p.sub { color: var(--ink-soft); font-size: 0.98rem; margin: 0; max-width: 560px; }
 
-  /* ---- foto real (Pexels, licencia gratuita) ---- */
   .photo { position: relative; overflow: hidden; background: var(--bg-alt); border-radius: 6px; }
   .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .photo.fallback { display: flex; align-items: center; justify-content: center; }
   .photo.fallback .emoji { font-size: 2.4rem; }
   .photo-credit { position: absolute; bottom: 8px; right: 10px; font-size: 0.65rem; color: rgba(255,255,255,0.9); background: rgba(0,0,0,0.35); padding: 2px 8px; border-radius: 999px; z-index: 3; }
 
-  /* ---- avatar de fuente (iniciales, no foto de periodista) ---- */
   .avatar { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 700; color: #fff; flex-shrink: 0; }
 
-  /* ---- hero destacada (Home) ---- */
   .featured-hero { position: relative; border-radius: 6px; overflow: hidden; margin-bottom: 56px; min-height: 380px; }
   .featured-hero .photo { position: absolute; inset: 0; border-radius: 0; }
   .featured-hero .photo.fallback { background: var(--bg-alt); }
@@ -74,7 +71,6 @@
   .byline .source-name { font-weight: 600; }
   .byline a.readmore { text-decoration: underline; text-underline-offset: 3px; font-weight: 600; margin-left: 4px; }
 
-  /* ---- grid de tarjetas (Home y relacionadas) ---- */
   .secondary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
   .story-card .photo { aspect-ratio: 16/10; margin-bottom: 16px; }
   .story-card .cat-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent-deep); font-weight: 700; display: flex; align-items: center; gap: 6px; margin-bottom: 10px; }
@@ -92,12 +88,10 @@
 
   .stats-line { color: var(--ink-soft); font-size: 0.85rem; margin: 0 0 12px; }
 
-  /* ---- botones estilo píldora ---- */
   .btn-pill { display: inline-block; background: var(--ink); color: #fff; border: none; padding: 14px 28px; border-radius: 999px; font-weight: 600; font-size: 0.85rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; transition: background .15s; }
   .btn-pill:hover { background: var(--accent-deep); }
 
-  /* ---- página de categoría: feed horizontal ---- */
-  .breadcrumb { padding: 20px 0 0; font-size: 0.8rem; color: var(--ink-soft); }
+  .breadcrumb { max-width: 1180px; margin: 0 auto; padding: 20px 32px 0; font-size: 0.8rem; color: var(--ink-soft); }
   .breadcrumb a:hover { text-decoration: underline; }
   .cat-hero { padding: 20px 0 40px; border-bottom: 1px solid var(--line); margin-bottom: 44px; display: flex; align-items: center; gap: 24px; }
   .cat-hero .icon-badge { width: 76px; height: 76px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; flex-shrink: 0; }
@@ -111,7 +105,6 @@
   .feed-item p.summary { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 14px; }
   .feed-item .byline a.readmore { font-weight: 600; }
 
-  /* --- página de nota individual (permalink) --- */
   .note-photo { aspect-ratio: 16/9; border-radius: 6px; overflow: hidden; margin-bottom: 28px; background: var(--bg-alt); position: relative; }
   .note-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .note-photo.fallback { display: flex; align-items: center; justify-content: center; }
