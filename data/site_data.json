@@ -158,7 +158,11 @@
     "category": "Deportes",
     "image_query": "relay race athletes track",
     "date_added": "2026-08-21",
-    "slug": "corrio-toda-su-vida-contra-el-silencio-y-llego-al-oro-con-una-posta-hi"
+    "slug": "corrio-toda-su-vida-contra-el-silencio-y-llego-al-oro-con-una-posta-hi",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/38563802/pexels-photo-38563802.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Miguel Guerra",
+    "image_source_url": "https://www.pexels.com/photo/youth-relay-race-in-mexico-city-38563802/"
   },
   {
     "title": "Una planta guatemalteca multiplicará por cinco su producción y sumará 700 empleos",
@@ -169,7 +173,11 @@
     "category": "Economía",
     "image_query": "bottling factory production line",
     "date_added": "2026-08-21",
-    "slug": "una-planta-guatemalteca-multiplicara-por-cinco-su-produccion-y-sumara"
+    "slug": "una-planta-guatemalteca-multiplicara-por-cinco-su-produccion-y-sumara",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/36423805/pexels-photo-36423805.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Keegan Checks",
+    "image_source_url": "https://www.pexels.com/photo/glass-bottle-production-line-in-factory-36423805/"
   },
   {
     "title": "Una vacuna hecha a la medida de cada tumor logra, por primera vez, resultados positivos contra el melanoma",
@@ -180,7 +188,11 @@
     "category": "Ciencia y Salud",
     "image_query": "medical research laboratory vaccine",
     "date_added": "2026-08-21",
-    "slug": "una-vacuna-hecha-a-la-medida-de-cada-tumor-logra-por-primera-vez-resul"
+    "slug": "una-vacuna-hecha-a-la-medida-de-cada-tumor-logra-por-primera-vez-resul",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/5922051/pexels-photo-5922051.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Thirdman",
+    "image_source_url": "https://www.pexels.com/photo/five-clear-glass-bottles-on-table-5922051/"
   },
   {
     "title": "Los manglares de Tumbes podrían convertirse en el primer proyecto peruano de carbono azul",
@@ -191,7 +203,11 @@
     "category": "Medio Ambiente",
     "image_query": "mangrove forest aerial view",
     "date_added": "2026-08-21",
-    "slug": "los-manglares-de-tumbes-podrian-convertirse-en-el-primer-proyecto-peru"
+    "slug": "los-manglares-de-tumbes-podrian-convertirse-en-el-primer-proyecto-peru",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/30124670/pexels-photo-30124670.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Asad  Ansari",
+    "image_source_url": "https://www.pexels.com/photo/aerial-view-of-coastal-mangrove-forest-30124670/"
   },
   {
     "title": "Mientras Bogotá se organizaba para ayudar tras el terremoto, un vendedor de café decidió regalar el suyo",
@@ -202,7 +218,11 @@
     "category": "Sociedad",
     "image_query": "street vendor coffee cart",
     "date_added": "2026-08-21",
-    "slug": "mientras-bogota-se-organizaba-para-ayudar-tras-el-terremoto-un-vendedo"
+    "slug": "mientras-bogota-se-organizaba-para-ayudar-tras-el-terremoto-un-vendedo",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/15130098/pexels-photo-15130098.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Unggul Budi",
+    "image_source_url": "https://www.pexels.com/photo/carts-of-street-vendors-15130098/"
   },
   {
     "title": "Una cafetería argentina prestó sus cámaras frías a los vecinos que se quedaron sin luz",
@@ -213,7 +233,11 @@
     "category": "Sociedad",
     "image_query": "commercial kitchen refrigerator",
     "date_added": "2026-08-21",
-    "slug": "una-cafeteria-argentina-presto-sus-camaras-frias-a-los-vecinos-que-se"
+    "slug": "una-cafeteria-argentina-presto-sus-camaras-frias-a-los-vecinos-que-se",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/29409104/pexels-photo-29409104.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Tuan Vy",
+    "image_source_url": "https://www.pexels.com/photo/stocked-refrigerator-with-beverages-and-snacks-29409104/"
   },
   {
     "title": "Un hospital público de Ciudad de México estrenó el quirófano híbrido más grande de la región",
@@ -224,7 +248,11 @@
     "category": "Tecnología",
     "image_query": "hospital operating room technology",
     "date_added": "2026-08-21",
-    "slug": "un-hospital-publico-de-ciudad-de-mexico-estreno-el-quirofano-hibrido-m"
+    "slug": "un-hospital-publico-de-ciudad-de-mexico-estreno-el-quirofano-hibrido-m",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/7108118/pexels-photo-7108118.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Pavel Danilyuk",
+    "image_source_url": "https://www.pexels.com/photo/operating-table-inside-a-room-7108118/"
   },
   {
     "title": "Un sistema chileno de inteligencia artificial recorta a la mitad la espera por una cama de hospital",
@@ -235,7 +263,11 @@
     "category": "IA",
     "image_query": "hospital corridor beds",
     "date_added": "2026-08-21",
-    "slug": "un-sistema-chileno-de-inteligencia-artificial-recorta-a-la-mitad-la-es"
+    "slug": "un-sistema-chileno-de-inteligencia-artificial-recorta-a-la-mitad-la-es",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/11660581/pexels-photo-11660581.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "adrian vieriu",
+    "image_source_url": "https://www.pexels.com/photo/hospital-beds-in-the-hallway-11660581/"
   },
   {
     "title": "Francia distinguirá a una cineasta salvadoreña que llevó el documental de Suchitoto al mundo",
@@ -246,7 +278,11 @@
     "category": "Cultura",
     "image_query": "documentary film camera crew",
     "date_added": "2026-08-21",
-    "slug": "francia-distinguira-a-una-cineasta-salvadorena-que-llevo-el-documental"
+    "slug": "francia-distinguira-a-una-cineasta-salvadorena-que-llevo-el-documental",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/13812367/pexels-photo-13812367.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Maksim Romashkin",
+    "image_source_url": "https://www.pexels.com/photo/actors-and-the-film-crew-filming-in-mountains-13812367/"
   },
   {
     "title": "De cocinar en un restaurante a subir al podio: el camino de una boxeadora guatemalteca hacia el oro",
@@ -257,7 +293,11 @@
     "category": "Deportes",
     "image_query": "boxing gloves ring",
     "date_added": "2026-08-21",
-    "slug": "de-cocinar-en-un-restaurante-a-subir-al-podio-el-camino-de-una-boxeado"
+    "slug": "de-cocinar-en-un-restaurante-a-subir-al-podio-el-camino-de-una-boxeado",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/34621804/pexels-photo-34621804.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Njay Minh Nhựt",
+    "image_source_url": "https://www.pexels.com/photo/boxing-gloves-in-a-ring-corner-perspective-34621804/"
   },
   {
     "title": "Nadó casi 24 horas ida y vuelta por un canal en California, esquivando un tiburón en el camino",
@@ -268,7 +308,11 @@
     "category": "Deportes",
     "image_query": "open water swimmer ocean",
     "date_added": "2026-08-21",
-    "slug": "nado-casi-24-horas-ida-y-vuelta-por-un-canal-en-california-esquivando"
+    "slug": "nado-casi-24-horas-ida-y-vuelta-por-un-canal-en-california-esquivando",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/12979771/pexels-photo-12979771.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Leyla Helvaci",
+    "image_source_url": "https://www.pexels.com/photo/person-swimming-on-ocean-12979771/"
   },
   {
     "title": "La actividad de las empresas en Estados Unidos crece a su mayor ritmo en más de cuatro años",
@@ -279,7 +323,11 @@
     "category": "Economía",
     "image_query": "office workers busy",
     "date_added": "2026-08-21",
-    "slug": "la-actividad-de-las-empresas-en-estados-unidos-crece-a-su-mayor-ritmo"
+    "slug": "la-actividad-de-las-empresas-en-estados-unidos-crece-a-su-mayor-ritmo",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/6803551/pexels-photo-6803551.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "cottonbro studio",
+    "image_source_url": "https://www.pexels.com/photo/men-sitting-at-the-desks-in-an-office-and-using-computers-6803551/"
   },
   {
     "title": "Brasil se perfila como alternativa a China en la carrera global por las tierras raras",
@@ -290,7 +338,11 @@
     "category": "Economía",
     "image_query": "mining excavator quarry",
     "date_added": "2026-08-21",
-    "slug": "brasil-se-perfila-como-alternativa-a-china-en-la-carrera-global-por-la"
+    "slug": "brasil-se-perfila-como-alternativa-a-china-en-la-carrera-global-por-la",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/15138925/pexels-photo-15138925.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Enrique",
+    "image_source_url": "https://www.pexels.com/photo/excavator-in-mine-15138925/"
   },
   {
     "title": "Créditos de carbono financian la protección de bosques centenarios en Durango",
@@ -301,7 +353,11 @@
     "category": "Medio Ambiente",
     "image_query": "pine forest mountains",
     "date_added": "2026-08-21",
-    "slug": "creditos-de-carbono-financian-la-proteccion-de-bosques-centenarios-en"
+    "slug": "creditos-de-carbono-financian-la-proteccion-de-bosques-centenarios-en",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/14221975/pexels-photo-14221975.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Ayşegül  Aytören",
+    "image_source_url": "https://www.pexels.com/photo/mountain-peak-seen-behind-trees-14221975/"
   },
   {
     "title": "Una fábrica argentina cumple diez años generando electricidad con los restos de la industria maderera",
@@ -312,7 +368,11 @@
     "category": "Medio Ambiente",
     "image_query": "biomass power plant",
     "date_added": "2026-08-21",
-    "slug": "una-fabrica-argentina-cumple-diez-anos-generando-electricidad-con-los"
+    "slug": "una-fabrica-argentina-cumple-diez-anos-generando-electricidad-con-los",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/34401311/pexels-photo-34401311.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Sergej  *****",
+    "image_source_url": "https://www.pexels.com/photo/sustainable-farm-with-wind-turbine-and-solar-panels-34401311/"
   },
   {
     "title": "Cada miércoles, un grupo de voluntarios en Nogales convierte donaciones en platos de comida caliente",
@@ -323,7 +383,11 @@
     "category": "Sociedad",
     "image_query": "community soup kitchen volunteers",
     "date_added": "2026-08-21",
-    "slug": "cada-miercoles-un-grupo-de-voluntarios-en-nogales-convierte-donaciones"
+    "slug": "cada-miercoles-un-grupo-de-voluntarios-en-nogales-convierte-donaciones",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/6646987/pexels-photo-6646987.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "RDNE Stock project",
+    "image_source_url": "https://www.pexels.com/photo/a-volunteer-scooping-soup-with-a-ladle-6646987/"
   },
   {
     "title": "Convocaron a decenas de personas a un teatro sin decirles por qué, y terminaron ayudando a una abuela",
@@ -334,7 +398,11 @@
     "category": "Sociedad",
     "image_query": "theater audience applause",
     "date_added": "2026-08-21",
-    "slug": "convocaron-a-decenas-de-personas-a-un-teatro-sin-decirles-por-que-y-te"
+    "slug": "convocaron-a-decenas-de-personas-a-un-teatro-sin-decirles-por-que-y-te",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/18238117/pexels-photo-18238117.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Hoàng Tiến Việt",
+    "image_source_url": "https://www.pexels.com/photo/an-audience-of-the-concert-18238117/"
   },
   {
     "title": "Un grupo de voluntarios recorre Chocó descargando a mano toneladas de ayuda para los damnificados del terremoto",
@@ -345,7 +413,11 @@
     "category": "Sociedad",
     "image_query": "volunteers unloading truck boxes",
     "date_added": "2026-08-21",
-    "slug": "un-grupo-de-voluntarios-recorre-choco-descargando-a-mano-toneladas-de"
+    "slug": "un-grupo-de-voluntarios-recorre-choco-descargando-a-mano-toneladas-de",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/6646868/pexels-photo-6646868.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "RDNE Stock project",
+    "image_source_url": "https://www.pexels.com/photo/men-doing-volunteer-works-for-relief-cause-6646868/"
   },
   {
     "title": "Viajaron con un caldero gigante desde Santander hasta Pereira para cocinar miles de almuerzos",
@@ -356,7 +428,11 @@
     "category": "Sociedad",
     "image_query": "large cooking pot outdoor",
     "date_added": "2026-08-21",
-    "slug": "viajaron-con-un-caldero-gigante-desde-santander-hasta-pereira-para-coc"
+    "slug": "viajaron-con-un-caldero-gigante-desde-santander-hasta-pereira-para-coc",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/34256116/pexels-photo-34256116.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Magda Ehlers",
+    "image_source_url": "https://www.pexels.com/photo/large-outdoor-cookout-with-traditional-iron-pots-34256116/"
   },
   {
     "title": "Estaciones con cámaras y sensores vigilan ríos peruanos para anticipar inundaciones en zonas aisladas",
@@ -367,7 +443,11 @@
     "category": "Tecnología",
     "image_query": "river sensor station",
     "date_added": "2026-08-21",
-    "slug": "estaciones-con-camaras-y-sensores-vigilan-rios-peruanos-para-anticipar"
+    "slug": "estaciones-con-camaras-y-sensores-vigilan-rios-peruanos-para-anticipar",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/15784822/pexels-photo-15784822.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Ulrick Trappschuh",
+    "image_source_url": "https://www.pexels.com/photo/device-measuring-wind-speed-15784822/"
   },
   {
     "title": "Un dispositivo colombiano avisa a peatones con discapacidad cuándo se acerca un vehículo",
@@ -378,7 +458,11 @@
     "category": "IA",
     "image_query": "traffic pedestrian crossing sign",
     "date_added": "2026-08-21",
-    "slug": "un-dispositivo-colombiano-avisa-a-peatones-con-discapacidad-cuando-se"
+    "slug": "un-dispositivo-colombiano-avisa-a-peatones-con-discapacidad-cuando-se",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/6025036/pexels-photo-6025036.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Andi",
+    "image_source_url": "https://www.pexels.com/photo/wait-sign-on-pedestrian-crossing-6025036/"
   },
   {
     "title": "Una plataforma creada por científicos del CONICET ayuda a detectar a tiempo la ceguera por diabetes",
@@ -389,7 +473,11 @@
     "category": "IA",
     "image_query": "eye exam retina scan",
     "date_added": "2026-08-21",
-    "slug": "una-plataforma-creada-por-cientificos-del-conicet-ayuda-a-detectar-a-t"
+    "slug": "una-plataforma-creada-por-cientificos-del-conicet-ayuda-a-detectar-a-t",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/5752277/pexels-photo-5752277.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Ksenia Chernaya",
+    "image_source_url": "https://www.pexels.com/photo/woman-checking-eyesight-on-modern-equipment-5752277/"
   },
   {
     "title": "Un dispositivo colombiano que escucha los pulmones fue premiado por ayudar a detectar la EPOC a tiempo",
@@ -400,7 +488,11 @@
     "category": "IA",
     "image_query": "stethoscope doctor patient",
     "date_added": "2026-08-21",
-    "slug": "un-dispositivo-colombiano-que-escucha-los-pulmones-fue-premiado-por-ay"
+    "slug": "un-dispositivo-colombiano-que-escucha-los-pulmones-fue-premiado-por-ay",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/20100299/pexels-photo-20100299.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Felipe Queiroz",
+    "image_source_url": "https://www.pexels.com/photo/stethoscope-in-doctor-hands-20100299/"
   },
   {
     "title": "Una aplicación peruana busca describir el entorno en voz alta a personas con discapacidad visual",
@@ -411,7 +503,11 @@
     "category": "IA",
     "image_query": "smartphone assistive technology blind",
     "date_added": "2026-08-21",
-    "slug": "una-aplicacion-peruana-busca-describir-el-entorno-en-voz-alta-a-person"
+    "slug": "una-aplicacion-peruana-busca-describir-el-entorno-en-voz-alta-a-person",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/6609667/pexels-photo-6609667.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Tima Miroshnichenko",
+    "image_source_url": "https://www.pexels.com/photo/sunglasses-relaxation-smartphone-plant-6609667/"
   },
   {
     "title": "El cineasta mexicano Luis Mandoki recibió un reconocimiento por medio siglo defendiendo la libertad de expresión",
@@ -422,7 +518,11 @@
     "category": "Cultura",
     "image_query": "film director movie set",
     "date_added": "2026-08-21",
-    "slug": "el-cineasta-mexicano-luis-mandoki-recibio-un-reconocimiento-por-medio"
+    "slug": "el-cineasta-mexicano-luis-mandoki-recibio-un-reconocimiento-por-medio",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/1117132/pexels-photo-1117132.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Martin Lopez",
+    "image_source_url": "https://www.pexels.com/photo/man-holding-clapper-board-1117132/"
   },
   {
     "title": "Un muralista costarricense fue reconocido por usar el arte como puente entre comunidades",
@@ -433,7 +533,11 @@
     "category": "Cultura",
     "image_query": "mural painting wall art",
     "date_added": "2026-08-21",
-    "slug": "un-muralista-costarricense-fue-reconocido-por-usar-el-arte-como-puente"
+    "slug": "un-muralista-costarricense-fue-reconocido-por-usar-el-arte-como-puente",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/10530981/pexels-photo-10530981.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Alexey Demidov",
+    "image_source_url": "https://www.pexels.com/photo/graffiti-art-on-a-wall-beside-wooden-window-10530981/"
   },
   {
     "title": "La cantante chilena Mon Laferte será reconocida por usar su música para hablar de derechos humanos",
@@ -444,7 +548,11 @@
     "category": "Cultura",
     "image_query": "singer concert stage microphone",
     "date_added": "2026-08-21",
-    "slug": "la-cantante-chilena-mon-laferte-sera-reconocida-por-usar-su-musica-par"
+    "slug": "la-cantante-chilena-mon-laferte-sera-reconocida-por-usar-su-musica-par",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/1625355/pexels-photo-1625355.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Anderson Guerra",
+    "image_source_url": "https://www.pexels.com/photo/man-singing-in-front-microphne-1625355/"
   },
   {
     "title": "El Salón de la Fama de los Compositores Latinos rendirá un homenaje póstumo a Celia Cruz",
@@ -455,6 +563,10 @@
     "category": "Cultura",
     "image_query": "vintage music hall of fame",
     "date_added": "2026-08-21",
-    "slug": "el-salon-de-la-fama-de-los-compositores-latinos-rendira-un-homenaje-po"
+    "slug": "el-salon-de-la-fama-de-los-compositores-latinos-rendira-un-homenaje-po",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/12379124/pexels-photo-12379124.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Kodi Baines",
+    "image_source_url": "https://www.pexels.com/photo/modern-architecture-building-12379124/"
   }
 ]
