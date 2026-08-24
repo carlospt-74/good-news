@@ -58,7 +58,7 @@ PEXELS_SEARCH_URL = "https://api.pexels.com/v1/search"
 # .github/scripts/attach_photos.py) para que este import funcione.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / "scripts"))
 try:
-    from build_site import build_site, load_json, save_json  # noqa: E402
+    from build_site import build_site, load_json, save_json, fecha_larga_es  # noqa: E402
 except ImportError:
     print(
         "ERROR: no se encontró scripts/build_site.py en la raíz del repo. "
@@ -170,8 +170,7 @@ def main():
 
     # Regenera todas las páginas del sitio (home, categorías y permalinks)
     # con las fotos ya asignadas.
-    from datetime import datetime
-    today_str = datetime.now().strftime("%d de %B de %Y")
+    today_str = fecha_larga_es()
     pages_written = build_site(articles, site_dir, today_str)
 
     print(f"\nListo: {found} foto(s) encontradas, {not_found} sin resultado (usan respaldo ilustrado).")

@@ -108,6 +108,22 @@ CATEGORY_EMOJI = {
 }
 
 
+MESES_ES = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre",
+]
+
+
+def fecha_larga_es(dt=None):
+    """Formatea una fecha como '24 de agosto de 2026', en español, sin
+    depender del locale del sistema operativo (strftime("%B") depende del
+    locale activo y en muchos entornos -- como los runners de GitHub
+    Actions -- ese locale es en_US, lo que producia fechas como
+    '24 de August de 2026'). Este helper evita ese problema por completo."""
+    dt = dt or datetime.now()
+    return f"{dt.strftime('%d')} de {MESES_ES[dt.month - 1]} de {dt.year}"
+
+
 def load_json(path, default):
     p = Path(path)
     if not p.exists():
@@ -632,7 +648,7 @@ def main():
     merged, added, skipped = merge_articles(existing, new_articles)
     merged = prune_old(merged)
 
-    today_str = datetime.now().strftime("%d de %B de %Y")
+    today_str = fecha_larga_es()
     pages_written = build_site(merged, site_dir, today_str)
 
     save_json(site_data_path, merged)
