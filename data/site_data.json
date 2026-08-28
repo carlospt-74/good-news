@@ -728,7 +728,11 @@
     "category": "Deportes",
     "image_query": "para dressage horse rider",
     "date_added": "2026-08-28",
-    "slug": "con-paralisis-cerebral-una-amazona-jamaicana-hace-historia-en-la-doma"
+    "slug": "con-paralisis-cerebral-una-amazona-jamaicana-hace-historia-en-la-doma",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/4894978/pexels-photo-4894978.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Gustavo Fring",
+    "image_source_url": "https://www.pexels.com/photo/woman-riding-a-horse-4894978/"
   },
   {
     "title": "Jugadora inuvialuit de Canadá firma contrato para debutar como profesional de hockey en Europa",
@@ -739,7 +743,11 @@
     "category": "Deportes",
     "image_query": "women ice hockey player",
     "date_added": "2026-08-28",
-    "slug": "jugadora-inuvialuit-de-canada-firma-contrato-para-debutar-como-profesi"
+    "slug": "jugadora-inuvialuit-de-canada-firma-contrato-para-debutar-como-profesi",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/12944640/pexels-photo-12944640.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Atlantic Ambience",
+    "image_source_url": "https://www.pexels.com/photo/two-women-playing-ice-hockey-12944640/"
   },
   {
     "title": "Un nuevo equipo médico en Saskatchewan logra que un niño quede libre de convulsiones tras una cirugía inédita en la provincia",
@@ -750,7 +758,11 @@
     "category": "Ciencia y Salud",
     "image_query": "pediatric hospital doctor child",
     "date_added": "2026-08-28",
-    "slug": "un-nuevo-equipo-medico-en-saskatchewan-logra-que-un-nino-quede-libre-d"
+    "slug": "un-nuevo-equipo-medico-en-saskatchewan-logra-que-un-nino-quede-libre-d",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/8376311/pexels-photo-8376311.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Tima Miroshnichenko",
+    "image_source_url": "https://www.pexels.com/photo/person-holding-blue-plush-toy-and-white-syringe-8376311/"
   },
   {
     "title": "La Caja costarricense fabrica su primera prótesis de cráneo con impresión 3D y reduce el costo a una fracción",
@@ -761,7 +773,11 @@
     "category": "Ciencia y Salud",
     "image_query": "3d printed medical prosthetic",
     "date_added": "2026-08-28",
-    "slug": "la-caja-costarricense-fabrica-su-primera-protesis-de-craneo-con-impres"
+    "slug": "la-caja-costarricense-fabrica-su-primera-protesis-de-craneo-con-impres",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/8436856/pexels-photo-8436856.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "MART  PRODUCTION",
+    "image_source_url": "https://www.pexels.com/photo/close-up-photo-of-man-holding-prosthetic-leg-8436856/"
   },
   {
     "title": "Buceadores hallan colonias de coral cuerno de ciervo que se creían perdidas en las Granadinas",
@@ -772,7 +788,11 @@
     "category": "Medio Ambiente",
     "image_query": "staghorn coral reef",
     "date_added": "2026-08-28",
-    "slug": "buceadores-hallan-colonias-de-coral-cuerno-de-ciervo-que-se-creian-per"
+    "slug": "buceadores-hallan-colonias-de-coral-cuerno-de-ciervo-que-se-creian-per",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/13211929/pexels-photo-13211929.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Francesco Ungaro",
+    "image_source_url": "https://www.pexels.com/photo/coral-reef-underwater-13211929/"
   },
   {
     "title": "Investigadores indígenas registran cerca de 15.000 especies en un territorio amazónico para protegerlo de la minería ilegal",
@@ -783,7 +803,11 @@
     "category": "Medio Ambiente",
     "image_query": "amazon rainforest researcher",
     "date_added": "2026-08-28",
-    "slug": "investigadores-indigenas-registran-cerca-de-15-000-especies-en-un-terr"
+    "slug": "investigadores-indigenas-registran-cerca-de-15-000-especies-en-un-terr",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/7867865/pexels-photo-7867865.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Elif Ilkel",
+    "image_source_url": "https://www.pexels.com/photo/aerial-shot-of-a-dense-green-forest-7867865/"
   },
   {
     "title": "Vecinos armados con palas y mangueras frenaron un incendio en Spokane y salvaron varias casas",
@@ -794,7 +818,11 @@
     "category": "Sociedad",
     "image_query": "neighbors helping wildfire community",
     "date_added": "2026-08-28",
-    "slug": "vecinos-armados-con-palas-y-mangueras-frenaron-un-incendio-en-spokane"
+    "slug": "vecinos-armados-con-palas-y-mangueras-frenaron-un-incendio-en-spokane",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/6647054/pexels-photo-6647054.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "RDNE Stock project",
+    "image_source_url": "https://www.pexels.com/photo/man-love-people-woman-6647054/"
   },
   {
     "title": "Decenas de voluntarios construyen desde cero la casa de una nueva vecina en Carolina del Norte",
@@ -805,7 +833,11 @@
     "category": "Sociedad",
     "image_query": "volunteers building house",
     "date_added": "2026-08-28",
-    "slug": "decenas-de-voluntarios-construyen-desde-cero-la-casa-de-una-nueva-veci"
+    "slug": "decenas-de-voluntarios-construyen-desde-cero-la-casa-de-una-nueva-veci",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/6647173/pexels-photo-6647173.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "RDNE Stock project",
+    "image_source_url": "https://www.pexels.com/photo/light-man-love-summer-6647173/"
   },
   {
     "title": "Un proyecto universitario con pajillas y esponjas se convirtió en un dispositivo que ya ayuda a miles a volver a dibujar y escribir",
@@ -816,7 +848,11 @@
     "category": "Tecnología",
     "image_query": "assistive device hand mobility",
     "date_added": "2026-08-28",
-    "slug": "un-proyecto-universitario-con-pajillas-y-esponjas-se-convirtio-en-un-d"
+    "slug": "un-proyecto-universitario-con-pajillas-y-esponjas-se-convirtio-en-un-d",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/7688767/pexels-photo-7688767.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Yaroslav Shuraev",
+    "image_source_url": "https://www.pexels.com/photo/person-holding-a-smartphone-7688767/"
   },
   {
     "title": "Francia distingue a una escritora martiniquesa por su lucha de toda la vida en defensa del idioma creole",
@@ -827,7 +863,11 @@
     "category": "Cultura",
     "image_query": "caribbean writer book",
     "date_added": "2026-08-28",
-    "slug": "francia-distingue-a-una-escritora-martiniquesa-por-su-lucha-de-toda-la"
+    "slug": "francia-distingue-a-una-escritora-martiniquesa-por-su-lucha-de-toda-la",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/9297454/pexels-photo-9297454.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Hans Michel Beaugelus",
+    "image_source_url": "https://www.pexels.com/photo/man-signing-a-book-9297454/"
   },
   {
     "title": "La Unión Brasileña de Compositores homenajea a la poeta y letrista Alice Ruiz por más de cinco décadas de carrera",
@@ -838,7 +878,11 @@
     "category": "Cultura",
     "image_query": "brazilian musician award ceremony",
     "date_added": "2026-08-28",
-    "slug": "la-union-brasilena-de-compositores-homenajea-a-la-poeta-y-letrista-ali"
+    "slug": "la-union-brasilena-de-compositores-homenajea-a-la-poeta-y-letrista-ali",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/32870100/pexels-photo-32870100.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Bombeiros MT",
+    "image_source_url": "https://www.pexels.com/photo/brazilian-military-band-performing-in-ceremony-32870100/"
   },
   {
     "title": "Las pequeñas empresas de Estados Unidos suman seis meses seguidos creando empleo",
@@ -849,7 +893,11 @@
     "category": "Economía",
     "image_query": "small business owner storefront",
     "date_added": "2026-08-28",
-    "slug": "las-pequenas-empresas-de-estados-unidos-suman-seis-meses-seguidos-crea"
+    "slug": "las-pequenas-empresas-de-estados-unidos-suman-seis-meses-seguidos-crea",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/36729522/pexels-photo-36729522.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Vitaly Gariev",
+    "image_source_url": "https://www.pexels.com/photo/small-business-owners-displaying-open-sign-36729522/"
   },
   {
     "title": "Una tableta con inteligencia artificial logra distinguir autismo de TDAH en niños pequeños, según un nuevo estudio",
@@ -860,6 +908,10 @@
     "category": "IA",
     "image_query": "child tablet screening test",
     "date_added": "2026-08-28",
-    "slug": "una-tableta-con-inteligencia-artificial-logra-distinguir-autismo-de-td"
+    "slug": "una-tableta-con-inteligencia-artificial-logra-distinguir-autismo-de-td",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/7089330/pexels-photo-7089330.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "MART  PRODUCTION",
+    "image_source_url": "https://www.pexels.com/photo/woman-technology-health-hospital-7089330/"
   }
 ]
