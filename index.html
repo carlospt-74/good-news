@@ -3,26 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inicio · Buenas Noticias</title>
+<title>Inicio &middot; Buenas Noticias</title>
 <style>
-  body { font-family: -apple-system, sans-serif; max-width: 640px; margin: 60px auto; padding: 0 24px; color: #201f1c; background: #faf8f4; line-height: 1.6; }
-  h1 { font-size: 1.6rem; }
-  a { color: #3f4a37; }
-  ul { padding-left: 20px; }
+  :root { color-scheme: light; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; max-width: 780px; margin: 0 auto; padding: 32px 20px 60px; color: #201f1c; background: #faf8f4; line-height: 1.55; }
+  header { text-align:center; margin-bottom: 28px; }
+  h1 { font-size: 2rem; margin: 0 0 6px; }
+  .tagline { color:#6b6a63; margin:0; }
+  h2.section-title { font-size:1.1rem; text-transform:uppercase; letter-spacing:.06em; color:#6b6a63; border-bottom:1px solid #e4e1d8; padding-bottom:8px; margin-top:36px; }
+  .serif { font-family: Georgia, "Times New Roman", serif; }
+  a { color:#3f4a37; text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  .story-card { background:#fff; border:1px solid #ece8dd; border-radius:10px; padding:18px 20px; margin:16px 0; }
+  .cat-tag { font-weight:600; font-size:.85rem; }
+  .story-card h3 { margin:8px 0; font-size:1.15rem; line-height:1.3; }
+  .summary { margin:0 0 10px; color:#3a382f; }
+  .byline { font-size:.85rem; color:#726f63; display:flex; align-items:center; gap:8px; }
+  .avatar { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; color:#fff; font-size:.7rem; font-weight:700; }
+  .readmore { margin-left:auto; }
+  .cat-nav { list-style:none; padding:0; margin:14px 0 0; display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+  .cat-nav li { background:#fff; border:1px solid #ece8dd; border-radius:8px; padding:10px 14px; }
+  footer { margin-top:40px; text-align:center; color:#9a978c; font-size:.8rem; }
 </style>
 </head>
 <body>
-<h1>Buenas Noticias</h1>
-<p>La portada se está actualizando. Mientras tanto, puedes ver las notas por categoría:</p>
-<ul>
-  <li><a href="deportes/">Deportes</a></li>
-  <li><a href="economia/">Economía</a></li>
-  <li><a href="ciencia-y-salud/">Ciencia y Salud</a></li>
-  <li><a href="medio-ambiente/">Medio Ambiente</a></li>
-  <li><a href="sociedad/">Sociedad</a></li>
-  <li><a href="tecnologia/">Tecnología</a></li>
-  <li><a href="cultura/">Cultura</a></li>
-  <li><a href="ia/">IA</a></li>
+<header>
+  <h1>Buenas Noticias</h1>
+  <p class="tagline">Noticias reales, verificadas y positivas de America Latina y el Caribe</p>
+</header>
+
+<h2 class="section-title">Destacadas de hoy</h2>
+
+      <div class="story-card">
+        <span class="cat-tag" style="color:#c26b1f">🏆 Deportes</span>
+        <h3 class="serif"><a href="deportes/">Costa Rica cierra los Juegos Centroamericanos y del Caribe con su mejor cosecha de oros en tres décadas</a></h3>
+        <p class="summary">Costa Rica terminó su participación en los XXV Juegos Centroamericanos y del Caribe, en Santo Domingo, con 26 medallas, cinco de ellas de oro, la mejor marca del país en 33 años. Entre los momentos más celebrados estuvo el oro de Rachel Agüero en surf, la primera vez que una costarricense gana esa disciplina en la historia de los Juegos, además de las primeras medallas nacionales en gimnasia artística y rítmica.</p>
+        <div class="byline"><span class="avatar" style="background:#c26b1f">CU</span>Culturacr.net &middot; 2026-08-09 <a class="readmore" href="deportes/">Ver en Deportes &rarr;</a></div>
+      </div>
+      <div class="story-card">
+        <span class="cat-tag" style="color:#2f6f4f">📈 Economía</span>
+        <h3 class="serif"><a href="economia/">El comercio exterior peruano ya sostiene 1,5 millones de empleos, un 7,6% más que el año pasado</a></h3>
+        <p class="summary">Según cifras del Centro de Investigación de Economía y Negocios Globales de la Asociación de Exportadores de Perú (ADEX), los puestos de trabajo ligados a las exportaciones llegaron a 1,5 millones hasta junio de 2026, un incremento del 7,6% frente al año anterior. El Banco Central de Reserva confirma, además, que esos empleos representan ya un tercio de todos los puestos privados formales del país, impulsados sobre todo por la agroindustria y la minería.</p>
+        <div class="byline"><span class="avatar" style="background:#2f6f4f">GE</span>Gestión &middot; 2026-09-01 <a class="readmore" href="economia/">Ver en Economía &rarr;</a></div>
+      </div>
+      <div class="story-card">
+        <span class="cat-tag" style="color:#1f6f9c">🧪 Ciencia y Salud</span>
+        <h3 class="serif"><a href="ciencia-y-salud/">Brasil empieza a probar en humanos su primera vacuna hecha 100% con tecnología de ARN mensajero</a></h3>
+        <p class="summary">La agencia sanitaria brasileña Anvisa autorizó los primeros ensayos clínicos en humanos de una vacuna contra el covid-19 desarrollada íntegramente en Brasil con tecnología de ARN mensajero, según informó la Fundación Oswaldo Cruz (Fiocruz), responsable del proyecto. Según la propia institución, el hito no se limita a una nueva vacuna: abre la puerta para aplicar la misma plataforma en investigaciones que ya están en marcha contra el cáncer, el dengue y otras enfermedades.</p>
+        <div class="byline"><span class="avatar" style="background:#1f6f9c">G1</span>G1 Globo &middot; 2026-09-02 <a class="readmore" href="ciencia-y-salud/">Ver en Ciencia y Salud &rarr;</a></div>
+      </div>
+      <div class="story-card">
+        <span class="cat-tag" style="color:#1f6f9c">🧪 Ciencia y Salud</span>
+        <h3 class="serif"><a href="ciencia-y-salud/">Un hospital público de Cancún realiza las primeras cirugías con brazos robóticos en la península de Yucatán</a></h3>
+        <p class="summary">Según información oficial del Hospital General de Cancún, el centro se convirtió en uno de los cinco hospitales de México en operar con el sistema robótico Versius, tras completar sin complicaciones sus dos primeras cirugías de vesícula. El plan del hospital contempla certificar a 16 cirujanos propios en cuatro especialidades, entre ellas ginecología y urología, para extender este tipo de tecnología a más pacientes de la región.</p>
+        <div class="byline"><span class="avatar" style="background:#1f6f9c">EJ</span>Ejecentral &middot; 2026-09-04 <a class="readmore" href="ciencia-y-salud/">Ver en Ciencia y Salud &rarr;</a></div>
+      </div>
+      <div class="story-card">
+        <span class="cat-tag" style="color:#3f7d3f">🌱 Medio Ambiente</span>
+        <h3 class="serif"><a href="medio-ambiente/">Una isla caribeña que parecía un desierto de piedra hoy es un santuario protegido, gracias a retirar cabras y ratas</a></h3>
+        <p class="summary">Antigua y Barbuda creó la Reserva del Ecosistema de Redonda, que protege cerca de 30.000 hectáreas de tierra y mar, después de que la eliminación de cabras y ratas invasoras en 2017 permitiera que la vegetación de la isla se multiplicara más de veinte veces en pocos años. El área alberga hoy colonias de aves marinas de importancia internacional y decenas de especies amenazadas a nivel global.</p>
+        <div class="byline"><span class="avatar" style="background:#3f7d3f">TH</span>The Times of India &middot; 2026-08-09 <a class="readmore" href="medio-ambiente/">Ver en Medio Ambiente &rarr;</a></div>
+      </div>
+      <div class="story-card">
+        <span class="cat-tag" style="color:#8a4b8a">🤝 Sociedad</span>
+        <h3 class="serif"><a href="sociedad/">De Barranquilla salieron camiones con ayuda para Chocó; ahora los voluntarios quieren reconstruir una escuela</a></h3>
+        <p class="summary">Un grupo de voluntarios de Barranquilla que recorrió cinco departamentos de Colombia tras el terremoto de agosto decidió ir más allá de las donaciones de emergencia y ahora busca reconstruir y equipar una escuela en Tagachí, Chocó, a la que asisten más de 300 estudiantes. El centro de acopio que impulsaron llegó a reunir hasta 400 voluntarios en un solo día para clasificar y distribuir ayuda por la región.</p>
+        <div class="byline"><span class="avatar" style="background:#8a4b8a">EL</span>El Heraldo (Colombia) &middot; 2026-08-30 <a class="readmore" href="sociedad/">Ver en Sociedad &rarr;</a></div>
+      </div>
+      <div class="story-card">
+        <span class="cat-tag" style="color:#4a5b8c">💻 Tecnología</span>
+        <h3 class="serif"><a href="tecnologia/">Un geofísico venezolano construyó en cuatro días una plataforma que junta ciencia y ayuda humanitaria tras el terremoto</a></h3>
+        <p class="summary">Daniel Arraiz, geofísico de la Universidad Central de Venezuela, se apoyó en un asistente de inteligencia artificial para programar GeoResponde, un sitio de código abierto que reúne en un solo lugar mapas sísmicos, centros de acopio y listados de personas desaparecidas tras el terremoto que golpeó al país. La plataforma es gratuita y está abierta a que otros programadores la mejoren; ya recibió aportes de desarrolladores fuera de Venezuela, y su creador espera que sirva de base para futuras emergencias.</p>
+        <div class="byline"><span class="avatar" style="background:#4a5b8c">EL</span>El Ecosistema Startup &middot; 2026-08-31 <a class="readmore" href="tecnologia/">Ver en Tecnología &rarr;</a></div>
+      </div>
+      <div class="story-card">
+        <span class="cat-tag" style="color:#a13f5c">🎭 Cultura</span>
+        <h3 class="serif"><a href="cultura/">Una organización jamaiquina es la primera del Caribe en ganar una beca de la UNESCO para artistas</a></h3>
+        <p class="summary">Kingston Creative, una organización sin fines de lucro de Jamaica, se convirtió en la primera entidad caribeña en obtener una beca del Programa UNESCO-Aschberg, elegida entre más de mil candidaturas de todo el mundo. El fondo financiará un programa regional de 18 meses para proteger los ingresos y el trabajo de artistas de Jamaica, Trinidad y Tobago y Barbados, luego de que una encuesta propia de la organización mostrara que más del 70% de los artistas jamaiquinos perdió ingresos tras el huracán Melissa.</p>
+        <div class="byline"><span class="avatar" style="background:#a13f5c">KA</span>Kariculture &middot; 2026-07-24 <a class="readmore" href="cultura/">Ver en Cultura &rarr;</a></div>
+      </div>
+      <div class="story-card">
+        <span class="cat-tag" style="color:#a13f5c">🎭 Cultura</span>
+        <h3 class="serif"><a href="cultura/">La escritora nicaragüense Gioconda Belli gana el premio literario más importante de Guadalajara</a></h3>
+        <p class="summary">El jurado de la Feria Internacional del Libro de Guadalajara eligió por unanimidad a la escritora nicaragüense Gioconda Belli como ganadora del Premio FIL de Literatura en Lenguas Romances 2026, dotado con 150.000 dólares. Con más de cinco décadas de trayectoria, Belli se convierte en la primera mujer centroamericana y la primera persona nicaragüense en recibir este galardón, que se entregará en noviembre.</p>
+        <div class="byline"><span class="avatar" style="background:#a13f5c">EL</span>El Economista (México) &middot; 2026-08-31 <a class="readmore" href="cultura/">Ver en Cultura &rarr;</a></div>
+      </div>
+      <div class="story-card">
+        <span class="cat-tag" style="color:#5c4a9c">🤖 IA</span>
+        <h3 class="serif"><a href="ia/">Una inteligencia artificial argentina ya detecta a tiempo el daño en los ojos que provoca la diabetes</a></h3>
+        <p class="summary">Según datos del CONICET y la Universidad Nacional del Centro de la Provincia de Buenos Aires, Retinar, una plataforma de inteligencia artificial que analiza fotografías de retina, ya funciona en tres hospitales bonaerenses y alcanzó una sensibilidad del 100% para detectar casos de riesgo. La herramienta no reemplaza al oftalmólogo: ordena qué pacientes necesitan atención prioritaria, permitiendo diagnosticar la retinopatía diabética antes de que aparezcan los síntomas, cuando el daño en la vista todavía se puede evitar.</p>
+        <div class="byline"><span class="avatar" style="background:#5c4a9c">IN</span>Infobae &middot; 2026-08-31 <a class="readmore" href="ia/">Ver en IA &rarr;</a></div>
+      </div>
+
+<h2 class="section-title">Explora por categoria</h2>
+<ul class="cat-nav">
+<li><a href="deportes/">🏆 Deportes</a></li>
+<li><a href="economia/">📈 Economía</a></li>
+<li><a href="ciencia-y-salud/">🧪 Ciencia y Salud</a></li>
+<li><a href="medio-ambiente/">🌱 Medio Ambiente</a></li>
+<li><a href="sociedad/">🤝 Sociedad</a></li>
+<li><a href="tecnologia/">💻 Tecnología</a></li>
+<li><a href="cultura/">🎭 Cultura</a></li>
+<li><a href="ia/">🤖 IA</a></li>
 </ul>
+
+<footer>
+  <p>71 notas publicadas en 8 categorias &middot; actualizado el 2026-09-04</p>
+</footer>
 </body>
 </html>
