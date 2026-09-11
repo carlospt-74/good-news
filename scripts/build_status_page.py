@@ -20,13 +20,60 @@ Registro esperado en la bitácora (un objeto por corrida):
   "summary": "texto breve de una línea",
   "link": "https://... (opcional, ej. un commit o una corrida de GitHub Actions)"
 }
+
+Nota: el timestamp SIEMPRE se guarda en la bitácora en UTC (asi lo deben
+seguir escribiendo los triggers) -- este script es el único responsable de
+convertirlo a hora de Monterrey (UTC-6, sin horario de verano) solo para
+mostrarlo en la página.
 """
 import argparse
 import json
 import os
+import datetime
 from html import escape
 
 MAX_ENTRIES_SHOWN = 60
+
+# Monterrey, Mexico no usa horario de verano -- siempre UTC-6.
+MONTERREY_OFFSET_HOURS = -6
+
+MESES_ES = {
+    1: "ene", 2: "feb", 3: "mar", 4: "abr", 5: "may", 6: "jun",
+    7: "jul", 8: "ago", 9: "sep", 10: "oct", 11: "nov", 12: "dic",
+}
+
+
+def format_monterrey(timestamp_utc):
+    """Convierte un timestamp UTC ISO 8601 (ej. "2026-09-11T14:20:41Z") a
+    hora de Monterrey, formateado como "11-sep-26 - 8:20:41 a.m."."""
+    if not timestamp_utc:
+        return "-"
+    raw = timestamp_utc.strip()
+    try:
+        if raw.endswith("Z"):
+            raw_iso = raw[:-1] + "+00:00"
+        else:
+            raw_iso = raw
+        dt_utc = datetime.datetime.fromisoformat(raw_iso)
+        if dt_utc.tzinfo is None:
+            dt_utc = dt_utc.replace(tzinfo=datetime.timezone.utc)
+    except ValueError:
+        # Timestamp con formato inesperado -- mostrar el original en vez de
+        # fallar o inventar una fecha.
+        return timestamp_utc
+
+    dt_mty = dt_utc + datetime.timedelta(hours=MONTERREY_OFFSET_HOURS)
+    day = dt_mty.day
+    month = MESES_ES.get(dt_mty.month, "?")
+    year_2digit = dt_mty.year % 100
+    hour24 = dt_mty.hour
+    minute = dt_mty.minute
+    second = dt_mty.second
+    ampm = "a.m." if hour24 < 12 else "p.m."
+    hour12 = hour24 % 12
+    if hour12 == 0:
+        hour12 = 12
+    return f"{day:02d}-{month}-{year_2digit:02d} - {hour12}:{minute:02d}:{second:02d} {ampm}"
 
 TRIGGER_LABELS = {
     "fase_a": "Fase A — búsqueda + borrador",
@@ -92,7 +139,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 </header>
 <main>
   <h1>Buenas Noticias -- estado del pipeline</h1>
-  <p class="sub">Historial de las corridas de Fase A, Fase B y sus dos vigías. Página de uso interno (no aparece en el menú del sitio ni se indexa en buscadores). Generada automáticamente en cada corrida -- última actualización: {generated_at} UTC.</p>
+  <p class="sub">Historial de las corridas de Fase A, Fase B y sus dos vigías. Página de uso interno (no aparece en el menú del sitio ni se indexa en buscadores). Todas las horas se muestran en hora de Monterrey, México (UTC-6). Generada automáticamente en cada corrida -- última actualización: {generated_at}</p>
   {rows}
 </main>
 <footer>Buenas Noticias -- panel interno de monitoreo del pipeline editorial.</footer>
@@ -106,7 +153,7 @@ def render_row(entry):
     trigger_label = TRIGGER_LABELS.get(trigger_key, escape(trigger_key or "?"))
     status_key = entry.get("status", "ok")
     meta = STATUS_META.get(status_key, STATUS_META["ok"])
-    ts = escape(entry.get("timestamp_utc", "?"))
+    ts = escape(format_monterrey(entry.get("timestamp_utc", "")))
     summary = escape(entry.get("summary", ""))
     link = entry.get("link")
     if link:
@@ -136,7 +183,7 @@ def build_status_page(log_path, site_dir):
     else:
         rows_html = '<p class="empty">Todavía no hay registros en la bitácora.</p>'
 
-    generated_at = entries_sorted[0]["timestamp_utc"] if entries_sorted else "-"
+    generated_at = format_monterrey(entries_sorted[0]["timestamp_utc"]) if entries_sorted else "-"
     page = PAGE_TEMPLATE.format(css=SHARED_CSS, rows=rows_html, generated_at=generated_at)
 
     out_dir = os.path.join(site_dir, "estado")
