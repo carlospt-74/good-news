@@ -923,7 +923,11 @@
     "category": "Deportes",
     "image_query": "surfer riding wave competition",
     "date_added": "2026-09-11",
-    "slug": "costa-rica-cierra-los-juegos-centroamericanos-y-del-caribe-con-su-mejo"
+    "slug": "costa-rica-cierra-los-juegos-centroamericanos-y-del-caribe-con-su-mejo",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/35760647/pexels-photo-35760647.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Mateo Franciosi",
+    "image_source_url": "https://www.pexels.com/photo/dynamic-surfing-action-on-ocean-waves-35760647/"
   },
   {
     "title": "El comercio exterior peruano ya sostiene 1,5 millones de empleos, un 7,6% más que el año pasado",
@@ -934,7 +938,11 @@
     "category": "Economía",
     "image_query": "farm workers harvest export crates",
     "date_added": "2026-09-11",
-    "slug": "el-comercio-exterior-peruano-ya-sostiene-1-5-millones-de-empleos-un-7"
+    "slug": "el-comercio-exterior-peruano-ya-sostiene-1-5-millones-de-empleos-un-7",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/32834443/pexels-photo-32834443.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "HONG SON",
+    "image_source_url": "https://www.pexels.com/photo/indoor-fruit-packing-facility-with-workers-32834443/"
   },
   {
     "title": "Brasil empieza a probar en humanos su primera vacuna hecha 100% con tecnología de ARN mensajero",
@@ -945,7 +953,11 @@
     "category": "Ciencia y Salud",
     "image_query": "laboratory researcher vaccine vials",
     "date_added": "2026-09-11",
-    "slug": "brasil-empieza-a-probar-en-humanos-su-primera-vacuna-hecha-100-con-tec"
+    "slug": "brasil-empieza-a-probar-en-humanos-su-primera-vacuna-hecha-100-con-tec",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/5922051/pexels-photo-5922051.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Thirdman",
+    "image_source_url": "https://www.pexels.com/photo/five-clear-glass-bottles-on-table-5922051/"
   },
   {
     "title": "Un hospital público de Cancún realiza las primeras cirugías con brazos robóticos en la península de Yucatán",
@@ -956,7 +968,11 @@
     "category": "Ciencia y Salud",
     "image_query": "surgical robot arms operating room",
     "date_added": "2026-09-11",
-    "slug": "un-hospital-publico-de-cancun-realiza-las-primeras-cirugias-con-brazos"
+    "slug": "un-hospital-publico-de-cancun-realiza-las-primeras-cirugias-con-brazos",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/20186736/pexels-photo-20186736.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "vijay victor",
+    "image_source_url": "https://www.pexels.com/photo/operating-room-ready-to-use-20186736/"
   },
   {
     "title": "Una isla caribeña que parecía un desierto de piedra hoy es un santuario protegido, gracias a retirar cabras y ratas",
@@ -967,7 +983,11 @@
     "category": "Medio Ambiente",
     "image_query": "caribbean island cliffs seabirds",
     "date_added": "2026-09-11",
-    "slug": "una-isla-caribena-que-parecia-un-desierto-de-piedra-hoy-es-un-santuari"
+    "slug": "una-isla-caribena-que-parecia-un-desierto-de-piedra-hoy-es-un-santuari",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/32406204/pexels-photo-32406204.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Wijs (Wise)",
+    "image_source_url": "https://www.pexels.com/photo/brown-pelicans-preening-on-rocks-in-curacao-32406204/"
   },
   {
     "title": "De Barranquilla salieron camiones con ayuda para Chocó; ahora los voluntarios quieren reconstruir una escuela",
@@ -978,7 +998,11 @@
     "category": "Sociedad",
     "image_query": "volunteers loading donation boxes truck",
     "date_added": "2026-09-11",
-    "slug": "de-barranquilla-salieron-camiones-con-ayuda-para-choco-ahora-los-volun"
+    "slug": "de-barranquilla-salieron-camiones-con-ayuda-para-choco-ahora-los-volun",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/6647017/pexels-photo-6647017.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "RDNE Stock project",
+    "image_source_url": "https://www.pexels.com/photo/two-men-carrying-boxes-6647017/"
   },
   {
     "title": "Un geofísico venezolano construyó en cuatro días una plataforma que junta ciencia y ayuda humanitaria tras el terremoto",
@@ -989,7 +1013,11 @@
     "category": "Tecnología",
     "image_query": "disaster relief digital map screen",
     "date_added": "2026-09-11",
-    "slug": "un-geofisico-venezolano-construyo-en-cuatro-dias-una-plataforma-que-ju"
+    "slug": "un-geofisico-venezolano-construyo-en-cuatro-dias-una-plataforma-que-ju",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/5444625/pexels-photo-5444625.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Brett Jordan",
+    "image_source_url": "https://www.pexels.com/photo/black-smartphone-showing-logo-guessing-game-5444625/"
   },
   {
     "title": "Una organización jamaiquina es la primera del Caribe en ganar una beca de la UNESCO para artistas",
@@ -1000,7 +1028,11 @@
     "category": "Cultura",
     "image_query": "caribbean street art mural",
     "date_added": "2026-09-11",
-    "slug": "una-organizacion-jamaiquina-es-la-primera-del-caribe-en-ganar-una-beca"
+    "slug": "una-organizacion-jamaiquina-es-la-primera-del-caribe-en-ganar-una-beca",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/8249224/pexels-photo-8249224.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "RDNE Stock project",
+    "image_source_url": "https://www.pexels.com/photo/a-welcome-to-havana-sign-posted-near-green-tree-8249224/"
   },
   {
     "title": "La escritora nicaragüense Gioconda Belli gana el premio literario más importante de Guadalajara",
@@ -1011,7 +1043,11 @@
     "category": "Cultura",
     "image_query": "book award ceremony stage",
     "date_added": "2026-09-11",
-    "slug": "la-escritora-nicaraguense-gioconda-belli-gana-el-premio-literario-mas"
+    "slug": "la-escritora-nicaraguense-gioconda-belli-gana-el-premio-literario-mas",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/10435675/pexels-photo-10435675.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Josiah Matthew",
+    "image_source_url": "https://www.pexels.com/photo/a-gold-trophy-and-medals-on-a-table-with-a-checkered-cloth-10435675/"
   },
   {
     "title": "Una inteligencia artificial argentina ya detecta a tiempo el daño en los ojos que provoca la diabetes",
@@ -1022,6 +1058,10 @@
     "category": "IA",
     "image_query": "eye exam retina scan clinic",
     "date_added": "2026-09-11",
-    "slug": "una-inteligencia-artificial-argentina-ya-detecta-a-tiempo-el-dano-en-l"
+    "slug": "una-inteligencia-artificial-argentina-ya-detecta-a-tiempo-el-dano-en-l",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/5752277/pexels-photo-5752277.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Ksenia Chernaya",
+    "image_source_url": "https://www.pexels.com/photo/woman-checking-eyesight-on-modern-equipment-5752277/"
   }
 ]
