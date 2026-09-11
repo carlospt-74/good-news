@@ -1073,7 +1073,11 @@
     "category": "Deportes",
     "image_query": "blind football match",
     "date_added": "2026-09-11",
-    "slug": "las-murcielagas-conquistan-la-primera-copa-america-de-futbol-para-cieg"
+    "slug": "las-murcielagas-conquistan-la-primera-copa-america-de-futbol-para-cieg",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/38454829/pexels-photo-38454829.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Franco Monsalvo",
+    "image_source_url": "https://www.pexels.com/photo/intense-soccer-match-tackle-action-outdoors-38454829/"
   },
   {
     "title": "El yaguareté vuelve a poblar los esteros de Corrientes tras 70 años de ausencia",
@@ -1084,7 +1088,11 @@
     "category": "Medio Ambiente",
     "image_query": "jaguar wetland wildlife",
     "date_added": "2026-09-11",
-    "slug": "el-yaguarete-vuelve-a-poblar-los-esteros-de-corrientes-tras-70-anos-de"
+    "slug": "el-yaguarete-vuelve-a-poblar-los-esteros-de-corrientes-tras-70-anos-de",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/28587139/pexels-photo-28587139.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Jean Gc",
+    "image_source_url": "https://www.pexels.com/photo/jaguar-swimming-in-the-amazon-rainforest-28587139/"
   },
   {
     "title": "Colombia retoma la liberación de cocodrilos del Orinoco tras dos años de pausa",
@@ -1095,7 +1103,11 @@
     "category": "Medio Ambiente",
     "image_query": "crocodile river release",
     "date_added": "2026-09-11",
-    "slug": "colombia-retoma-la-liberacion-de-cocodrilos-del-orinoco-tras-dos-anos"
+    "slug": "colombia-retoma-la-liberacion-de-cocodrilos-del-orinoco-tras-dos-anos",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/15347748/pexels-photo-15347748.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Pau Delgado",
+    "image_source_url": "https://www.pexels.com/photo/crocodiles-in-the-water-15347748/"
   },
   {
     "title": "Brasil realiza en Río de Janeiro su primer trasplante de intestino por el sistema público de salud",
@@ -1106,7 +1118,11 @@
     "category": "Ciencia y Salud",
     "image_query": "hospital surgery team",
     "date_added": "2026-09-11",
-    "slug": "brasil-realiza-en-rio-de-janeiro-su-primer-trasplante-de-intestino-por"
+    "slug": "brasil-realiza-en-rio-de-janeiro-su-primer-trasplante-de-intestino-por",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/35914124/pexels-photo-35914124.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Javid Hashimov",
+    "image_source_url": "https://www.pexels.com/photo/surgeon-celebrating-in-operating-room-35914124/"
   },
   {
     "title": "Un niño panameño recibe una cirugía pionera contra un sarcoma óseo sin salir del país",
@@ -1117,7 +1133,11 @@
     "category": "Ciencia y Salud",
     "image_query": "pediatric surgery hospital",
     "date_added": "2026-09-11",
-    "slug": "un-nino-panameno-recibe-una-cirugia-pionera-contra-un-sarcoma-oseo-sin"
+    "slug": "un-nino-panameno-recibe-una-cirugia-pionera-contra-un-sarcoma-oseo-sin",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/28099429/pexels-photo-28099429.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Saúl Sigüenza",
+    "image_source_url": "https://www.pexels.com/photo/birth-of-a-baby-28099429/"
   },
   {
     "title": "Una universidad ecuatoriana patenta un teclado táctil de bajo costo para estudiantes ciegos",
@@ -1128,7 +1148,11 @@
     "category": "Tecnología",
     "image_query": "braille keyboard closeup",
     "date_added": "2026-09-11",
-    "slug": "una-universidad-ecuatoriana-patenta-un-teclado-tactil-de-bajo-costo-pa"
+    "slug": "una-universidad-ecuatoriana-patenta-un-teclado-tactil-de-bajo-costo-pa",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/7265366/pexels-photo-7265366.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Thirdman",
+    "image_source_url": "https://www.pexels.com/photo/white-braille-paper-next-to-blista-brailler-writer-7265366/"
   },
   {
     "title": "Una estudiante mexicana crea un asistente de inteligencia artificial que traduce lengua de señas",
@@ -1139,7 +1163,11 @@
     "category": "IA",
     "image_query": "sign language app",
     "date_added": "2026-09-11",
-    "slug": "una-estudiante-mexicana-crea-un-asistente-de-inteligencia-artificial-q"
+    "slug": "una-estudiante-mexicana-crea-un-asistente-de-inteligencia-artificial-q",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/13570156/pexels-photo-13570156.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Luis Quintero",
+    "image_source_url": "https://www.pexels.com/photo/tablet-showing-icons-13570156/"
   },
   {
     "title": "Gioconda Belli, primera centroamericana en ganar el Premio FIL de Literatura en Lenguas Romances",
@@ -1150,7 +1178,11 @@
     "category": "Cultura",
     "image_query": "poetry books stack",
     "date_added": "2026-09-11",
-    "slug": "gioconda-belli-primera-centroamericana-en-ganar-el-premio-fil-de-liter"
+    "slug": "gioconda-belli-primera-centroamericana-en-ganar-el-premio-fil-de-liter",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/1122865/pexels-photo-1122865.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Suzy Hazelwood",
+    "image_source_url": "https://www.pexels.com/photo/closeup-photo-of-assorted-title-books-1122865/"
   },
   {
     "title": "Diseñadoras guna, emberá y ngäbe llevan la moda ancestral panameña a escenarios internacionales",
@@ -1161,7 +1193,11 @@
     "category": "Sociedad",
     "image_query": "indigenous textile weaving",
     "date_added": "2026-09-11",
-    "slug": "disenadoras-guna-embera-y-ngabe-llevan-la-moda-ancestral-panamena-a-es"
+    "slug": "disenadoras-guna-embera-y-ngabe-llevan-la-moda-ancestral-panamena-a-es",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/2928381/pexels-photo-2928381.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Kiara Coll",
+    "image_source_url": "https://www.pexels.com/photo/close-up-photo-of-assorted-textiles-2928381/"
   },
   {
     "title": "La apertura de pequeños negocios en Brasil crece más del 13% en el primer semestre de 2026",
@@ -1172,6 +1208,10 @@
     "category": "Economía",
     "image_query": "small business storefront",
     "date_added": "2026-09-11",
-    "slug": "la-apertura-de-pequenos-negocios-en-brasil-crece-mas-del-13-en-el-prim"
+    "slug": "la-apertura-de-pequenos-negocios-en-brasil-crece-mas-del-13-en-el-prim",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/8465844/pexels-photo-8465844.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Chris F",
+    "image_source_url": "https://www.pexels.com/photo/facade-of-a-vintage-style-cafe-8465844/"
   }
 ]
