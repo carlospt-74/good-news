@@ -1,0 +1,21 @@
+[
+  {
+    "timestamp_utc": "2026-09-11T12:14:33Z",
+    "trigger": "fase_a",
+    "status": "ok",
+    "summary": "Borrador semanal generado: 10 notas, 8 categorias, 7 paises. Correo enviado a Charly pidiendo revision."
+  },
+  {
+    "timestamp_utc": "2026-09-11T12:46:09Z",
+    "trigger": "vigia_fase_a",
+    "status": "ok",
+    "summary": "Confirmo que Fase A si genero el borrador y el correo de hoy; no fue necesario reintentar."
+  },
+  {
+    "timestamp_utc": "2026-09-11T14:20:41Z",
+    "trigger": "fase_b",
+    "status": "ok",
+    "summary": "Publico 10 notas nuevas (aprobacion anticipada por correo, antes del horario programado). Fotos de Pexels completadas en un solo commit. Correo de confirmacion enviado.",
+    "link": "https://github.com/carlospt-74/good-news/commit/c05ffd6a0b7a29e47b607aea5689cdc9f56cc1e6"
+  }
+]

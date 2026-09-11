@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Estado del pipeline -- Buenas Noticias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #faf8f4; --bg-alt: #f2efe7; --ink: #201f1c; --ink-soft: #6b675e;
+    --line: #e5e0d5; --accent: #6b7a5e; --accent-deep: #3f4a37; --card-bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Inter', -apple-system, sans-serif; line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  header.site-header { background: var(--bg); border-bottom: 1px solid var(--line); }
+  .header-inner { max-width: 1000px; margin: 0 auto; padding: 22px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .logo { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 1.4rem; color: var(--ink); letter-spacing: -0.01em; }
+  .back-link { font-size: 0.82rem; font-weight: 600; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid transparent; }
+  .back-link:hover { color: var(--ink); border-color: var(--accent); }
+  main { max-width: 1000px; margin: 0 auto; padding: 40px 32px 80px; }
+  h1 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 2rem; margin: 0 0 10px; }
+  p.sub { color: var(--ink-soft); font-size: 0.95rem; margin: 0 0 40px; max-width: 640px; }
+  .run { display: grid; grid-template-columns: 190px 210px 90px 1fr; gap: 18px; align-items: start; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .run .ts { color: var(--ink-soft); font-size: 0.85rem; white-space: nowrap; }
+  .run .trig { font-weight: 600; font-size: 0.92rem; }
+  .run .status-pill { display: inline-block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 11px; border-radius: 999px; width: fit-content; }
+  .run .summary { font-size: 0.92rem; color: var(--ink); }
+  .run .summary a { text-decoration: underline; text-underline-offset: 2px; font-weight: 600; }
+  .empty { color: var(--ink-soft); padding: 40px 0; }
+  footer { border-top: 1px solid var(--line); padding: 40px 32px; text-align: center; color: var(--ink-soft); font-size: 0.8rem; }
+  @media (max-width: 720px) {
+    .run { grid-template-columns: 1fr; gap: 6px; padding: 20px 0; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <span class="logo">Estado del pipeline</span>
+    <a href="../" class="back-link">&larr; Volver al inicio</a>
+  </div>
+</header>
+<main>
+  <h1>Buenas Noticias -- estado del pipeline</h1>
+  <p class="sub">Historial de las corridas de Fase A, Fase B y sus dos vigías. Página de uso interno (no aparece en el menú del sitio ni se indexa en buscadores). Generada automáticamente en cada corrida -- última actualización: 2026-09-11T14:20:41Z UTC.</p>
+  
+  <div class="run">
+    <div class="ts">2026-09-11T14:20:41Z</div>
+    <div class="trig">Fase B — aprobación + publicación</div>
+    <div><span class="status-pill" style="color:#3f4a37; background:#eef1ea">OK</span></div>
+    <div class="summary">Publico 10 notas nuevas (aprobacion anticipada por correo, antes del horario programado). Fotos de Pexels completadas en un solo commit. Correo de confirmacion enviado. <a href="https://github.com/carlospt-74/good-news/commit/c05ffd6a0b7a29e47b607aea5689cdc9f56cc1e6" target="_blank" rel="noopener">(ver detalle)</a></div>
+  </div>
+
+  <div class="run">
+    <div class="ts">2026-09-11T12:46:09Z</div>
+    <div class="trig">Vigía Fase A</div>
+    <div><span class="status-pill" style="color:#3f4a37; background:#eef1ea">OK</span></div>
+    <div class="summary">Confirmo que Fase A si genero el borrador y el correo de hoy; no fue necesario reintentar.</div>
+  </div>
+
+  <div class="run">
+    <div class="ts">2026-09-11T12:14:33Z</div>
+    <div class="trig">Fase A — búsqueda + borrador</div>
+    <div><span class="status-pill" style="color:#3f4a37; background:#eef1ea">OK</span></div>
+    <div class="summary">Borrador semanal generado: 10 notas, 8 categorias, 7 paises. Correo enviado a Charly pidiendo revision.</div>
+  </div>
+</main>
+<footer>Buenas Noticias -- panel interno de monitoreo del pipeline editorial.</footer>
+</body>
+</html>
