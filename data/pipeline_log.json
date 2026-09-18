@@ -31,5 +31,12 @@
     "status": "ok",
     "summary": "Corrida duplicada de hoy (trigger ya se habia ejecutado a las 17:01 UTC): reverifique de forma independiente la publicacion semanal (10 notas, 8 categorias, commit c05ffd6a) y las fotos de las 10 notas nuevas en sus paginas de categoria y en home -- todas muestran imagen real de Pexels, ninguna en fallback ilustrado. No fue necesario reparar ni enviar correo.",
     "link": "https://github.com/carlospt-74/good-news/commit/c05ffd6a0b7a29e47b607aea5689cdc9f56cc1e6"
+  },
+  {
+    "timestamp_utc": "2026-09-18T12:20:36Z",
+    "trigger": "fase_a",
+    "status": "ok",
+    "summary": "Borrador semanal generado: 10 notas, 6 categorias, 10 paises del continente americano. Correo enviado a Charly pidiendo revision.",
+    "link": "https://github.com/carlospt-74/good-news/commit/7f01ce59ddecdac18fe88b108934825856b14ce0"
   }
 ]
