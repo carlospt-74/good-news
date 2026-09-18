@@ -45,5 +45,12 @@
     "status": "ok",
     "summary": "Confirme que Fase A si genero el borrador (pendiente_2026-09-18.json en el repo) y el correo de hoy (asunto \"Buenas Noticias — borrador semanal del 2026-09-18\"); no fue necesario reintentar.",
     "link": "https://github.com/carlospt-74/good-news/blob/main/data/pending/pendiente_2026-09-18.json"
+  },
+  {
+    "timestamp_utc": "2026-09-18T17:09:09Z",
+    "trigger": "fase_b",
+    "status": "ok",
+    "summary": "Publico 9 notas nuevas (1 descartada por URL duplicada), aprobacion por correo (\"Si, publica por favor\").",
+    "link": "https://github.com/carlospt-74/good-news/commit/8c1ac9c298d5756327c1bc68e3da9f351756fa1e"
   }
 ]
