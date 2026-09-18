@@ -52,5 +52,12 @@
     "status": "ok",
     "summary": "Publico 9 notas nuevas (1 descartada por URL duplicada), aprobacion por correo (\"Si, publica por favor\").",
     "link": "https://github.com/carlospt-74/good-news/commit/8c1ac9c298d5756327c1bc68e3da9f351756fa1e"
+  },
+  {
+    "timestamp_utc": "2026-09-18T18:22:12Z",
+    "trigger": "vigia_fase_b",
+    "status": "ok",
+    "summary": "Confirme la publicacion semanal del 2026-09-18 (9 notas nuevas, categorias Deportes, Medio Ambiente, Sociedad, Ciencia y Salud, IA y Cultura; commit 8c1ac9c2) y verifique el workflow de fotos (attach-photos.yml, corrida exitosa): las 9 notas nuevas ya muestran su foto real de Pexels en la pagina de su categoria, sin respaldo ilustrado pendiente. El home no incluye 1 de las 9 (muestra solo 49 de 90 notas por diseno, no por falla de fotos). No fue necesario reparar nada.",
+    "link": "https://github.com/carlospt-74/good-news/commit/8c1ac9c298d5756327c1bc68e3da9f351756fa1e"
   }
 ]
