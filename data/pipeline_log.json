@@ -66,5 +66,12 @@
     "status": "ok",
     "summary": "Borrador semanal generado: 10 notas, 8 categorias, 9 paises del continente americano. Correo enviado a Charly pidiendo revision.",
     "link": "https://github.com/carlospt-74/good-news/commit/e8660deb2be6923996bcddc35c9fb0e329bf456c"
+  },
+  {
+    "timestamp_utc": "2026-09-25T12:53:07Z",
+    "trigger": "vigia_fase_a",
+    "status": "ok",
+    "summary": "Confirme que Fase A si genero el borrador (pendiente_2026-09-25.json en el repo) y el correo de hoy (asunto \"Buenas Noticias — borrador semanal del 2026-09-25, listo para tu revision\"); no fue necesario reintentar.",
+    "link": "https://github.com/carlospt-74/good-news/blob/main/data/pending/pendiente_2026-09-25.json"
   }
 ]
