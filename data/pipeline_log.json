@@ -73,5 +73,12 @@
     "status": "ok",
     "summary": "Confirme que Fase A si genero el borrador (pendiente_2026-09-25.json en el repo) y el correo de hoy (asunto \"Buenas Noticias — borrador semanal del 2026-09-25, listo para tu revision\"); no fue necesario reintentar.",
     "link": "https://github.com/carlospt-74/good-news/blob/main/data/pending/pendiente_2026-09-25.json"
+  },
+  {
+    "timestamp_utc": "2026-09-25T18:32:05Z",
+    "trigger": "vigia_fase_b",
+    "status": "warning",
+    "summary": "La publicacion semanal empezo normal (commits [1/16]..[6c/16], 17:13-18:17 UTC) pero el plan de 16 pasos nunca llego a 16/16; a las 18:25 UTC arranco una secuencia nueva y mucho mas larga (\"fix 1/81\" en adelante, sin precedente en semanas anteriores). No hay correo de confirmacion ni de fallo de Fase B, y pendiente_2026-09-25.json sigue sin borrarse. Avise a Charly por correo con los detalles y enlaces; no intente reparar ni detener el proceso.",
+    "link": "https://github.com/carlospt-74/good-news/commits/main"
   }
 ]
