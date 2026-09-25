@@ -13,5 +13,20 @@
     "image_url": "https://images.pexels.com/photos/12698267/pexels-photo-12698267.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "image_photographer": "RUN 4 FFWPU",
     "image_source_url": "https://www.pexels.com/photo/three-men-wearing-medals-12698267/"
+  },
+  {
+    "title": "El empleo formal en México crece a su ritmo más rápido en años",
+    "summary": "Entre enero y julio se sumaron en México más de 243 mil empleos formales, casi 25% más que en el mismo periodo del año anterior, según cifras del IMSS. Casi la totalidad de esas nuevas plazas corresponde a contratos permanentes, aunque analistas advierten que julio mostró cierta cautela en las contrataciones.",
+    "source": "El Economista (México)",
+    "url": "https://www.eleconomista.com.mx/capital-humano/creacion-empleo-formal-subio-cierre-julio-20260810-827494.html",
+    "published_date": "2026-08-10",
+    "category": "Economía",
+    "image_query": "warehouse workers smiling",
+    "date_added": "2026-08-15",
+    "slug": "el-empleo-formal-en-mexico-crece-a-su-ritmo-mas-rapido-en-anos",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/6170092/pexels-photo-6170092.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Tima Miroshnichenko",
+    "image_source_url": "https://www.pexels.com/photo/two-employees-in-an-office-6170092/"
   }
 ]
