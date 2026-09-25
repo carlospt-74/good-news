@@ -28,5 +28,20 @@
     "image_url": "https://images.pexels.com/photos/6170092/pexels-photo-6170092.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "image_photographer": "Tima Miroshnichenko",
     "image_source_url": "https://www.pexels.com/photo/two-employees-in-an-office-6170092/"
+  },
+  {
+    "title": "Perú acumula tres meses seguidos de mejores pronósticos económicos",
+    "summary": "Un grupo de economistas consultado por el banco central peruano volvió a subir su expectativa de expansión para este año, ubicándola ahora en 3.3 por ciento. Se trata del tercer ajuste hacia arriba en otros tantos meses, y la mayoría de los indicadores de confianza empresarial que mide la entidad también se mantienen en terreno favorable, reflejando un ánimo cada vez más optimista sobre el rumbo del país.",
+    "source": "Infomercado (Perú)",
+    "url": "https://infomercado.pe/analistas-elevan-por-tercer-mes-seguido-su-proyeccion-del-pbi-a-3-3-para-2026/",
+    "published_date": "2026-08-12",
+    "category": "Economía",
+    "image_query": "business district skyline",
+    "date_added": "2026-08-15",
+    "slug": "peru-acumula-tres-meses-seguidos-de-mejores-pronosticos-economicos",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/7350894/pexels-photo-7350894.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Tom Fisk",
+    "image_source_url": "https://www.pexels.com/photo/cityscape-reflecting-in-a-glass-building-7350894/"
   }
 ]
