@@ -27,6 +27,11 @@ data/
     eliminar_<fecha>.json    # lista de URLs a quitar del histórico (correcciones/pruebas)
 assets/
   styles.css              # CSS compartido por todo el sitio (Fase 1, ver Changelog)
+  partials.js             # header/footer compartidos, inyectados en runtime (Fase 2, ver Changelog)
+scripts/
+  migrate_note_partials.py   # migración de una sola vez: backfill de Fase 2 en notas viejas (ver Changelog)
+.github/workflows/
+  migrate-note-partials.yml  # workflow de una sola vez para correr la migración de arriba
 index.html, <categoria>/index.html, <categoria>/<slug>/index.html   # el sitio generado
 estado/index.html         # panel de estado del pipeline, legible por humanos
 ```
@@ -41,7 +46,8 @@ Paso a paso:
 3. Poda del histórico las notas con más de `RETENTION_DAYS` (120 días) de antigüedad (`prune_old()`) — esto solo las saca de los listados; su página permalink, si ya existía, no se borra.
 4. Regenera `index.html` y **todas** las páginas de categoría (su contenido cambia cada corrida). Para páginas de nota individual, **solo genera las que todavía no existen** — una nota publicada nunca se vuelve a tocar (política "Fase 3(b)", ver Changelog). Esto es lo que evita que agregar unas pocas notas obligue a reescribir cientos de páginas viejas.
 5. Escribe (idéntico cada corrida) el CSS compartido en `assets/styles.css` (Fase 1, ver Changelog) — las páginas lo referencian con `<link>`, no lo repiten inline.
-6. Guarda `data/site_data.json` y `data/published_urls.json` actualizados.
+6. Escribe (idéntico cada corrida) el JS compartido de header/footer en `assets/partials.js` (`write_shared_partials()`, Fase 2, ver Changelog). `page_shell()` ya no emite `<header>`/`<footer>` inline: deja mount points vacíos (`id="site-header-mount"` / `id="site-footer-mount"`, con un `<noscript>` de respaldo) y este script los llena en tiempo de carga, usando rutas ancladas a `/good-news/` (no `base_prefix`, que es relativo y varía según la profundidad de la página -- este archivo es uno solo compartido por páginas a cualquier profundidad). Como el paso 4 nunca reescribe una página de nota ya publicada, este patrón solo aplica de forma nativa a páginas nuevas o regeneradas de aquí en más; ver más abajo el backfill que lo llevó también a las páginas viejas.
+7. Guarda `data/site_data.json` y `data/published_urls.json` actualizados.
 
 Es determinístico e idempotente: correrlo con `--reescritos` apuntando a `[]` sobre datos existentes simplemente re-renderiza home y categorías sin duplicar ni perder nada — es la forma segura de aplicar un cambio de plantilla/CSS a todo el sitio.
 
@@ -59,6 +65,12 @@ Es determinístico e idempotente: correrlo con `--reescritos` apuntando a `[]` s
 - Es asíncrono. Puede terminar "a medias" (datos de `image_url` completos pero no todo el HTML regenerado) — verificar esto explícitamente es parte del protocolo de la skill `buenas-noticias-intervencion-manual`.
 - **Borrado de un solo uso para desbloquear la página de la nota.** `attach_photos.py` llama a `build_site()` para regenerar el sitio, pero esa función nunca reescribe una página de nota que ya existe (política Fase 3(b)) — y esa página *siempre* existe ya, porque `build_site.py` la creó (sin foto) en la corrida de publicación que corre justo antes. Sin más, la nota quedaría con foto en el home y su categoría, pero con el respaldo ilustrado para siempre en su propia página permalink (donde el lector realmente cae). Por eso, antes de llamar a `build_site()`, `attach_photos.py` borra del disco la página permalink de cada nota que consiguió foto en esa corrida — build_site() la detecta como "no existe" y la regenera, esta vez con foto. Como una nota solo pasa por este script una vez (queda marcada `image_attempted: true`), su página nunca se vuelve a borrar/regenerar después de esa primera vez -- sigue congelada de ahí en adelante, igual que cualquier otra. (Bug real encontrado y corregido el 2026-09-26 — ver `CHANGELOG.md`.)
 
+## `scripts/migrate_note_partials.py` — backfill de una sola vez (no es parte del pipeline regular)
+
+Script idempotente que existe fuera del ciclo normal de Fase A/B: aplica retroactivamente el patrón de header/footer de la Fase 2 (mount points + `assets/partials.js`) a páginas de nota que ya estaban congeladas antes de que existiera ese patrón. Detecta el HTML viejo por regex (`<header class="site-header">...</header>`, `<footer>...</footer>`), lo reemplaza por el nuevo, y dos guardas la hacen segura de re-correr: una página que ya tiene el patrón nuevo se deja intacta, y una página con forma inesperada se reporta sin tocarla. No forma parte de `build_site.py` ni corre en cada publicación -- es una herramienta de una sola vez para una migración puntual ya ejecutada (ver `CHANGELOG.md`).
+
+Se dispara con `.github/workflows/migrate-note-partials.yml`, un workflow `workflow_dispatch`-only que replica la estructura de `build-site.yml` (corre el script, registra el resultado en `data/pipeline_log.json` con trigger `migracion-partials`, regenera `estado/index.html`, hace commit como `buenas-noticias-build-bot`). Si el patrón de header/footer vuelve a cambiar en el futuro, este script es la plantilla a seguir para otro backfill puntual -- no para dejarlo corriendo de forma recurrente.
+
 ## Bitácora — `data/pipeline_log.json` y `estado/index.html`
 
 Cada corrida (de cualquier trigger, o del propio Action) agrega un registro `{timestamp_utc, trigger, status, summary}` a `data/pipeline_log.json`. `trigger` toma valores como `fase_a`, `vigia_fase_a`, `fase_b`, `vigia_fase_b`, `build-site-action`. `scripts/build_status_page.py` lo convierte en `estado/index.html`, un panel legible por humanos. Esta bitácora es un registro mecánico adicional — no sustituye los correos de confirmación/diagnóstico que cada fase le manda a Charly.
@@ -68,6 +80,18 @@ Cada corrida (de cualquier trigger, o del propio Action) agrega un registro `{ti
 - `buenas-noticias-build-bot` — commits de `build-site.yml`.
 - `github-actions[bot]` — commits de `attach-photos.yml`.
 - El nombre de usuario de Charly (`CharlyMX` u otro) — commits hechos directamente por una sesión de Claude vía Composio (subir un pendiente, una corrección puntual).
+
+## Disciplina de documentación (aplica a cualquier cambio estructural, programado o manual)
+
+Un cambio estructural al pipeline o al sitio -- una fase nueva o modificada, un fix de arquitectura, una migración retroactiva, un workflow nuevo o modificado -- no se da por terminado solo porque el commit funciona. Se da por terminado cuando, además:
+
+1. `CHANGELOG.md` tiene una entrada nueva y fechada describiendo qué cambió y por qué. Esto es siempre, sin excepción.
+2. `ARCHITECTURE.md` queda al día si el cambio afecta el cómo -- un paso nuevo en `build_site.py`, un archivo nuevo en la estructura del repo, un workflow nuevo o su lógica.
+3. `PROJECT_CONTEXT.md` queda al día si el cambio afecta el qué/por qué editorial, las fases programadas, o los triggers.
+
+Si una entrada de Changelog anterior describe un comportamiento que un cambio posterior vuelve obsoleto (por ejemplo, "esto no es retroactivo" y luego sí se vuelve retroactivo por una migración), esa entrada se corrige o se referencia explícitamente desde la nueva -- nunca se deja una afirmación desactualizada sin marcar como tal.
+
+Esta regla nace de un vacío real: la Fase 2 (header/footer, ver Changelog 2026-09-26) documentó bien su implementación inicial, pero nadie actualizó esa entrada cuando el backfill retroactivo la volvió obsoleta unas horas después, y este mismo documento nunca llegó a mencionar `assets/partials.js` en absoluto pese a documentar la Fase 1 paso a paso. Charly detectó ambos vacíos el mismo día y se corrigieron de inmediato. La skill `buenas-noticias-intervencion-manual` (Regla 3) aplica esta misma disciplina para intervenciones manuales en chat.
 
 ## Disciplina de escritura (aplica a cualquier sesión, programada o manual)
 
