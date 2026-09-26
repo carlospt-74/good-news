@@ -1498,5 +1498,27 @@
     "image_url": "https://images.pexels.com/photos/6830879/pexels-photo-6830879.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "image_photographer": "cottonbro studio",
     "image_source_url": "https://www.pexels.com/photo/person-writing-on-a-white-paper-6830879/"
+  },
+  {
+    "title": "[PRUEBA] Nota de prueba #1 para validar el pipeline automatizado",
+    "summary": "Esta es una nota de PRUEBA generada por Charly y Claude el 2026-09-26 para verificar de punta a punta que el nuevo flujo de publicacion (GitHub Action build-site.yml) funciona bien y para medir su costo real en tiempo y tokens. No es una noticia real. Se eliminara del sitio en cuanto termine la prueba.",
+    "source": "Prueba interna -- pipeline Buenas Noticias",
+    "url": "https://example.com/prueba-pipeline-buenas-noticias-2026-09-26-nota-1",
+    "published_date": "2026-09-26",
+    "category": "otros",
+    "image_query": "test pattern abstract grid",
+    "date_added": "2026-09-26",
+    "slug": "prueba-nota-de-prueba-1-para-validar-el-pipeline-automatizado"
+  },
+  {
+    "title": "[PRUEBA] Nota de prueba #2 para validar el pipeline automatizado",
+    "summary": "Segunda nota de PRUEBA (categoria distinta a la primera) para confirmar que el Action regenera correctamente mas de una categoria en la misma corrida. No es una noticia real. Se eliminara del sitio en cuanto termine la prueba.",
+    "source": "Prueba interna -- pipeline Buenas Noticias",
+    "url": "https://example.com/prueba-pipeline-buenas-noticias-2026-09-26-nota-2",
+    "published_date": "2026-09-26",
+    "category": "tecnologia",
+    "image_query": "test pattern abstract circuit",
+    "date_added": "2026-09-26",
+    "slug": "prueba-nota-de-prueba-2-para-validar-el-pipeline-automatizado"
   }
 ]
