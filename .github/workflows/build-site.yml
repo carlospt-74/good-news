@@ -37,6 +37,10 @@ concurrency:
   group: build-site
   cancel-in-progress: false
 
+permissions:
+  contents: write
+  actions: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -73,6 +77,8 @@ jobs:
             ELIMINAR_ARGS=(--eliminar "$ELIMINAR")
           fi
           python3 scripts/build_site.py --reescritos "$REESCRITOS" "${ELIMINAR_ARGS[@]}" --site-dir . | tee /tmp/build_output.txt
+          ADDED=$(grep -oE "Listo: [0-9]+" /tmp/build_output.txt | grep -oE "[0-9]+" || true)
+          echo "added=${ADDED:-0}" >> "$GITHUB_OUTPUT"
 
       - name: Registrar en la bitácora del pipeline
         if: steps.build.outputs.pendiente != '' || steps.build.outputs.eliminar != ''
@@ -125,4 +131,24 @@ jobs:
           else
             git commit -m "Reconstruye el sitio con build_site.py (via GitHub Action)"
             git push
+          fi
+
+      - name: Disparar el workflow de fotos si hubo notas nuevas
+        # IMPORTANTE: el push del paso anterior usa el GITHUB_TOKEN por
+        # defecto de este mismo workflow, y GitHub bloquea a propósito
+        # que ESE push dispare otros workflows (protección anti-loop de
+        # la plataforma) -- por eso attach-photos.yml nunca se disparaba
+        # solo, aunque su "on: push: paths: data/site_data.json" esté
+        # bien configurado. La solución no es tocar ese trigger, sino
+        # disparar attach-photos.yml explícitamente aquí, con una llamada
+        # directa a la API (que sí funciona con GITHUB_TOKEN, a diferencia
+        # de un push implícito).
+        if: steps.build.outputs.added != '' && steps.build.outputs.added != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh workflow run attach-photos.yml --ref main; then
+            echo "attach-photos.yml disparado correctamente."
+          else
+            echo "ADVERTENCIA: no se pudo disparar attach-photos.yml automaticamente (revisar permisos de Actions del repo, Settings > Actions > General > Workflow permissions). Dispáralo manualmente desde la pestaña Actions mientras tanto."
           fi
