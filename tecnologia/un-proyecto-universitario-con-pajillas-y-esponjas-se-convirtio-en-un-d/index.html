@@ -135,13 +135,9 @@
   }
 </style>
 </head>
-<body>
-<header class="site-header">
-  <div class="header-inner">
-    <a href="../../" class="logo"><img src="../../assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
-    <button class="menu-toggle" onclick="document.querySelector('nav.categories').classList.toggle('open')">Categorías &darr;</button>
-    <nav class="categories"><a href="../../deportes/">Deportes</a><a href="../../economia/">Economía</a><a href="../../ciencia-y-salud/">Ciencia y Salud</a><a href="../../medio-ambiente/">Medio Ambiente</a><a href="../../sociedad/">Sociedad</a><a href="../../tecnologia/" class="active">Tecnología</a><a href="../../cultura/">Cultura</a><a href="../../ia/">IA</a></nav>
-  </div>
+<body data-active-category="Tecnología">
+<header class="site-header" id="site-header-mount">
+  <noscript><div class="header-inner"><a href="../../" class="logo"><img src="../../assets/logo.png" alt="Buenas Noticias" class="logo-img"></a></div></noscript>
 </header>
 <div class="breadcrumb"><a href="../../">Inicio</a> / <a href="../../tecnologia/">Tecnología</a> / Un proyecto universitario con pajillas y esponjas se convirtió en un dispositivo que ya ayuda a miles a volver a dibujar y escribir</div>
 <main>
@@ -192,13 +188,14 @@
         <div class="byline"><span class="avatar" style="background:#1f6f78">EE</span>El Ecosistema Startup · 2026-08-31 <a class="readmore" href="../../tecnologia/un-geofisico-venezolano-construyo-en-cuatro-dias-una-plataforma-que-ju/">Leer más &rarr;</a></div>
       </div></div>
 </main>
-<footer>
-  <div class="foot-inner">
-    <a href="../../" class="logo"><img src="../../assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
-    <div class="foot-links"><nav class="categories"><a href="../../deportes/">Deportes</a><a href="../../economia/">Economía</a><a href="../../ciencia-y-salud/">Ciencia y Salud</a><a href="../../medio-ambiente/">Medio Ambiente</a><a href="../../sociedad/">Sociedad</a><a href="../../tecnologia/">Tecnología</a><a href="../../cultura/">Cultura</a><a href="../../ia/">IA</a></nav></div>
-    <p class="legal">Buenas Noticias no aloja el contenido completo de las notas; siempre enlazamos a la fuente original.</p>
-    <p class="disclaimer">Cada resumen es una redacción original a partir de la nota fuente, nunca una copia. Los avatares muestran las iniciales del medio, no fotos de periodistas -- este portal no tiene reporteros propios, solo selecciona y resume buenas noticias ya publicadas por medios reales.</p>
-  </div>
+<footer id="site-footer-mount">
+  <noscript>
+    <div class="foot-inner">
+      <a href="../../" class="logo"><img src="../../assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
+      <p class="legal">Buenas Noticias no aloja el contenido completo de las notas; siempre enlazamos a la fuente original.</p>
+    </div>
+  </noscript>
 </footer>
+<script defer src="../../assets/partials.js"></script>
 </body>
 </html>

@@ -135,13 +135,9 @@
   }
 </style>
 </head>
-<body>
-<header class="site-header">
-  <div class="header-inner">
-    <a href="../../" class="logo"><img src="../../assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
-    <button class="menu-toggle" onclick="document.querySelector('nav.categories').classList.toggle('open')">Categorías &darr;</button>
-    <nav class="categories"><a href="../../deportes/">Deportes</a><a href="../../economia/">Economía</a><a href="../../ciencia-y-salud/" class="active">Ciencia y Salud</a><a href="../../medio-ambiente/">Medio Ambiente</a><a href="../../sociedad/">Sociedad</a><a href="../../tecnologia/">Tecnología</a><a href="../../cultura/">Cultura</a><a href="../../ia/">IA</a></nav>
-  </div>
+<body data-active-category="Ciencia y Salud">
+<header class="site-header" id="site-header-mount">
+  <noscript><div class="header-inner"><a href="../../" class="logo"><img src="../../assets/logo.png" alt="Buenas Noticias" class="logo-img"></a></div></noscript>
 </header>
 <div class="breadcrumb"><a href="../../">Inicio</a> / <a href="../../ciencia-y-salud/">Ciencia y Salud</a> / Un hospital público de Cancún realiza las primeras cirugías con brazos robóticos en la península de Yucatán</div>
 <main>
@@ -192,13 +188,14 @@
         <div class="byline"><span class="avatar" style="background:#7a3fa0">G1</span>G1 (Globo) · 2026-09-09 <a class="readmore" href="../../ciencia-y-salud/brasil-realiza-en-rio-de-janeiro-su-primer-trasplante-de-intestino-por/">Leer más &rarr;</a></div>
       </div></div>
 </main>
-<footer>
-  <div class="foot-inner">
-    <a href="../../" class="logo"><img src="../../assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
-    <div class="foot-links"><nav class="categories"><a href="../../deportes/">Deportes</a><a href="../../economia/">Economía</a><a href="../../ciencia-y-salud/">Ciencia y Salud</a><a href="../../medio-ambiente/">Medio Ambiente</a><a href="../../sociedad/">Sociedad</a><a href="../../tecnologia/">Tecnología</a><a href="../../cultura/">Cultura</a><a href="../../ia/">IA</a></nav></div>
-    <p class="legal">Buenas Noticias no aloja el contenido completo de las notas; siempre enlazamos a la fuente original.</p>
-    <p class="disclaimer">Cada resumen es una redacción original a partir de la nota fuente, nunca una copia. Los avatares muestran las iniciales del medio, no fotos de periodistas -- este portal no tiene reporteros propios, solo selecciona y resume buenas noticias ya publicadas por medios reales.</p>
-  </div>
+<footer id="site-footer-mount">
+  <noscript>
+    <div class="foot-inner">
+      <a href="../../" class="logo"><img src="../../assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
+      <p class="legal">Buenas Noticias no aloja el contenido completo de las notas; siempre enlazamos a la fuente original.</p>
+    </div>
+  </noscript>
 </footer>
+<script defer src="../../assets/partials.js"></script>
 </body>
 </html>
