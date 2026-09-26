@@ -80,5 +80,12 @@
     "status": "warning",
     "summary": "La publicacion semanal empezo normal (commits [1/16]..[6c/16], 17:13-18:17 UTC) pero el plan de 16 pasos nunca llego a 16/16; a las 18:25 UTC arranco una secuencia nueva y mucho mas larga (\"fix 1/81\" en adelante, sin precedente en semanas anteriores). No hay correo de confirmacion ni de fallo de Fase B, y pendiente_2026-09-25.json sigue sin borrarse. Avise a Charly por correo con los detalles y enlaces; no intente reparar ni detener el proceso.",
     "link": "https://github.com/carlospt-74/good-news/commits/main"
+  },
+  {
+    "timestamp_utc": "2026-09-26T03:56:00Z",
+    "trigger": "fase_b",
+    "status": "ok",
+    "summary": "Publicó 10 notas nuevas (aprobación explícita por correo: 'Adelante con la publicación'). Por un límite técnico de la sesión, esta semana solo se subieron los datos y las páginas de las notas nuevas — home y páginas de categoría no se regeneraron en el sitio en vivo (quedan con el estado anterior); no afecta la información de las notas, que ya son accesibles en su URL directa.",
+    "link": "https://github.com/carlospt-74/good-news/commit/9fa3b166418ec06b0d1ec7b711c9f473f26b67cc"
   }
 ]
