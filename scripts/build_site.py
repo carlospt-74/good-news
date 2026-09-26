@@ -387,18 +387,86 @@ def get_avatar_initials(source):
     return (words[0][0] + words[1][0]).upper()
 
 
-def site_nav_html(base_prefix, active_category=None):
-    links = []
-    for cat in CATEGORY_ORDER:
-        if cat == "Otros":
-            continue
-        slug = category_slug(cat)
-        cls = ' class="active"' if cat == active_category else ""
-        links.append(f'<a href="{base_prefix}{slug}/"{cls}>{cat}</a>')
-    return f'<nav class="categories">{"".join(links)}</nav>'
+def category_nav_items():
+    """Lista [(nombre, slug), ...] de categorias para el menu, en el orden
+    oficial, excluyendo "Otros" -- la fuente de verdad que partials_js()
+    serializa dentro de assets/partials.js (ver Fase 2 mas abajo)."""
+    return [(cat, category_slug(cat)) for cat in CATEGORY_ORDER if cat != "Otros"]
+
+
+_PARTIALS_JS_TEMPLATE = """(function () {
+  var ROOT = "/good-news/";
+  var CATEGORIES = __CATEGORIES_JSON__;
+
+  function navLinksHtml(activeCategory) {
+    return CATEGORIES.map(function (item) {
+      var name = item[0], slug = item[1];
+      var cls = (name === activeCategory) ? ' class="active"' : '';
+      return '<a href="' + ROOT + slug + '/"' + cls + '>' + name + '</a>';
+    }).join('');
+  }
+
+  function headerInnerHtml(activeCategory) {
+    return '<div class="header-inner">' +
+      '<a href="' + ROOT + '" class="logo"><img src="' + ROOT + 'assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>' +
+      '<button class="menu-toggle" onclick="document.querySelector(\\'nav.categories\\').classList.toggle(\\'open\\')">Categorías &darr;</button>' +
+      '<nav class="categories">' + navLinksHtml(activeCategory) + '</nav>' +
+      '</div>';
+  }
+
+  function footerInnerHtml() {
+    return '<div class="foot-inner">' +
+      '<a href="' + ROOT + '" class="logo"><img src="' + ROOT + 'assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>' +
+      '<div class="foot-links">' + navLinksHtml(null) + '</div>' +
+      '<p class="legal">Buenas Noticias no aloja el contenido completo de las notas; siempre enlazamos a la fuente original.</p>' +
+      '<p class="disclaimer">Cada resumen es una redacción original a partir de la nota fuente, nunca una copia. Los avatares muestran las iniciales del medio, no fotos de periodistas -- este portal no tiene reporteros propios, solo selecciona y resume buenas noticias ya publicadas por medios reales.</p>' +
+      '</div>';
+  }
+
+  var headerMount = document.getElementById('site-header-mount');
+  if (headerMount) {
+    headerMount.innerHTML = headerInnerHtml(document.body.getAttribute('data-active-category') || '');
+  }
+  var footerMount = document.getElementById('site-footer-mount');
+  if (footerMount) {
+    footerMount.innerHTML = footerInnerHtml();
+  }
+})();
+"""
+
+
+def partials_js():
+    """Fase 2 de la optimizacion de tokens: header y footer viven en este
+    unico archivo compartido (assets/partials.js) -- ya no van inlineados
+    en cada pagina HTML generada. page_shell() solo deja un
+    <header id="site-header-mount"> y un <footer id="site-footer-mount">
+    vacios (con un <noscript> de respaldo) y un <script defer> apuntando
+    aqui; este script rellena ambos al cargar la pagina.
+
+    Por que importa para paginas de nota congeladas (Fase 3(b)): como TODAS
+    las paginas cargan este mismo archivo -- incluida una nota vieja que
+    nunca se vuelve a regenerar -- si el menu de categorias cambia en el
+    futuro, hasta la nota mas vieja lo muestra actualizado sin que nadie
+    tenga que tocar su HTML. Antes, ese menu quedaba baked-in para siempre
+    en cada pagina en el momento de su publicacion ("nav drift").
+
+    Costo aceptado: el menu depende de JavaScript. Lectores con JS
+    desactivado, o crawlers que no lo ejecuten, solo ven el <noscript> de
+    respaldo (un link a inicio) en vez del menu completo.
+
+    ROOT esta hardcodeado a "/good-news/" porque GitHub Pages sirve este
+    repo como project page en ese subpath, no en la raiz del dominio. A
+    diferencia de base_prefix (relativo, varia segun la profundidad de cada
+    pagina), este archivo es UNO SOLO compartido por paginas a cualquier
+    profundidad, asi que sus rutas tienen que ser absolutas. Si el sitio
+    algun dia se muda a un dominio propio, este valor es lo unico que hay
+    que actualizar."""
+    items_json = json.dumps(category_nav_items(), ensure_ascii=False)
+    return _PARTIALS_JS_TEMPLATE.replace("__CATEGORIES_JSON__", items_json)
 
 
 def page_shell(*, title, base_prefix, body_html, active_category=None, breadcrumb_html=""):
+    active_attr = f' data-active-category="{active_category}"' if active_category else ""
     return f"""<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -409,26 +477,23 @@ def page_shell(*, title, base_prefix, body_html, active_category=None, breadcrum
 <link rel="icon" type="image/png" href="{base_prefix}assets/favicon.png">
 <link rel="stylesheet" href="{base_prefix}assets/styles.css">
 </head>
-<body>
-<header class="site-header">
-  <div class="header-inner">
-    <a href="{base_prefix}" class="logo"><img src="{base_prefix}assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
-    <button class="menu-toggle" onclick="document.querySelector('nav.categories').classList.toggle('open')">Categorías &darr;</button>
-    {site_nav_html(base_prefix, active_category)}
-  </div>
+<body{active_attr}>
+<header class="site-header" id="site-header-mount">
+  <noscript><div class="header-inner"><a href="{base_prefix}" class="logo"><img src="{base_prefix}assets/logo.png" alt="Buenas Noticias" class="logo-img"></a></div></noscript>
 </header>
 {breadcrumb_html}
 <main>
 {body_html}
 </main>
-<footer>
-  <div class="foot-inner">
-    <a href="{base_prefix}" class="logo"><img src="{base_prefix}assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
-    <div class="foot-links">{site_nav_html(base_prefix)}</div>
-    <p class="legal">Buenas Noticias no aloja el contenido completo de las notas; siempre enlazamos a la fuente original.</p>
-    <p class="disclaimer">Cada resumen es una redacción original a partir de la nota fuente, nunca una copia. Los avatares muestran las iniciales del medio, no fotos de periodistas -- este portal no tiene reporteros propios, solo selecciona y resume buenas noticias ya publicadas por medios reales.</p>
-  </div>
+<footer id="site-footer-mount">
+  <noscript>
+    <div class="foot-inner">
+      <a href="{base_prefix}" class="logo"><img src="{base_prefix}assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
+      <p class="legal">Buenas Noticias no aloja el contenido completo de las notas; siempre enlazamos a la fuente original.</p>
+    </div>
+  </noscript>
 </footer>
+<script defer src="{base_prefix}assets/partials.js"></script>
 </body>
 </html>"""
 
@@ -654,10 +719,24 @@ def write_shared_assets(site_dir):
     (assets_dir / "styles.css").write_text(shared_css(), encoding="utf-8")
 
 
+def write_shared_partials(site_dir):
+    """Escribe el header/footer compartidos una sola vez en
+    assets/partials.js (Fase 2 de la optimizacion de tokens, ver
+    partials_js() mas arriba) -- mismo patron que write_shared_assets()
+    para el CSS. Paginas ya publicadas antes de este cambio conservan su
+    header y footer viejos, inlineados en su propio HTML; solo las paginas
+    que este script SI regenera o crea de aqui en mas (home, categorias,
+    notas nuevas) usan el <script> nuevo."""
+    assets_dir = Path(site_dir) / "assets"
+    assets_dir.mkdir(parents=True, exist_ok=True)
+    (assets_dir / "partials.js").write_text(partials_js(), encoding="utf-8")
+
+
 def build_site(articles, site_dir, today_str):
     site_dir = Path(site_dir)
 
     write_shared_assets(site_dir)
+    write_shared_partials(site_dir)
 
     by_category = defaultdict(list)
     for a in articles:
