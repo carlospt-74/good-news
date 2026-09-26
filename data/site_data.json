@@ -1553,6 +1553,10 @@
     "category": "otros",
     "image_query": "test pattern abstract wave",
     "date_added": "2026-09-26",
-    "slug": "prueba-nota-de-prueba-para-validar-el-disparo-automatico-de-fotos"
+    "slug": "prueba-nota-de-prueba-para-validar-el-disparo-automatico-de-fotos",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/54085/fresco-wave-stone-carving-54085.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Pixabay",
+    "image_source_url": "https://www.pexels.com/photo/grey-surface-54085/"
   }
 ]
