@@ -1543,20 +1543,5 @@
     "image_url": "https://images.pexels.com/photos/38071557/pexels-photo-38071557.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "image_photographer": "Pok Rie",
     "image_source_url": "https://www.pexels.com/photo/aerial-view-of-lush-green-forest-and-clear-river-38071557/"
-  },
-  {
-    "title": "[PRUEBA] Nota de prueba final para confirmar el arreglo de fotos en la pagina de nota",
-    "summary": "Nota de PRUEBA generada el 2026-09-26 para confirmar en vivo (con la API real de Pexels) que attach_photos.py ya escribe la foto en la pagina propia de la nota, no solo en home y categoria. No es una noticia real. Se eliminara del sitio en cuanto termine la prueba.",
-    "source": "Prueba interna -- pipeline Buenas Noticias",
-    "url": "https://example.com/prueba-pipeline-buenas-noticias-2026-09-26-verificacion-final",
-    "published_date": "2026-09-26",
-    "category": "otros",
-    "image_query": "test pattern colorful gradient",
-    "date_added": "2026-09-26",
-    "slug": "prueba-nota-de-prueba-final-para-confirmar-el-arreglo-de-fotos-en-la-p",
-    "image_attempted": true,
-    "image_url": "https://images.pexels.com/photos/12981878/pexels-photo-12981878.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
-    "image_photographer": "Clark Van Der Beken",
-    "image_source_url": "https://www.pexels.com/photo/orange-and-turquoise-abstract-painting-12981878/"
   }
 ]
