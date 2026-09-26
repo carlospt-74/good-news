@@ -1,0 +1,39 @@
+name: Reconstruir el sitio (build_site.py)
+
+# Se dispara manualmente desde la pestaña Actions de GitHub (botón "Run
+# workflow"). Corre build_site.py con el archivo histórico actual
+# (data/site_data.json) y sin notas nuevas -- sirve para aplicar cambios
+# al script (por ejemplo, de plantilla o de CSS compartido) a todo el
+# sitio sin que el agente de Claude tenga que transmitir el HTML generado
+# a través del chat. Los commits de este workflow no agregan notas nuevas;
+# eso sigue siendo trabajo de la sesión semanal de Claude, que escribe
+# data/pending/*.json y hace su propio commit con las páginas nuevas.
+on:
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Reconstruir el sitio (home, categorías y assets compartidos)
+        run: |
+          echo "[]" > /tmp/vacio.json
+          python3 scripts/build_site.py --reescritos /tmp/vacio.json --site-dir .
+
+      - name: Commit y push si hubo cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Sin cambios que subir."
+          else
+            git commit -m "Reconstruye el sitio con build_site.py (via GitHub Action) [skip ci]"
+            git push
+          fi

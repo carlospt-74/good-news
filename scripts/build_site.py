@@ -30,9 +30,23 @@ Qué hace, paso a paso:
      el link que alguien haya compartido sigue funcionando. Es el mismo
      comportamiento de un blog: la nota "envejece" y sale de portada, pero
      su URL propia no muere.
-  4. Regenera Home, todas las páginas de categoría, y todas las páginas de
-     nota individual de lo que quedó vigente después de la poda.
-  5. Actualiza published_urls.json para que la fase 1 (búsqueda) sepa qué
+  4. Regenera Home y todas las páginas de categoría (su contenido cambia
+     cada corrida). Para las páginas de nota individual, en cambio, SOLO
+     genera las que todavía no existen -- una página de nota, una vez
+     publicada, no se vuelve a tocar nunca (ni su carrusel de "Más de
+     <categoría>", que queda fijo con las notas que existían en ese
+     momento). Esto es deliberado: antes, publicar 10 notas nuevas
+     implicaba reescribir ~90 páginas viejas solo para refrescar ese
+     carrusel, lo cual es carísimo de transmitir por este pipeline. El
+     costo es que el carrusel de una nota vieja puede quedar desactualizado
+     con el tiempo; el beneficio es que cada publicación semanal solo toca
+     los archivos que realmente son nuevos.
+  5. Escribe (una sola vez por corrida, siempre igual) el CSS compartido en
+     assets/styles.css y hace que todas las páginas lo referencien con
+     <link> en vez de repetirlo inline en cada <style> -- así el CSS se
+     actualiza en un solo lugar y cada página pesa una fracción de lo que
+     pesaba antes.
+  6. Actualiza published_urls.json para que la fase 1 (búsqueda) sepa qué
      ya se publicó y no lo repita.
 
 Este script solo RENDERIZA -- no busca fotos (eso lo hace attach_photos.py
@@ -363,7 +377,7 @@ def page_shell(*, title, base_prefix, body_html, active_category=None, breadcrum
 <title>{title} · Buenas Noticias</title>
 {FONT_LINKS}
 <link rel="icon" type="image/png" href="{base_prefix}assets/favicon.png">
-<style>{shared_css()}</style>
+<link rel="stylesheet" href="{base_prefix}assets/styles.css">
 </head>
 <body>
 <header class="site-header">
@@ -595,8 +609,25 @@ def build_note_html(a, related, today_str):
     return page_shell(title=a["title"], base_prefix=base_prefix, body_html=body, active_category=cat, breadcrumb_html=breadcrumb)
 
 
+def write_shared_assets(site_dir):
+    """Escribe el CSS compartido una sola vez en assets/styles.css, en vez de
+    embeberlo en el <style> de cada página (Fase 1 de la optimización de
+    tokens: antes cada página pesaba varios KB de más solo por repetir este
+    mismo bloque de CSS; ahora todas las páginas referencian el mismo
+    archivo, cacheable por el navegador). Las páginas de nota ya publicadas
+    antes de este cambio (ver write policy en build_site) siguen teniendo su
+    <style> inline viejo y seguirán funcionando igual -- solo las páginas
+    que este script SÍ regenera (home, categorías, notas nuevas) usan el
+    <link> nuevo."""
+    assets_dir = Path(site_dir) / "assets"
+    assets_dir.mkdir(parents=True, exist_ok=True)
+    (assets_dir / "styles.css").write_text(shared_css(), encoding="utf-8")
+
+
 def build_site(articles, site_dir, today_str):
     site_dir = Path(site_dir)
+
+    write_shared_assets(site_dir)
 
     by_category = defaultdict(list)
     for a in articles:
@@ -621,10 +652,25 @@ def build_site(articles, site_dir, today_str):
 
         arts_sorted = sorted(arts, key=lambda a: a.get("published_date", ""), reverse=True)
         for a in arts_sorted:
-            related = [r for r in arts_sorted if r["url"] != a["url"]]
             note_dir = cat_dir / a["slug"]
+            note_file = note_dir / "index.html"
+            if note_file.exists():
+                # Fase 3(b): una página de nota ya publicada NUNCA se
+                # regenera. Antes, cada corrida reescribía TODAS las notas
+                # de una categoría cada vez que entraba una nota nueva (para
+                # refrescar su carrusel de "Más de <categoría>"), lo que
+                # convertía "agregar 10 notas" en "tocar ~90 páginas". Ahora
+                # el carrusel de relacionadas de una nota queda fijo desde
+                # el momento en que esa nota se publica por primera vez
+                # (con las notas que existían en ese momento); se acepta que
+                # quede desactualizado con el tiempo a cambio de no volver a
+                # tocar esa página. El home y la landing de cada categoría
+                # sí se regeneran siempre (más abajo / arriba) porque su
+                # contenido cambia cada semana por diseño.
+                continue
+            related = [r for r in arts_sorted if r["url"] != a["url"]]
             note_dir.mkdir(parents=True, exist_ok=True)
-            (note_dir / "index.html").write_text(build_note_html(a, related, today_str), encoding="utf-8")
+            note_file.write_text(build_note_html(a, related, today_str), encoding="utf-8")
             pages_written += 1
 
     return pages_written
