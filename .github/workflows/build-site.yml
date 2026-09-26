@@ -81,7 +81,13 @@ jobs:
           echo "added=${ADDED:-0}" >> "$GITHUB_OUTPUT"
 
       - name: Registrar en la bitácora del pipeline
-        if: steps.build.outputs.pendiente != '' || steps.build.outputs.eliminar != ''
+        # Se registra SIEMPRE, haya o no pendiente/eliminar -- antes este
+        # paso solo corría cuando steps.build.outputs.pendiente o .eliminar
+        # no estaban vacíos, así que una reconstrucción de mantenimiento
+        # (sin lote pendiente ni archivo de eliminación, ej. un backfill
+        # hecho borrando páginas a mano) corría bien pero quedaba invisible
+        # en data/pipeline_log.json y en estado/index.html. Corregido el
+        # 2026-09-26 (ver CHANGELOG.md).
         run: |
           python3 - <<'PYEOF'
           import json, re
@@ -110,7 +116,9 @@ jobs:
           PYEOF
 
       - name: Regenerar la página de estado
-        if: steps.build.outputs.pendiente != '' || steps.build.outputs.eliminar != ''
+        # Se regenera SIEMPRE, en línea con el paso anterior -- ver su
+        # comentario. estado/index.html debe reflejar toda corrida real,
+        # no solo las que traen pendiente o eliminar.
         run: python3 scripts/build_status_page.py --log data/pipeline_log.json --site-dir .
 
       - name: Borrar el pendiente ya procesado
