@@ -1543,5 +1543,16 @@
     "image_url": "https://images.pexels.com/photos/38071557/pexels-photo-38071557.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
     "image_photographer": "Pok Rie",
     "image_source_url": "https://www.pexels.com/photo/aerial-view-of-lush-green-forest-and-clear-river-38071557/"
+  },
+  {
+    "title": "[PRUEBA] Nota de prueba para validar el disparo automatico de fotos",
+    "summary": "Nota de PRUEBA generada el 2026-09-26 para confirmar que el nuevo paso final de build-site.yml dispara attach-photos.yml automaticamente (sin intervencion manual) cuando se agregan notas nuevas. No es una noticia real. Se eliminara del sitio en cuanto termine la prueba.",
+    "source": "Prueba interna -- pipeline Buenas Noticias",
+    "url": "https://example.com/prueba-pipeline-buenas-noticias-2026-09-26-fotos-auto",
+    "published_date": "2026-09-26",
+    "category": "otros",
+    "image_query": "test pattern abstract wave",
+    "date_added": "2026-09-26",
+    "slug": "prueba-nota-de-prueba-para-validar-el-disparo-automatico-de-fotos"
   }
 ]
