@@ -1,0 +1,86 @@
+name: Migrar header/footer de notas viejas (migrate_note_partials.py)
+
+# Disparo: SOLO manual via workflow_dispatch. Es una migracion de una sola
+# vez (backfill de la Fase 2, ver CHANGELOG.md): reemplaza el header/footer
+# inline de las paginas de nota ya publicadas antes de la Fase 2 por el
+# patron nuevo compartido via assets/partials.js. El script es idempotente
+# (scripts/migrate_note_partials.py) -- correr este workflow mas de una vez
+# no hace dano, simplemente no encuentra nada que migrar la segunda vez.
+#
+# Por que un workflow aparte y no un paso mas de build-site.yml: es una
+# migracion puntual, no parte del ciclo normal de publicacion semanal: se
+# mantiene separada para que nunca se dispare por accidente junto con una
+# publicacion normal.
+on:
+  workflow_dispatch: {}
+
+concurrency:
+  group: build-site
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Migrar paginas de nota viejas
+        id: migrate
+        run: |
+          python3 scripts/migrate_note_partials.py --site-dir . | tee /tmp/migrate_output.txt
+          MIGRATED=$(grep -oE "Migradas: [0-9]+" /tmp/migrate_output.txt | grep -oE "[0-9]+" || true)
+          echo "migrated=${MIGRATED:-0}" >> "$GITHUB_OUTPUT"
+
+      - name: Registrar en la bitácora del pipeline
+        run: |
+          python3 - <<'PYEOF'
+          import re
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          log_path = Path("data/pipeline_log.json")
+          log = json.loads(log_path.read_text(encoding="utf-8")) if log_path.exists() else []
+
+          output = Path("/tmp/migrate_output.txt").read_text(encoding="utf-8")
+          m_migrated = re.search(r"Migradas: (\d+)", output)
+          m_ok = re.search(r"Ya estaban al dia: (\d+)", output)
+          m_missing = re.search(r"Archivo de nota no encontrado en disco: (\d+)", output)
+          m_failed = re.search(r"No se pudieron migrar \(forma inesperada\): (\d+)", output)
+          migrated = m_migrated.group(1) if m_migrated else "?"
+          ya_ok = m_ok.group(1) if m_ok else "?"
+          missing = m_missing.group(1) if m_missing else "0"
+          failed = m_failed.group(1) if m_failed else "0"
+
+          status = "ok" if failed == "0" and missing == "0" else "warning"
+
+          log.append({
+              "timestamp_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+              "trigger": "migracion-partials",
+              "status": status,
+              "summary": f"Migracion de header/footer (backfill Fase 2): {migrated} notas migradas, {ya_ok} ya estaban al dia, {missing} archivo(s) no encontrado(s), {failed} con forma inesperada (sin tocar). Registro mecanico de una migracion puntual.",
+          })
+          log_path.write_text(json.dumps(log, ensure_ascii=False, indent=2), encoding="utf-8")
+          PYEOF
+
+      - name: Regenerar la página de estado
+        run: python3 scripts/build_status_page.py --log data/pipeline_log.json --site-dir .
+
+      - name: Commit y push si hubo cambios
+        run: |
+          git config user.name "buenas-noticias-build-bot"
+          git config user.email "buenas-noticias-build-bot@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Sin cambios que subir."
+          else
+            git commit -m "Migra header/footer de notas viejas a assets/partials.js (backfill Fase 2)"
+            git push
+          fi
