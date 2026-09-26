@@ -32,6 +32,18 @@ Al probar el flujo nuevo con notas de prueba, quitarlas después reveló que no 
 
 Al validar el flujo nuevo de punta a punta con notas reales, se detectó que ninguna nota nueva recibía foto. Causa: el `git push` de `build-site.yml` usa el `GITHUB_TOKEN` por defecto del Action, y GitHub bloquea a propósito que un push hecho con ese token dispare otros workflows (protección anti-loop de la plataforma) — el trigger de push de `attach-photos.yml` estaba bien configurado, pero nunca se activaba desde ahí. Corregido agregando un paso final a `build-site.yml` que dispara `attach-photos.yml` explícitamente por API cuando se agregaron notas nuevas (requirió agregar permiso `actions: write` al workflow).
 
+## 2026-09-26 — Fix: la página de cada nota nunca mostraba su foto
+
+Al hacer una prueba controlada para confirmar el fix anterior (disparo automático de `attach-photos.yml`), se verificó explícitamente la página propia de la nota de prueba -- no solo el home y la categoría, como hacía hasta ahora la verificación de Vigía Fase B -- y se encontró que mostraba el respaldo ilustrado aunque `site_data.json` ya tenía su `image_url` real. Se confirmó que el mismo patrón afecta a notas reales publicadas antes (ej. la nota del hantavirus de Chile), así que no es exclusivo de la prueba.
+
+**Causa:** `attach_photos.py` regenera el sitio llamando a `build_site()`, la misma función que nunca reescribe una página de nota que ya existe (política Fase 3(b)). Como `build_site.py` ya creó esa página (sin foto) en la corrida de publicación previa, `attach_photos.py` nunca lograba escribirle la foto -- sin importar cuántas veces corriera.
+
+**Corregido:** `attach_photos.py` ahora borra del disco la página permalink de cada nota que consigue foto en esa corrida, justo antes de llamar a `build_site()`, para que la regenere una vez con la foto ya incluida. Validado localmente (con una llamada a Pexels simulada) antes de subirlo: la página de nota pasa de mostrar el respaldo ilustrado a mostrar la foto real en la primera corrida, y una segunda corrida no la vuelve a tocar (se preserva la política de congelamiento).
+
+También se amplió el paso de verificación de fotos de Vigía Fase B (antes solo revisaba el home y la página de categoría) para que también revise la página propia de cada nota nueva.
+
+**Pendiente, sin resolver todavía:** este bug probablemente afectó a todas las notas publicadas desde que existe la política de páginas congeladas (Fase 3(b), 2026-09-26) -- es decir, potencialmente también a notas de semanas anteriores a esa fecha si alguna vez se combinó con este flujo. No se hizo un backfill retroactivo para corregir páginas de notas ya publicadas que quedaron con el respaldo ilustrado pese a tener foto real en los datos -- se dejó fuera de esta corrección porque es una operación de alcance distinto (revisar todo el histórico) que requiere decisión explícita de Charly antes de tocar contenido ya publicado.
+
 ## 2026-09-26 — Documentación de arquitectura
 
 Se agregan `PROJECT_CONTEXT.md`, `ARCHITECTURE.md` y este `CHANGELOG.md` al repo, para que cualquier sesión futura (o Charly) pueda orientarse sin tener que reconstruir el contexto desde una conversación larga o desde comentarios de código dispersos.
