@@ -34,11 +34,23 @@ Qué hace:
   4. Marca cada nota como "image_attempted": true para no reintentar en
      cada corrida (Pexels es gratis pero no hay razón para golpear la API
      de más).
-  5. Regenera TODAS las páginas del sitio (home, categorías y permalinks)
-     reutilizando exactamente las mismas funciones build_site()/
-     build_home_html()/etc. que usa el script de la fase de publicación,
-     para que el sitio se vea idéntico sea cual sea el script que lo
-     generó por última vez.
+  5. Para cada nota que SÍ consiguió foto en esta corrida, borra su propia
+     página permalink antes de regenerar el sitio (ver paso 6) -- necesario
+     porque build_site() nunca reescribe una página de nota que ya existe
+     (política "Fase 3(b)", pensada para no tocar notas ya publicadas), y
+     esa página siempre existe ya en este punto (build_site.py la creó, sin
+     foto, en la corrida de publicación que siempre corre antes que este
+     script). Sin este borrado puntual, la nota queda con foto en el home y
+     en su categoría, pero con el respaldo ilustrado para siempre en su
+     propia página -- exactamente donde el lector cae al hacer clic. Es un
+     borrado de un solo uso: una vez que la nota queda marcada
+     "image_attempted": true, este script nunca la vuelve a tocar, así que
+     su página no se vuelve a borrar/regenerar después de esta vez.
+  6. Regenera TODAS las páginas del sitio (home, categorías, y las páginas
+     de nota borradas en el paso 5) reutilizando exactamente las mismas
+     funciones build_site()/build_home_html()/etc. que usa el script de la
+     fase de publicación, para que el sitio se vea idéntico sea cual sea el
+     script que lo generó por última vez.
 """
 
 import argparse
@@ -58,7 +70,7 @@ PEXELS_SEARCH_URL = "https://api.pexels.com/v1/search"
 # .github/scripts/attach_photos.py) para que este import funcione.
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent / "scripts"))
 try:
-    from build_site import build_site, load_json, save_json, fecha_larga_es  # noqa: E402
+    from build_site import build_site, load_json, save_json, fecha_larga_es, category_slug  # noqa: E402
 except ImportError:
     print(
         "ERROR: no se encontró scripts/build_site.py en la raíz del repo. "
@@ -150,6 +162,7 @@ def main():
 
     print(f"Buscando foto para {len(pending)} nota(s) nueva(s)...")
     found, not_found = 0, 0
+    newly_illustrated = []
     for a in pending:
         query = a["image_query"]
         result = search_pexels(query, api_key)
@@ -160,6 +173,7 @@ def main():
             a["image_photographer"] = photographer
             a["image_source_url"] = source_url
             found += 1
+            newly_illustrated.append(a)
             print(f"  ✓ '{query}' -> foto de {photographer}")
         else:
             not_found += 1
@@ -168,8 +182,20 @@ def main():
 
     save_json(site_data_path, articles)
 
-    # Regenera todas las páginas del sitio (home, categorías y permalinks)
-    # con las fotos ya asignadas.
+    # Borrado de un solo uso: deja que build_site() regenere, esta vez con
+    # foto, la página permalink de cada nota que la acaba de conseguir (ver
+    # punto 5 del docstring). Si el archivo no existe por algún motivo, no
+    # pasa nada -- build_site() la crea igual.
+    for a in newly_illustrated:
+        slug = a.get("slug")
+        if not slug:
+            continue
+        note_file = site_dir / category_slug(a.get("category", "Otros")) / slug / "index.html"
+        if note_file.exists():
+            note_file.unlink()
+
+    # Regenera todas las páginas del sitio (home, categorías, y las páginas
+    # de nota borradas arriba) con las fotos ya asignadas.
     today_str = fecha_larga_es()
     pages_written = build_site(articles, site_dir, today_str)
 
