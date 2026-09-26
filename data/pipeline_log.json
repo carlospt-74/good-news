@@ -111,5 +111,11 @@
     "trigger": "build-site-action",
     "status": "ok",
     "summary": "Reconstruccion automatica via GitHub Action: 1 notas nuevas agregadas. Total vigente: 104 notas en 9 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
+  },
+  {
+    "timestamp_utc": "2026-09-26T17:04:19Z",
+    "trigger": "build-site-action",
+    "status": "ok",
+    "summary": "Reconstruccion automatica via GitHub Action: 0 notas nuevas agregadas. Eliminadas: 1 notas. Total vigente: 103 notas en 8 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
   }
 ]
