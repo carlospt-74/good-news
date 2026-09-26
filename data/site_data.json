@@ -1553,6 +1553,10 @@
     "category": "otros",
     "image_query": "test pattern colorful gradient",
     "date_added": "2026-09-26",
-    "slug": "prueba-nota-de-prueba-final-para-confirmar-el-arreglo-de-fotos-en-la-p"
+    "slug": "prueba-nota-de-prueba-final-para-confirmar-el-arreglo-de-fotos-en-la-p",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/12981878/pexels-photo-12981878.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Clark Van Der Beken",
+    "image_source_url": "https://www.pexels.com/photo/orange-and-turquoise-abstract-painting-12981878/"
   }
 ]
