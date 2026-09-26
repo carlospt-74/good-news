@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Un test de cinco minutos hecho en Chile podría cambiar el diagnóstico del hantavirus",
+    "summary": "Un equipo de la Universidad Austral de Chile desarrolló un test que detecta el hantavirus en apenas cinco minutos, usando anticuerpos diminutos extraídos de alpacas en vez de los habituales de origen humano; según sus creadores, ningún otro grupo científico ha logrado antes un diagnóstico tan veloz para este virus. La rapidez importa porque un diagnóstico tardío puede derivar en un colapso pulmonar antes de que el paciente llegue a un centro con soporte vital avanzado. El sistema público de salud chileno recibirá un primer lote de 5.000 unidades para empezar a aplicarlo en las zonas rurales donde el contagio es más común.",
+    "source": "Cooperativa Ciencia (Chile)",
+    "url": "https://www.cooperativaciencia.cl/salud/2026/09/25/cientificos-chilenos-desarrollaron-el-primer-test-rapido-del-mundo-para-detectar-el-hantavirus/",
+    "published_date": "2026-09-25",
+    "category": "Ciencia y Salud",
+    "image_query": "medical rapid test kit laboratory"
+  },
+  {
+    "title": "Con un implante cerebral experimental, un paciente con ELA volvió a decirle \"te amo\" a su esposa",
+    "summary": "Terrence Mandable perdió gradualmente la capacidad de hablar a causa de la esclerosis lateral amiotrófica (ELA) y se convirtió en el tercer participante de una prueba experimental de Neuralink, la empresa de interfaces cerebro-computadora fundada por Elon Musk. El dispositivo, implantado en la zona del cerebro asociada al habla, usa algoritmos que reconocen la intención de hablar y la convierten primero en texto y luego en voz sintetizada. Según Neuralink, que es la única fuente de este resultado, el sistema le permitió a Mandable decirle \"te amo\" a su esposa, aunque la tecnología sigue en fase experimental y todavía no cuenta con aprobación de la FDA para uso general.",
+    "source": "El País (Uruguay)",
+    "url": "https://www.elpais.com.uy/mundo/paciente-con-ela-recupera-habilidad-para-hablar-gracias-a-implante-cerebral-le-dijo-te-amo-a-su-esposa",
+    "published_date": "2026-09-24",
+    "category": "IA",
+    "image_query": "brain computer interface medical device"
+  },
+  {
+    "title": "Cuatro países sudamericanos se unen para devolverle vida silvestre al río Paraná",
+    "summary": "Organizaciones ambientales de Argentina, Bolivia, Brasil y Paraguay lanzaron \"Ríos del Yaguareté\", una iniciativa conjunta para restaurar y reconectar los ecosistemas de la cuenca del Paraná, de la que dependen más de cien millones de personas. El plan, liderado por la Fundación Rewilding junto a organizaciones locales de cada país y la conservacionista Kris Tompkins, busca crear en dos décadas una red de áreas protegidas y corredores que faciliten el desplazamiento de especies como el yaguareté. Según los propios organizadores, que son la fuente de este anuncio, se trata de un intento por revertir el deterioro de bosques como el Atlántico, reducido en 90% en algunas zonas en los últimos años.",
+    "source": "Infobae (EFE)",
+    "url": "https://www.infobae.com/america/agencias/2026/09/25/organizaciones-ambientalistas-buscan-restaurar-y-reconectar-la-cuenca-del-rio-parana/",
+    "published_date": "2026-09-25",
+    "category": "Medio Ambiente",
+    "image_query": "river forest conservation wildlife"
+  }
+]
