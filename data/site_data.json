@@ -1508,7 +1508,11 @@
     "category": "Ciencia y Salud",
     "image_query": "medical rapid test kit laboratory",
     "date_added": "2026-09-26",
-    "slug": "un-test-de-cinco-minutos-hecho-en-chile-podria-cambiar-el-diagnostico"
+    "slug": "un-test-de-cinco-minutos-hecho-en-chile-podria-cambiar-el-diagnostico",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/11624145/pexels-photo-11624145.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "adrian vieriu",
+    "image_source_url": "https://www.pexels.com/photo/close-up-of-a-rapid-antigen-test-kit-11624145/"
   },
   {
     "title": "Con un implante cerebral experimental, un paciente con ELA volvió a decirle \"te amo\" a su esposa",
@@ -1519,7 +1523,11 @@
     "category": "IA",
     "image_query": "brain computer interface medical device",
     "date_added": "2026-09-26",
-    "slug": "con-un-implante-cerebral-experimental-un-paciente-con-ela-volvio-a-dec"
+    "slug": "con-un-implante-cerebral-experimental-un-paciente-con-ela-volvio-a-dec",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/39192372/pexels-photo-39192372.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Vitaly Gariev",
+    "image_source_url": "https://www.pexels.com/photo/doctor-reviewing-brain-scans-on-digital-tablet-39192372/"
   },
   {
     "title": "Cuatro países sudamericanos se unen para devolverle vida silvestre al río Paraná",
@@ -1530,6 +1538,10 @@
     "category": "Medio Ambiente",
     "image_query": "river forest conservation wildlife",
     "date_added": "2026-09-26",
-    "slug": "cuatro-paises-sudamericanos-se-unen-para-devolverle-vida-silvestre-al"
+    "slug": "cuatro-paises-sudamericanos-se-unen-para-devolverle-vida-silvestre-al",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/38071557/pexels-photo-38071557.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Pok Rie",
+    "image_source_url": "https://www.pexels.com/photo/aerial-view-of-lush-green-forest-and-clear-river-38071557/"
   }
 ]
