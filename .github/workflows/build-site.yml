@@ -52,7 +52,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Detectar lote pendiente (si lo hay) y reconstruir el sitio
+      - name: Detectar lote pendiente y/o eliminaciones (si los hay) y reconstruir el sitio
         id: build
         run: |
           PENDIENTE=$(ls data/pending/pendiente_*.json 2>/dev/null | head -n 1 || true)
@@ -65,10 +65,17 @@ jobs:
             echo "[]" > /tmp/vacio.json
             REESCRITOS=/tmp/vacio.json
           fi
-          python3 scripts/build_site.py --reescritos "$REESCRITOS" --site-dir . | tee /tmp/build_output.txt
+          ELIMINAR=$(ls data/pending/eliminar_*.json 2>/dev/null | head -n 1 || true)
+          ELIMINAR_ARGS=()
+          if [ -n "$ELIMINAR" ]; then
+            echo "Usando archivo de eliminacion: $ELIMINAR"
+            echo "eliminar=$ELIMINAR" >> "$GITHUB_OUTPUT"
+            ELIMINAR_ARGS=(--eliminar "$ELIMINAR")
+          fi
+          python3 scripts/build_site.py --reescritos "$REESCRITOS" "${ELIMINAR_ARGS[@]}" --site-dir . | tee /tmp/build_output.txt
 
       - name: Registrar en la bitácora del pipeline
-        if: steps.build.outputs.pendiente != ''
+        if: steps.build.outputs.pendiente != '' || steps.build.outputs.eliminar != ''
         run: |
           python3 - <<'PYEOF'
           import json, re
@@ -81,26 +88,32 @@ jobs:
           output = Path("/tmp/build_output.txt").read_text(encoding="utf-8")
           m_added = re.search(r"Listo: (\d+) notas nuevas", output)
           m_total = re.search(r"Total vigente en el sitio: (\d+) notas .* en (\d+) categor", output)
+          m_removed = re.search(r"Eliminadas: (\d+) notas", output)
           added = m_added.group(1) if m_added else "?"
           total = m_total.group(1) if m_total else "?"
           categorias = m_total.group(2) if m_total else "?"
+          removed_note = f" Eliminadas: {m_removed.group(1)} notas." if m_removed else ""
 
           log.append({
               "timestamp_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
               "trigger": "build-site-action",
               "status": "ok",
-              "summary": f"Reconstruccion automatica via GitHub Action: {added} notas nuevas agregadas. Total vigente: {total} notas en {categorias} categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)",
+              "summary": f"Reconstruccion automatica via GitHub Action: {added} notas nuevas agregadas.{removed_note} Total vigente: {total} notas en {categorias} categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)",
           })
           log_path.write_text(json.dumps(log, ensure_ascii=False, indent=2), encoding="utf-8")
           PYEOF
 
       - name: Regenerar la página de estado
-        if: steps.build.outputs.pendiente != ''
+        if: steps.build.outputs.pendiente != '' || steps.build.outputs.eliminar != ''
         run: python3 scripts/build_status_page.py --log data/pipeline_log.json --site-dir .
 
       - name: Borrar el pendiente ya procesado
         if: steps.build.outputs.pendiente != ''
         run: rm -f "${{ steps.build.outputs.pendiente }}"
+
+      - name: Borrar el archivo de eliminacion ya procesado
+        if: steps.build.outputs.eliminar != ''
+        run: rm -f "${{ steps.build.outputs.eliminar }}"
 
       - name: Commit y push si hubo cambios
         run: |

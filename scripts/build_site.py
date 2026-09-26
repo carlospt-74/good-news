@@ -195,6 +195,36 @@ def merge_articles(existing, new_articles):
     return list(by_url.values()), added, skipped
 
 
+def remove_articles(existing, urls_to_remove, site_dir):
+    """Quita del histórico las notas cuya URL esté en urls_to_remove, y borra
+    del disco la página permalink de cada una (cat_dir/slug/index.html, y la
+    carpeta si queda vacía). Pensado para correcciones y pruebas -- borrar
+    del listado sin esto dejaría la página permalink huérfana para siempre,
+    ya que build_site() nunca reescribe una página de nota que ya existe."""
+    urls_to_remove = set(urls_to_remove)
+    if not urls_to_remove:
+        return existing, 0
+    site_dir = Path(site_dir)
+    kept = []
+    removed = 0
+    for a in existing:
+        if a.get("url") in urls_to_remove:
+            removed += 1
+            slug = a.get("slug")
+            if slug:
+                note_dir = site_dir / category_slug(a.get("category", "Otros")) / slug
+                note_file = note_dir / "index.html"
+                if note_file.exists():
+                    note_file.unlink()
+                try:
+                    note_dir.rmdir()
+                except OSError:
+                    pass  # no estaba vacía o no existía; no es un error
+            continue
+        kept.append(a)
+    return kept, removed
+
+
 def prune_old(articles, retention_days=RETENTION_DAYS):
     cutoff = datetime.now() - timedelta(days=retention_days)
     kept = []
@@ -680,6 +710,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--reescritos", default="reescritos.json")
     ap.add_argument("--site-dir", default=".")
+    ap.add_argument("--eliminar", default=None, help="Ruta a un JSON con una lista de URLs a quitar del histórico (correcciones/pruebas), antes de fusionar lo nuevo.")
     args = ap.parse_args()
 
     site_dir = Path(args.site_dir)
@@ -691,6 +722,11 @@ def main():
     new_articles = load_json(args.reescritos, [])
     existing = load_json(site_data_path, [])
 
+    removed = 0
+    if args.eliminar:
+        urls_to_remove = load_json(args.eliminar, [])
+        existing, removed = remove_articles(existing, urls_to_remove, site_dir)
+
     merged, added, skipped = merge_articles(existing, new_articles)
     merged = prune_old(merged)
 
@@ -701,6 +737,8 @@ def main():
     save_json(published_urls_path, sorted(a["url"] for a in merged))
 
     n_categories = len({a.get("category", "Otros") for a in merged})
+    if removed:
+        print(f"Eliminadas: {removed} notas quitadas del historico (--eliminar).")
     print(f"Listo: {added} notas nuevas agregadas, {skipped} ya existían (duplicadas por URL).")
     print(f"Total vigente en el sitio: {len(merged)} notas de los últimos {RETENTION_DAYS} días, en {n_categories} categorías.")
     print(f"Páginas generadas: {pages_written} (1 home + páginas de categoría + 1 permalink por nota).")
