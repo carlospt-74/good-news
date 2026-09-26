@@ -1,19 +1,41 @@
 name: Reconstruir el sitio (build_site.py)
 
-# Se dispara manualmente desde la pestaña Actions de GitHub (botón "Run
-# workflow"). Corre build_site.py con el archivo histórico actual
-# (data/site_data.json) y sin notas nuevas -- sirve para aplicar cambios
-# al script (por ejemplo, de plantilla o de CSS compartido) a todo el
-# sitio sin que el agente de Claude tenga que transmitir el HTML generado
-# a través del chat. Los commits de este workflow no agregan notas nuevas;
-# eso sigue siendo trabajo de la sesión semanal de Claude, que escribe
-# data/pending/*.json y hace su propio commit con las páginas nuevas.
+# Dos formas de disparo:
+# 1. Automático: cuando la sesión semanal de Claude (Fase B del pipeline de
+#    publicación) sube un lote ya aprobado a data/pending/pendiente_*.json,
+#    este workflow lo toma, corre build_site.py con ese lote, hace el
+#    commit del sitio regenerado y borra el pendiente ya procesado -- todo
+#    del lado del repo, sin que el HTML generado tenga que pasar por el
+#    chat de Claude (eso fue justo lo que causó un incidente de costo el
+#    2026-09-25/26: transcribir HTML grande a mano hacia GitHub).
+# 2. Manual (workflow_dispatch, botón "Run workflow" en la pestaña
+#    Actions): reconstruye el sitio con el archivo histórico actual y sin
+#    notas nuevas -- sirve para aplicar cambios al script (plantilla, CSS
+#    compartido, etc.) a todo el sitio sin necesidad de un lote pendiente.
+#
+# Nota sobre el commit de este workflow: SIN "[skip ci]" a propósito. Esa
+# convención de GitHub cancela TODOS los workflows disparados por ese
+# push, no solo este -- si lo llevara, el push a data/site_data.json que
+# hace este workflow nunca dispararía a attach-photos.yml, y las notas
+# nuevas se quedarían sin foto para siempre, en silencio.
 on:
+  push:
+    branches: [main]
+    paths:
+      - "data/pending/pendiente_*.json"
   workflow_dispatch: {}
+
+concurrency:
+  group: build-site
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Evita que el propio commit de este workflow (que borra el pendiente
+    # procesado, tocando de nuevo data/pending/*.json) se vuelva a
+    # disparar a sí mismo en un loop.
+    if: github.event.head_commit.author.name != 'buenas-noticias-build-bot'
     steps:
       - uses: actions/checkout@v4
 
@@ -21,19 +43,64 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Reconstruir el sitio (home, categorías y assets compartidos)
+      - name: Detectar lote pendiente (si lo hay) y reconstruir el sitio
+        id: build
         run: |
-          echo "[]" > /tmp/vacio.json
-          python3 scripts/build_site.py --reescritos /tmp/vacio.json --site-dir .
+          PENDIENTE=$(ls data/pending/pendiente_*.json 2>/dev/null | head -n 1 || true)
+          if [ -n "$PENDIENTE" ]; then
+            echo "Usando lote pendiente: $PENDIENTE"
+            echo "pendiente=$PENDIENTE" >> "$GITHUB_OUTPUT"
+            REESCRITOS="$PENDIENTE"
+          else
+            echo "Sin lote pendiente -- reconstrucción de mantenimiento (0 notas nuevas)."
+            echo "[]" > /tmp/vacio.json
+            REESCRITOS=/tmp/vacio.json
+          fi
+          python3 scripts/build_site.py --reescritos "$REESCRITOS" --site-dir . | tee /tmp/build_output.txt
+
+      - name: Registrar en la bitácora del pipeline
+        if: steps.build.outputs.pendiente != ''
+        run: |
+          python3 - <<'PYEOF'
+          import json, re
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          log_path = Path("data/pipeline_log.json")
+          log = json.loads(log_path.read_text(encoding="utf-8")) if log_path.exists() else []
+
+          output = Path("/tmp/build_output.txt").read_text(encoding="utf-8")
+          m_added = re.search(r"Listo: (\d+) notas nuevas", output)
+          m_total = re.search(r"Total vigente en el sitio: (\d+) notas .* en (\d+) categor", output)
+          added = m_added.group(1) if m_added else "?"
+          total = m_total.group(1) if m_total else "?"
+          categorias = m_total.group(2) if m_total else "?"
+
+          log.append({
+              "timestamp_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+              "trigger": "build-site-action",
+              "status": "ok",
+              "summary": f"Reconstruccion automatica via GitHub Action: {added} notas nuevas agregadas. Total vigente: {total} notas en {categorias} categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)",
+          })
+          log_path.write_text(json.dumps(log, ensure_ascii=False, indent=2), encoding="utf-8")
+          PYEOF
+
+      - name: Regenerar la página de estado
+        if: steps.build.outputs.pendiente != ''
+        run: python3 scripts/build_status_page.py --log data/pipeline_log.json --site-dir .
+
+      - name: Borrar el pendiente ya procesado
+        if: steps.build.outputs.pendiente != ''
+        run: rm -f "${{ steps.build.outputs.pendiente }}"
 
       - name: Commit y push si hubo cambios
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "buenas-noticias-build-bot"
+          git config user.email "buenas-noticias-build-bot@users.noreply.github.com"
           git add -A
           if git diff --cached --quiet; then
             echo "Sin cambios que subir."
           else
-            git commit -m "Reconstruye el sitio con build_site.py (via GitHub Action) [skip ci]"
+            git commit -m "Reconstruye el sitio con build_site.py (via GitHub Action)"
             git push
           fi
