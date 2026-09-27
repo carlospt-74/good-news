@@ -30,8 +30,19 @@ name: Reconstruir el sitio (build_site.py)
 # push, no solo este -- si lo llevara, el push a data/site_data.json que
 # hace este workflow nunca dispararía a attach-photos.yml, y las notas
 # nuevas se quedarían sin foto para siempre, en silencio.
+#
+# Input opcional rebuild_notes (casilla en "Run workflow"): regenera tambien
+# las paginas de nota ya publicadas, que normalmente quedan congeladas
+# (politica Fase 3(b)). Solo para cambios de plantilla que tienen que
+# llegar a todas las notas (ej. el rediseno 2026-09-27). Por defecto es
+# false, asi que Fase B, que dispara sin inputs, no cambia su comportamiento.
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      rebuild_notes:
+        description: "Regenerar tambien las notas ya publicadas (solo para cambios de plantilla)"
+        type: boolean
+        default: false
 
 concurrency:
   group: build-site
@@ -58,6 +69,8 @@ jobs:
 
       - name: Detectar lote pendiente y/o eliminaciones (si los hay) y reconstruir el sitio
         id: build
+        env:
+          REBUILD_NOTES: ${{ inputs.rebuild_notes }}
         run: |
           PENDIENTE=$(ls data/pending/pendiente_*.json 2>/dev/null | head -n 1 || true)
           if [ -n "$PENDIENTE" ]; then
@@ -76,7 +89,12 @@ jobs:
             echo "eliminar=$ELIMINAR" >> "$GITHUB_OUTPUT"
             ELIMINAR_ARGS=(--eliminar "$ELIMINAR")
           fi
-          python3 scripts/build_site.py --reescritos "$REESCRITOS" "${ELIMINAR_ARGS[@]}" --site-dir . | tee /tmp/build_output.txt
+          REBUILD_ARGS=()
+          if [ "$REBUILD_NOTES" = "true" ]; then
+            echo "rebuild_notes=true: se regeneran tambien las notas ya publicadas."
+            REBUILD_ARGS=(--rebuild-notes)
+          fi
+          python3 scripts/build_site.py --reescritos "$REESCRITOS" "${ELIMINAR_ARGS[@]}" "${REBUILD_ARGS[@]}" --site-dir . | tee /tmp/build_output.txt
           ADDED=$(grep -oE "Listo: [0-9]+" /tmp/build_output.txt | grep -oE "[0-9]+" || true)
           echo "added=${ADDED:-0}" >> "$GITHUB_OUTPUT"
 
