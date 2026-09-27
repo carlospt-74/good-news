@@ -27,7 +27,8 @@ data/
     eliminar_<fecha>.json    # lista de URLs a quitar del histórico (correcciones/pruebas)
 assets/
   styles.css              # CSS compartido por todo el sitio (Fase 1, ver Changelog)
-  partials.js             # header/footer compartidos, inyectados en runtime (Fase 2, ver Changelog)
+  icons.svg               # sprite de íconos SVG compartido (rediseño 2026-09-27)
+  partials.js             # header/footer compartidos + comportamientos del sitio, inyectados en runtime (Fase 2, ver Changelog)
 scripts/
   migrate_note_partials.py   # migración de una sola vez: backfill de Fase 2 en notas viejas (ver Changelog)
 .github/workflows/
@@ -44,8 +45,8 @@ Paso a paso:
 1. Lee `data/site_data.json` (el histórico) y, si se pasó `--eliminar`, primero quita de ahí las notas cuya URL esté en ese archivo, **y borra del disco su página permalink** (`remove_articles()`). Sin este paso, una nota "eliminada" del listado seguiría teniendo su página huérfana viva para siempre, porque el paso 4 nunca regenera páginas de nota existentes.
 2. Fusiona las notas de `--reescritos` con lo que quedó, evitando duplicados por URL (`merge_articles()`), asignando a cada nota nueva un `slug` permanente.
 3. Poda del histórico las notas con más de `RETENTION_DAYS` (120 días) de antigüedad (`prune_old()`) — esto solo las saca de los listados; su página permalink, si ya existía, no se borra.
-4. Regenera `index.html` y **todas** las páginas de categoría (su contenido cambia cada corrida). Para páginas de nota individual, **solo genera las que todavía no existen** — una nota publicada nunca se vuelve a tocar (política "Fase 3(b)", ver Changelog). Esto es lo que evita que agregar unas pocas notas obligue a reescribir cientos de páginas viejas.
-5. Escribe (idéntico cada corrida) el CSS compartido en `assets/styles.css` (Fase 1, ver Changelog) — las páginas lo referencian con `<link>`, no lo repiten inline.
+4. Regenera `index.html` y **todas** las páginas de categoría (su contenido cambia cada corrida). Para páginas de nota individual, **solo genera las que todavía no existen** — una nota publicada nunca se vuelve a tocar (política "Fase 3(b)", ver Changelog). Esto es lo que evita que agregar unas pocas notas obligue a reescribir cientos de páginas viejas. **Única excepción: `--rebuild-notes`** regenera también las notas ya publicadas; existe para cambios de plantilla que tienen que llegar a todas las notas (se usó para el rediseño 2026-09-27) y nunca va en la operación semanal.
+5. Escribe (idéntico cada corrida) el CSS compartido en `assets/styles.css` (Fase 1, ver Changelog) y el sprite de íconos en `assets/icons.svg` — las páginas los referencian con `<link>` / `<use>`, no los repiten inline.
 6. Escribe (idéntico cada corrida) el JS compartido de header/footer en `assets/partials.js` (`write_shared_partials()`, Fase 2, ver Changelog). `page_shell()` ya no emite `<header>`/`<footer>` inline: deja mount points vacíos (`id="site-header-mount"` / `id="site-footer-mount"`, con un `<noscript>` de respaldo) y este script los llena en tiempo de carga, usando rutas ancladas a `/good-news/` (no `base_prefix`, que es relativo y varía según la profundidad de la página -- este archivo es uno solo compartido por páginas a cualquier profundidad). Como el paso 4 nunca reescribe una página de nota ya publicada, este patrón solo aplica de forma nativa a páginas nuevas o regeneradas de aquí en más; ver más abajo el backfill que lo llevó también a las páginas viejas.
 7. Guarda `data/site_data.json` y `data/published_urls.json` actualizados.
 
@@ -54,6 +55,7 @@ Es determinístico e idempotente: correrlo con `--reescritos` apuntando a `[]` s
 ## `.github/workflows/build-site.yml` — el Action que publica
 
 - **Disparo: SOLO `workflow_dispatch`** (manual, o programático vía `GITHUB_CREATE_A_WORKFLOW_DISPATCH_EVENT`). **A propósito NO tiene disparo automático por push** a `data/pending/pendiente_*.json` — Fase A sube ese archivo horas antes de que Charly tenga oportunidad de aprobar u objetar; si el Action se disparara con ese push, publicaría sin aprobación. La decisión de cuándo publicar es siempre de una sesión de Claude (Fase B, tras confirmar aprobación) o de un humano.
+- Input opcional `rebuild_notes` (booleano, falso por defecto): pasa `--rebuild-notes` a `build_site.py`. Solo para publicar un cambio de plantilla; Fase B dispara sin inputs, así que no lo activa nunca.
 - Al correr: detecta `data/pending/pendiente_*.json` (si existe, lo usa; si no, reconstrucción de mantenimiento con 0 notas nuevas) y `data/pending/eliminar_*.json` (si existe, lo pasa como `--eliminar`), corre `build_site.py`, actualiza `data/pipeline_log.json` y `estado/index.html`, borra los archivos de `pending/` ya procesados, y hace su propio commit como `buenas-noticias-build-bot`.
 - **Último paso — dispara `attach-photos.yml` explícitamente si se agregaron notas nuevas.** Esto existe por una trampa real de GitHub: el `git push` de este mismo Action usa el `GITHUB_TOKEN` por defecto, y GitHub bloquea a propósito que un push hecho con ese token dispare otros workflows (protección anti-loop de la plataforma) — así que el trigger de push de `attach-photos.yml` nunca se activa solo desde aquí, aunque esté bien configurado. La solución es este paso final, que llama a la API (`gh workflow run attach-photos.yml`) directamente — eso sí funciona con `GITHUB_TOKEN`. Si algún día se quita este paso "para simplificar", las notas nuevas se van a quedar sin foto en silencio.
 - Su propio commit **no** lleva `[skip ci]` a propósito (esa convención cancelaría también el intento de disparo de `attach-photos.yml` del paso siguiente, y en general cancela TODOS los workflows de ese push, no solo el propio).

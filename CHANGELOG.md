@@ -88,6 +88,22 @@ Charly pidió mejorar el bloque de bienvenida (hero) del home: centrarlo, darle 
 
 En la misma conversación, Charly señaló que el guión largo ("--" en el teclado, el carácter unicode em dash) es una señal reconocible de texto generado por IA y pidió no usarlo nunca en texto que ve el lector -- ni en el copy nuevo del hero ni en los titulares/resúmenes que redacta la Fase 3. Se verificó que el copy nuevo del hero no lo usa, y se encontró que 1 de las 103 notas ya publicadas sí lo tiene (nota de diseñadoras guna/emberá/ngäbe en Panamá, sin corregir por ahora -- Charly no pidió ese backfill retroactivo, solo la regla hacia adelante). Se agregó la regla explícita a la skill `buenas-noticias-reescribir` (ver ese archivo) para que la Fase 3 la aplique en cada corrida futura.
 
+## 2026-09-27 -- Rediseño completo del sitio (home, categorías y notas)
+
+Charly aprobó un rediseño visual completo, iterado primero como maquetas HTML fuera del repo (sistema de diseño generado con la skill ui-ux-pro-max). Cambia solo la capa de presentación de `build_site.py`; la lógica de datos (fusión, poda, slugs, `--eliminar`, política Fase 3(b)) no cambió.
+
+- **Sistema visual:** fondo crema, verde bosque como color principal y ámbar como acento; titulares en Newsreader, texto en Public Sans; modo oscuro automático con botón para cambiarlo (se recuerda por visitante). Íconos SVG en `assets/icons.svg` (sprite nuevo, escrito por `write_shared_assets()`) en lugar de los emojis por categoría; se quitaron `CATEGORY_COLORS`, `CATEGORY_LIGHT` y `CATEGORY_EMOJI` y se agregaron `CATEGORY_ICONS` y `CATEGORY_DESC`.
+- **Logo:** el PNG anterior se veía pixeleado (sobre todo en modo oscuro), así que el logo ahora es texto: "buenas noticias" en Caveat Brush (la misma letra del logo original) con un punto ámbar, y "Always positive" debajo. `assets/logo.png` se conserva pero ya no se usa en el header ni en el footer.
+- **Home:** hero compacto con titular de dos renglones (palabra que rota), "Lo mejor de hoy" (las 3 destacadas en bento), "Explora por tema" (pestañas por categoría, sin repetir las destacadas) y franja de confianza.
+- **Categoría:** encabezado con ícono y frase, chips para saltar entre categorías, nota más reciente destacada y cuadrícula del resto.
+- **Nota:** encabezado centrado, foto a todo el ancho, resumen en columna de lectura con barra lateral (recuadro de la fuente + compartir por WhatsApp o copiar enlace) y "Más de <categoría>". Etiquetas `og:` y `description` en todas las páginas, para que una nota compartida por WhatsApp o redes muestre foto y resumen.
+- **Footer:** centrado, con el aviso editorial redactado por Charly.
+- `assets/partials.js` ahora también lleva los comportamientos compartidos (tema, menú móvil, pestañas del home, copiar enlace), cada uno activo solo si su elemento existe en la página.
+
+**Notas ya publicadas:** como todas las páginas comparten `assets/styles.css`, las 103 notas congeladas habrían recibido el CSS nuevo con su HTML viejo. Para evitarlo se agregó a `build_site.py` el flag `--rebuild-notes` (y el input booleano `rebuild_notes` a `build-site.yml`, falso por defecto) que regenera también las notas ya publicadas; se usa una sola vez, en la misma corrida que publica el rediseño. Sin el flag, la política Fase 3(b) sigue igual (validado: una corrida normal escribe solo home + 9 categorías). Fase B dispara el workflow sin inputs, así que su comportamiento no cambia.
+
+Validado antes de subir: el sitio completo (113 páginas: home, 9 categorías, 103 notas) se generó con los datos reales en una copia temporal fuera del repo y se revisó en el navegador (sin imágenes rotas ni errores de consola, `partials.js` pasa `node --check`, `attach_photos.py` sigue importando `build_site` sin cambios).
+
 ## Pendiente / considerado y pausado
 
 Nada pendiente por ahora.
