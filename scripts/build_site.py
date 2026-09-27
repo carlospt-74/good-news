@@ -715,7 +715,9 @@ def card_html(a, base_prefix, cls="card", attrs=""):
     if image_url:
         media = f'<div class="media"><img src="{esc(image_url)}" alt="" loading="lazy" width="940" height="650"></div>'
     else:
-        media = f'<div class="media fallback">{icon_html(base_prefix, icon_id)}</div>'
+        # "photo fallback" es el marcador literal que busca Vigía Fase B para
+        # detectar notas sin foto (paso 2b de su prompt); no quitarlo.
+        media = f'<div class="media photo fallback">{icon_html(base_prefix, icon_id)}</div>'
         cls += " no-photo"
     return f"""
     <article class="{cls}"{attrs}>
@@ -861,7 +863,8 @@ def build_note_html(a, related, today_str):
         photographer = a.get("image_photographer") or "Pexels"
         cover = f'<figure class="cover"><img src="{esc(image_url)}" alt="" width="940" height="650"><figcaption>Foto: {esc(photographer)} / Pexels</figcaption></figure>'
     else:
-        cover = f'<figure class="cover"><div class="cover-fallback">{icon_html(bp, icon_id)}</div></figure>'
+        # Mismo marcador "photo fallback" que en card_html(), para Vigía Fase B.
+        cover = f'<figure class="cover"><div class="cover-fallback photo fallback">{icon_html(bp, icon_id)}</div></figure>'
 
     minutes = max(1, round(len(a["summary"].split()) / 200))
     public_url = f"https://carlospt-74.github.io/good-news/{category_slug(cat)}/{a['slug']}/"
