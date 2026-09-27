@@ -274,10 +274,13 @@ def shared_css():
   @media (max-width: 900px) { nav.categories { display: none; width: 100%; order: 3; flex-direction: column; gap: 14px; padding-top: 14px; border-top: 1px solid var(--line); margin-top: 6px; } nav.categories.open { display: flex; } .menu-toggle { display: inline-block; } }
 
   main { max-width: 1180px; margin: 0 auto; padding: 0 32px 80px; }
-  .hero-text { padding: 40px 0 40px; max-width: 640px; }
+  .hero-text { max-width: 720px; margin: 32px auto 56px; padding: 56px 40px; text-align: center; background: var(--bg-alt); border-radius: 10px; }
   .hero-text .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.75rem; color: var(--accent-deep); font-weight: 600; margin-bottom: 16px; display: block; }
-  .hero-text h1 { font-weight: 500; font-size: 2.1rem; line-height: 1.2; margin: 0 0 12px; letter-spacing: -0.01em; }
-  .hero-text p.sub { color: var(--ink-soft); font-size: 0.98rem; margin: 0; max-width: 560px; }
+  .hero-text h1 { font-weight: 500; font-size: 2.2rem; line-height: 1.2; margin: 0 0 18px; letter-spacing: -0.01em; }
+  .hero-text p.hero-intro { color: var(--ink); font-size: 1.05rem; line-height: 1.6; margin: 0 auto 20px; max-width: 620px; }
+  .hero-text p.sub { color: var(--ink-soft); font-size: 0.88rem; margin: 0 auto; max-width: 560px; }
+  .hero-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 24px auto 0; }
+  .hero-badges span { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--accent-deep); background: #fff; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); }
 
   .photo { position: relative; overflow: hidden; background: var(--bg-alt); border-radius: 6px; }
   .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -366,6 +369,7 @@ def shared_css():
 
   @media (max-width: 860px) {
     .secondary-grid { grid-template-columns: 1fr; }
+    .hero-text { padding: 40px 24px; margin: 20px auto 40px; }
     .hero-text h1 { font-size: 1.7rem; }
     .featured-hero .overlay, .featured-hero { min-height: 320px; }
   }
@@ -622,11 +626,18 @@ def build_home_html(articles, today_str):
       </section>""")
 
     total = len(articles)
+    num_categories = len({a["category"] for a in articles})
     hero_text = f"""
   <div class="hero-text">
     <span class="eyebrow">{today_str} · América</span>
     <h1 class="serif">Todo lo que va <em>bien</em>, en un solo lugar.</h1>
+    <p class="hero-intro">¿Cansado de que las noticias solo te dejen con un nudo en el estómago? Llegaste al lugar correcto. Cada semana reunimos avances y logros reales de todo el continente americano, verificados y con fuente directa a la nota original, para que informarte no te cueste la calma.</p>
     <p class="sub">{total} notas positivas verificadas de los últimos {RETENTION_DAYS} días, de fuentes reales, con enlace directo a cada una.</p>
+    <div class="hero-badges">
+      <span>Fuentes verificadas</span>
+      <span>Cero ruido político</span>
+      <span>{total} notas · {num_categories} categorías</span>
+    </div>
   </div>"""
     body = hero_text + "".join(sections)
     return page_shell(title="Inicio", base_prefix=base_prefix, body_html=body)
