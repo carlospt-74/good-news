@@ -4,35 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Otros · Buenas Noticias</title>
+<meta name="description" content="Buenas noticias que no caben en una sola categoría.">
+<meta property="og:title" content="Otros">
+<meta property="og:description" content="Buenas noticias que no caben en una sola categoría.">
+<meta property="og:site_name" content="Buenas Noticias">
+<meta property="og:locale" content="es_LA">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&family=Public+Sans:wght@400;500;600;700&family=Caveat+Brush&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="../assets/favicon.png">
 <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body data-active-category="Otros">
 <header class="site-header" id="site-header-mount">
-  <noscript><div class="header-inner"><a href="../" class="logo"><img src="../assets/logo.png" alt="Buenas Noticias" class="logo-img"></a></div></noscript>
+  <noscript><div class="wrap bar"><a class="brand" href="../"><span class="wm"><b>buenas noticias</b><small>Always positive</small></span></a></div></noscript>
 </header>
-<div class="breadcrumb"><a href="../">Inicio</a> / Otros</div>
 <main>
 
-    <div class="cat-hero">
-      <div class="icon-badge" style="background:#ececeb">📰</div>
-      <div>
-        <h1 class="serif">Otros</h1>
-        <p>0 notas de los últimos 120 días.</p>
-      </div>
+  <section class="cat-hero">
+    <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Ruta"><a href="../">Inicio</a><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-arrow"/></svg><span aria-current="page">Otros</span></nav>
+      <div class="cat-title"><span class="cat-ico"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-news"/></svg></span><h1>Otros</h1></div>
+      <p class="desc">Buenas noticias que no caben en una sola categoría.</p>
+      <p class="count"><b>0</b> notas de los últimos 120 días</p>
+      <nav class="tabs switch" aria-label="Otras categorías"><a href="../deportes/"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-trophy"/></svg>Deportes</a><a href="../economia/"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-trend"/></svg>Economía</a><a href="../ciencia-y-salud/"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-flask"/></svg>Ciencia y Salud</a><a href="../medio-ambiente/"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-leaf"/></svg>Medio Ambiente</a><a href="../sociedad/"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-users"/></svg>Sociedad</a><a href="../tecnologia/"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-cpu"/></svg>Tecnología</a><a href="../cultura/"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-palette"/></svg>Cultura</a><a href="../ia/"><svg class="i" aria-hidden="true"><use href="../assets/icons.svg#i-spark"/></svg>IA</a></nav>
     </div>
+  </section>
+
+  <section class="wrap" style="padding-top:28px">
     <p class="empty-note">Todavía no hay notas recientes en esta categoría. Vuelve pronto.</p>
+  </section>
 </main>
-<footer id="site-footer-mount">
-  <noscript>
-    <div class="foot-inner">
-      <a href="../" class="logo"><img src="../assets/logo.png" alt="Buenas Noticias" class="logo-img"></a>
-      <p class="legal">Buenas Noticias no aloja el contenido completo de las notas; siempre enlazamos a la fuente original.</p>
-    </div>
-  </noscript>
+<footer class="site-footer" id="site-footer-mount">
+  <noscript><div class="wrap"><div class="note"><p><strong>Buenas Noticias no aloja el contenido completo de las notas; siempre enlazamos a la fuente original.</strong></p></div></div></noscript>
 </footer>
 <script defer src="../assets/partials.js"></script>
 </body>
