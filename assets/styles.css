@@ -21,6 +21,8 @@ body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
 :focus-visible{outline:2px solid var(--ring);outline-offset:3px;border-radius:8px}
+/* el atributo hidden debe ganarle a los display:flex de .card/.btn (pestañas del home) */
+[hidden]{display:none!important}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .wrap{max-width:1200px;margin:0 auto;padding:0 16px}
 @media(min-width:768px){.wrap{padding:0 32px}}
