@@ -117,6 +117,15 @@ Charly notó que al elegir una categoría en "Explora por tema" (home) la cuadr�
 
 (De paso se quitó un encabezado "Pendiente" duplicado por error en la entrada anterior.)
 
+## 2026-09-28 -- Resúmenes más completos: 2 a 3 párrafos (solo notas nuevas)
+
+Charly notó que los resúmenes eran muy cortos frente a la nota original. Ejemplo medido: la nota de los yaguaretés de Corrientes (El Monterizo) tiene ~550 palabras en 6 párrafos y su resumen tenía 88 palabras en un párrafo (16%); los 103 resúmenes publicados miden entre 51 y 111 palabras (mediana 79). Causa: la skill `buenas-noticias-reescribir` pedía 2 a 4 oraciones y redactaba a partir del título y el extracto de la búsqueda, sin leer la nota completa. Además, ese resumen incluía un dato ("desde 2012") que no aparece en la nota enlazada.
+
+Charly pidió llegar al 50-60% del original; se acordó un tope menor para no debilitar el criterio de "no reemplazar a la nota original" en el que se apoya el portal (ver `PROJECT_CONTEXT.md`): **2 a 3 párrafos, 150-250 palabras, máximo 35-40% del original**, solo para notas nuevas (las 103 publicadas se quedan como están).
+
+- **Skill `buenas-noticias-reescribir`** (nueva versión, la guarda Charly en claude.ai): lee la nota completa solo de las notas ya aprobadas (reutiliza lo que haya traído la verificación en la misma sesión; si no, un `web_fetch_exa` con tope de ~12,000 caracteres), respeta la extensión y el tope, usa solo hechos de la nota enlazada, y separa los párrafos con una línea en blanco en `summary`. Si no puede leer la nota completa, escribe un solo párrafo con lo verificable y lo avisa en el correo de revisión. Las fases de búsqueda y verificación no cambian.
+- **`build_site.py`**: nueva función `parrafos()`; la página de la nota muestra cada párrafo aparte, y la tarjeta y `og:description` usan solo el primero. Validado en una copia aislada: las 113 páginas actuales salen idénticas byte por byte, y una nota de prueba de 3 párrafos se muestra con sus 3 párrafos en su página y con solo el primero en la tarjeta del home y en `og:description`.
+
 ## Pendiente / considerado y pausado
 
 Nada pendiente por ahora.
