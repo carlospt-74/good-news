@@ -13,6 +13,7 @@
 - **Cero tinte político**, sin excepción: se rechaza cualquier nota centrada en un gobierno, funcionario electo o partido presentando sus propios logros o cifras de gestión, aunque el contenido sea positivo y los datos sean ciertos. El motivo no es dudar de la cifra — es que ese encuadre hace parecer que el portal respalda a ese gobierno en particular. Aplica igual a cualquier país y cualquier signo político.
 - Notas de la categoría IA solo califican si hay un beneficio humano directo y verificable (diagnóstico médico, accesibilidad, un problema concreto resuelto) — nunca lanzamientos de producto, rondas de inversión, ni "IA hace X más rápido" sin ese beneficio central.
 - Cada nota se redacta en palabras propias (nunca copiando frases del original) y siempre enlaza a la fuente — el portal no aloja el contenido completo, dirige tráfico de vuelta al medio original. Esto es lo que mantiene al proyecto del lado seguro de "fair use".
+- Extensión del resumen (desde 2026-09-28, solo para notas nuevas): 2 a 3 párrafos, entre 150 y 250 palabras y nunca más del 35-40% del texto original, redactados a partir de la nota completa y solo con hechos que aparecen en ella. Las citas textuales y los detalles finos se dejan para el medio original, para que el resumen no lo reemplace. Las notas publicadas antes de esa fecha conservan su resumen corto de un párrafo.
 
 **Categorías:** Deportes, Economía, Ciencia y Salud, Medio Ambiente, Sociedad, Tecnología, Cultura, IA, Otros.
 

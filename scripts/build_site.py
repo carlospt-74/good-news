@@ -710,6 +710,13 @@ def note_url(a, base_prefix):
     return f"{base_prefix}{category_slug(a.get('category', 'Otros'))}/{a['slug']}/"
 
 
+def parrafos(summary):
+    """Divide el resumen en párrafos. Desde 2026-09-28 la fase de reescritura
+    escribe 2-3 párrafos separados por una línea en blanco; las notas
+    anteriores tienen uno solo y salen igual que antes."""
+    return [p.strip() for p in re.split(r"\n\s*\n", summary or "") if p.strip()] or [""]
+
+
 def card_html(a, base_prefix, cls="card", attrs=""):
     cat = a.get("category", "Otros")
     icon_id = CATEGORY_ICONS.get(cat, "i-news")
@@ -727,7 +734,7 @@ def card_html(a, base_prefix, cls="card", attrs=""):
       <div class="body">
         <span class="tag">{icon_html(base_prefix, icon_id)}{esc(cat)}</span>
         <h3>{esc(a['title'])}</h3>
-        <p class="excerpt">{esc(a['summary'])}</p>
+        <p class="excerpt">{esc(parrafos(a['summary'])[0])}</p>
         <div class="meta"><span class="src" aria-hidden="true">{esc(get_avatar_initials(a['source']))}</span>{esc(a['source'])} · {fecha_corta_es(a.get('published_date'))}</div>
       </div>
       <a class="stretch" href="{note_url(a, base_prefix)}" aria-label="Leer: {esc(a['title'])}"></a>
@@ -893,7 +900,7 @@ def build_note_html(a, related, today_str):
       </div>
       {cover}
       <div class="art-body">
-        <div class="prose"><p>{esc(a['summary'])}</p></div>
+        <div class="prose">{"".join(f"<p>{esc(p)}</p>" for p in parrafos(a['summary']))}</div>
         <aside class="art-side" aria-label="Fuente y compartir">
           <div class="source-box">
             <p><span>Este resumen es una redacción original de Buenas Noticias. La nota completa, con todos los detalles, está en</span> <strong>{esc(a['source'])}</strong>.</p>
@@ -910,7 +917,7 @@ def build_note_html(a, related, today_str):
 {related_html}
   </article>"""
     return page_shell(title=a["title"], base_prefix=bp, body_html=body, active_category=cat,
-                      description=a["summary"][:200], image=image_url)
+                      description=parrafos(a["summary"])[0][:200], image=image_url)
 
 
 def write_shared_assets(site_dir):
