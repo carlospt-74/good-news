@@ -191,5 +191,11 @@
     "status": "ok",
     "summary": "Confirme que Fase A si genero el borrador (pendiente_2026-10-02.json en el repo) y el correo de hoy (asunto \"Buenas Noticias — borrador semanal del 2026-10-02, listo para tu revision\"); no fue necesario reintentar.",
     "link": "https://github.com/carlospt-74/good-news/blob/main/data/pending/pendiente_2026-10-02.json"
+  },
+  {
+    "timestamp_utc": "2026-10-02T17:03:06Z",
+    "trigger": "build-site-action",
+    "status": "ok",
+    "summary": "Reconstruccion automatica via GitHub Action: 10 notas nuevas agregadas. Total vigente: 113 notas en 8 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
   }
 ]
