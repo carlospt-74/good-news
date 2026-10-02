@@ -197,5 +197,12 @@
     "trigger": "build-site-action",
     "status": "ok",
     "summary": "Reconstruccion automatica via GitHub Action: 10 notas nuevas agregadas. Total vigente: 113 notas en 8 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
+  },
+  {
+    "timestamp_utc": "2026-10-02T18:21:30Z",
+    "trigger": "vigia_fase_b",
+    "status": "ok",
+    "summary": "Confirme la publicacion semanal (10 notas nuevas, commit b9076f4a, 113 notas vigentes) verificando de forma independiente build-site.yml (run 37038058946, success) y attach-photos.yml (run 37038089644, success); revise home, las 8 categorias y el permalink propio de las 10 notas nuevas -- ninguna muestra 'photo fallback', todas con foto real de Pexels. Nota aparte: el correo de confirmacion de Fase B cito por error el run de attach-photos.yml como si fuera el de build-site.yml; no afecta el resultado porque ambos terminaron en success.",
+    "link": "https://github.com/carlospt-74/good-news/actions/runs/37038058946"
   }
 ]
