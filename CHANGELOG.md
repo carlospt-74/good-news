@@ -2,6 +2,10 @@
 
 Cronología de cambios estructurales al pipeline y al sitio (no de las publicaciones semanales normales — esas quedan en `data/pipeline_log.json` y en `estado/index.html`). Cada vez que se haga un cambio de este tipo, se agrega una entrada aquí.
 
+## 2026-10-04 — Mudanza a buenasnoticias.charlymx.com
+
+El sitio pasó de https://carlospt-74.github.io/good-news/ a https://buenasnoticias.charlymx.com/ (CNAME en Cloudflare apuntando a `carlospt-74.github.io`, dominio personalizado y HTTPS activados en Settings → Pages; archivo `CNAME` en la raíz del repo). Cambios de código: `ROOT` en `assets/partials.js` y en `scripts/build_site.py` pasó de `/good-news/` a `/`, y el enlace público de compartir en WhatsApp usa el dominio nuevo. Se regeneraron todas las notas con `rebuild_notes` = true. GitHub redirige las URLs viejas de `github.io/good-news/` al dominio nuevo. También se sacó `scripts/__pycache__/` del repo y se agregó `.gitignore`.
+
 ## 2026-09-25/26 — Incidente de costo y causa raíz
 
 El 25 de septiembre, la publicación semanal (Fase B) se interrumpió a medias: un plan de 16 pasos nunca llegó a completarse y a las 18:25 UTC arrancó una secuencia nueva mucho más larga, sin correo de confirmación ni de fallo (detectado por Vigía Fase B, registro `status: warning`). El 26 de septiembre, al retomarlo manualmente, publicar ~10 notas — generando y transmitiendo el HTML completo del sitio a través del chat hacia GitHub — consumió aproximadamente el doble del presupuesto de tokens de una sesión PRO completa.
