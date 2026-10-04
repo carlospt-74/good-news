@@ -1,6 +1,6 @@
 # Buenas Noticias — contexto del proyecto
 
-**Qué es:** un portal de noticias 100% positivas en español, para audiencia de todo el continente americano (EE. UU., Canadá y Latinoamérica). Sitio estático publicado en GitHub Pages: https://carlospt-74.github.io/good-news/ — repositorio `carlospt-74/good-news`.
+**Qué es:** un portal de noticias 100% positivas en español, para audiencia de todo el continente americano (EE. UU., Canadá y Latinoamérica). Sitio estático publicado en GitHub Pages: https://buenasnoticias.charlymx.com/ — repositorio `carlospt-74/good-news`.
 
 **Para quién:** lectores que quieren enterarse de logros, avances y buenas noticias reales, verificadas, sin ruido político ni sensacionalismo. El dueño del proyecto es Charly (carlos.perezt@gmail.com).
 

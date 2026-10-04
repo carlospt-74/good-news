@@ -513,7 +513,7 @@ def category_nav_items():
 
 
 _PARTIALS_JS_TEMPLATE = """(function () {
-  var ROOT = "/good-news/";
+  var ROOT = "/";
   var CATEGORIES = __CATEGORIES_JSON__;
   var ICONS = ROOT + "assets/icons.svg#";
   var YEAR = new Date().getFullYear();
@@ -650,10 +650,10 @@ def partials_js():
     (tema claro/oscuro, menu movil, pestañas del home, copiar enlace), cada
     uno activo solo si su elemento existe en la pagina.
 
-    ROOT esta hardcodeado a "/good-news/" porque GitHub Pages sirve este
-    repo como project page en ese subpath, no en la raiz del dominio. Si el
-    sitio algun dia se muda a un dominio propio, este valor es lo unico que
-    hay que actualizar."""
+    ROOT es "/" desde que el sitio se mudo al dominio propio
+    buenasnoticias.charlymx.com (antes "/good-news/", cuando GitHub Pages lo
+    servia como project page en ese subpath). Si el sitio vuelve a cambiar de
+    dominio o de subpath, este valor es lo unico que hay que actualizar."""
     items_json = json.dumps(category_nav_items(), ensure_ascii=False)
     return _PARTIALS_JS_TEMPLATE.replace("__CATEGORIES_JSON__", items_json)
 
@@ -876,7 +876,7 @@ def build_note_html(a, related, today_str):
         cover = f'<figure class="cover"><div class="cover-fallback photo fallback">{icon_html(bp, icon_id)}</div></figure>'
 
     minutes = max(1, round(len(a["summary"].split()) / 200))
-    public_url = f"https://carlospt-74.github.io/good-news/{category_slug(cat)}/{a['slug']}/"
+    public_url = f"https://buenasnoticias.charlymx.com/{category_slug(cat)}/{a['slug']}/"
     wa = urllib.parse.quote(f"{a['title']} {public_url}")
 
     related_html = ""

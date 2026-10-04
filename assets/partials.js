@@ -1,5 +1,5 @@
 (function () {
-  var ROOT = "/good-news/";
+  var ROOT = "/";
   var CATEGORIES = [["Deportes", "deportes"], ["Economía", "economia"], ["Ciencia y Salud", "ciencia-y-salud"], ["Medio Ambiente", "medio-ambiente"], ["Sociedad", "sociedad"], ["Tecnología", "tecnologia"], ["Cultura", "cultura"], ["IA", "ia"]];
   var ICONS = ROOT + "assets/icons.svg#";
   var YEAR = new Date().getFullYear();
