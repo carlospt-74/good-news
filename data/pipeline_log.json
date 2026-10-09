@@ -230,5 +230,12 @@
     "trigger": "build-site-action",
     "status": "ok",
     "summary": "Reconstruccion automatica via GitHub Action: 10 notas nuevas agregadas. Total vigente: 123 notas en 8 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
+  },
+  {
+    "timestamp_utc": "2026-10-09T18:26:51Z",
+    "trigger": "vigia_fase_b",
+    "status": "ok",
+    "summary": "Charly respondio con instruccion explicita (\"Publicar la lista que esta actualmente en el repo\") al correo de diagnostico de la inconsistencia de Fase A; dispare build-site.yml (run 37972234957, success, 10 notas nuevas, 123 notas vigentes) y confirme de forma independiente el workflow de fotos (attach-photos.yml, run 37972252335, success): las 10 notas nuevas muestran foto real de Pexels en home, en su categoria y en su pagina propia (permalink), sin 'photo fallback' en ningun lado. No fue necesario reparar nada.",
+    "link": "https://github.com/carlospt-74/good-news/actions/runs/37972234957"
   }
 ]
