@@ -224,5 +224,11 @@
     "status": "warning",
     "summary": "Dos corridas de Fase A de hoy (la original demorada y el reintento del vigia) escribieron contenido distinto en pendiente_2026-10-09.json casi al mismo tiempo (commits 66cc2e7 13:01 UTC vs 54c6264 13:05 UTC) y mandaron 2 correos con listas de notas diferentes bajo el mismo asunto; el commit 54c6264 sobrescribio al primero. No se publico nada: se pidio a Charly por correo que confirme explicitamente cual lista usar (o ninguna) antes de disparar el Action.",
     "link": "https://github.com/carlospt-74/good-news/commits/main"
+  },
+  {
+    "timestamp_utc": "2026-10-09T18:17:31Z",
+    "trigger": "build-site-action",
+    "status": "ok",
+    "summary": "Reconstruccion automatica via GitHub Action: 10 notas nuevas agregadas. Total vigente: 123 notas en 8 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
   }
 ]
