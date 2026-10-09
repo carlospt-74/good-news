@@ -217,5 +217,12 @@
     "status": "ok",
     "summary": "Borrador semanal generado en reintento del vigia (la corrida de las 12:00 UTC no produjo archivo ni correo): 10 notas verificadas (Deportes x2, Ciencia y Salud, Medio Ambiente x2, Sociedad, Tecnologia, IA, Economia, Cultura) de 9 paises (Uruguay, Panama, Brasil x2, Costa Rica, EE. UU., Colombia, Argentina, Peru, Chile). Busqueda ampliada a todo el continente americano. Subido a data/pending/pendiente_2026-10-09.json y enviado correo de revision a Charly.",
     "link": "https://github.com/carlospt-74/good-news/commit/54c6264d4e51525588517421d483bd0d02dd5b7c"
+  },
+  {
+    "timestamp_utc": "2026-10-09T17:11:00Z",
+    "trigger": "fase_b",
+    "status": "warning",
+    "summary": "Dos corridas de Fase A de hoy (la original demorada y el reintento del vigia) escribieron contenido distinto en pendiente_2026-10-09.json casi al mismo tiempo (commits 66cc2e7 13:01 UTC vs 54c6264 13:05 UTC) y mandaron 2 correos con listas de notas diferentes bajo el mismo asunto; el commit 54c6264 sobrescribio al primero. No se publico nada: se pidio a Charly por correo que confirme explicitamente cual lista usar (o ninguna) antes de disparar el Action.",
+    "link": "https://github.com/carlospt-74/good-news/commits/main"
   }
 ]
