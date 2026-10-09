@@ -210,5 +210,12 @@
     "trigger": "build-site-action",
     "status": "ok",
     "summary": "Reconstruccion automatica via GitHub Action: 0 notas nuevas agregadas. Total vigente: 113 notas en 8 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
+  },
+  {
+    "timestamp_utc": "2026-10-09T12:49:51Z",
+    "trigger": "vigia_fase_a",
+    "status": "warning",
+    "summary": "Fase A no genero nada hoy (sin archivo en data/pending/ ni correo de borrador semanal); se reintento automaticamente disparando trig_01M5rAiFf2bLou3P5PRTCiLv.",
+    "link": "https://github.com/carlospt-74/good-news/commits/main"
   }
 ]
