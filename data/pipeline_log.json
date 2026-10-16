@@ -244,5 +244,11 @@
     "status": "ok",
     "summary": "Borrador semanal generado: 10 notas, 8 categorias (Deportes x2, Economia, Ciencia y Salud, Medio Ambiente x2, Sociedad, Tecnologia, Cultura, IA), 10 paises/territorios (Puerto Rico, EE.UU., El Salvador, Chile, Brasil, Argentina, Venezuela, Peru, Mexico, Canada). Correo de revision enviado a Charly.",
     "link": "https://github.com/carlospt-74/good-news/commit/00b875c4689a50d357fca8dfbf1b4fbf7d56dc95"
+  },
+  {
+    "timestamp_utc": "2026-10-16T17:04:32Z",
+    "trigger": "build-site-action",
+    "status": "ok",
+    "summary": "Reconstruccion automatica via GitHub Action: 9 notas nuevas agregadas. Total vigente: 132 notas en 8 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
   }
 ]
