@@ -2,6 +2,21 @@
 
 Cronología de cambios estructurales al pipeline y al sitio (no de las publicaciones semanales normales — esas quedan en `data/pipeline_log.json` y en `estado/index.html`). Cada vez que se haga un cambio de este tipo, se agrega una entrada aquí.
 
+## 2026-10-16 — Nuevo criterio editorial: notas católicas/Vaticano cada semana, piso semanal sube a 12, y publicación manual extra de hoy
+
+Charly pidió agregar un criterio de búsqueda dedicado a temas católicos/del Vaticano/del Papa (a raíz de la recuperación del papa León XIV tras su cirugía de cáncer de pulmón), con al menos 2 a 3 notas de este tipo cada semana, y aprovechó para subir el piso semanal de notas de "entre 8 y 10" a "al menos 12". De paso corrigió una ambigüedad real en la regla de región: no es que el portal evite noticias *sobre* países de Europa, Asia u Oceanía -- es que no se toman notas de *medios/portales* de esas regiones (la cobertura de un medio americano sobre el Vaticano, por ejemplo, siempre ha sido válida).
+
+Dado que la Fase B de esta misma semana ya había publicado el lote regular (9 notas) a las 17:04 UTC, antes de que esta petición pudiera incorporarse al borrador semanal, Charly confirmó una publicación manual extra, fuera de ciclo, solo para hoy: 3 notas católicas/Vaticano (incluida la recuperación del papa León XIV y su misa de agradecimiento al personal del Hospital Gemelli), buscadas, verificadas y reescritas en esta misma sesión siguiendo el criterio editorial de siempre, subidas como `data/pending/pendiente_2026-10-16b.json` y publicadas con el mismo `build-site.yml` de siempre (commit `7e80a55`, Action `38954174638`, fotos vía `attach-photos.yml` sin problema). El sitio pasó de 132 a 135 notas, las tres en la categoría Sociedad (no se creó una categoría dedicada, por decisión de Charly). Verificado tras la publicación: las tres aparecen en home, en la categoría Sociedad y en su propio permalink, con foto real de Pexels (ninguna en `photo fallback`), sin guion largo en el texto.
+
+Cambios permanentes a partir de hoy (ver `PROJECT_CONTEXT.md` y las skills `buenas-noticias-buscar`/`buenas-noticias-verificar`, actualizadas y entregadas a Charly para que las reemplace si su cuenta lo permite):
+- El piso semanal de la Fase A sube de "entre 8 y 10" a "al menos 12" notas, de las cuales 2 a 3 deben ser de temas católicos/Vaticano/Papa cada semana.
+- Las notas católicas/Vaticano usan las categorías existentes (normalmente Sociedad o Cultura, según el caso), no una categoría dedicada.
+- La regla de región de búsqueda se aclara: restringe de dónde viene el *medio* (no medios de la Unión Europea, Asia u Oceanía), no de qué *país* habla la noticia -- un medio americano cubriendo al Vaticano, a Europa o a cualquier otra región sigue calificando.
+- La exclusión por "tinte político" de `buenas-noticias-verificar` se aclara explícitamente: no aplica a contenido personal, de salud, religioso o caritativo del Papa o del Vaticano (aunque el Vaticano sea técnicamente un Estado) -- sí sigue aplicando a diplomacia o geopolítica vaticana propiamente dicha.
+- También se actualizó el prompt de la tarea programada de Fase A (`trig_01M5rAiFf2bLou3P5PRTCiLv`) y el de Fase B (`trig_019YUyZyGdcfWDqSNitUysAV`) para reflejar el nuevo piso de 12 notas y el criterio católico/Vaticano.
+
+Esta entrada corrige, de pasada, la ambigüedad de la regla de región heredada de entradas anteriores: nunca fue "no Europa/Asia/Oceanía como tema", sino "no medios de esas regiones como fuente".
+
 ## 2026-10-04 — Mudanza a buenasnoticias.charlymx.com
 
 El sitio pasó de https://carlospt-74.github.io/good-news/ a https://buenasnoticias.charlymx.com/ (CNAME en Cloudflare apuntando a `carlospt-74.github.io`, dominio personalizado y HTTPS activados en Settings → Pages; archivo `CNAME` en la raíz del repo). Cambios de código: `ROOT` en `assets/partials.js` y en `scripts/build_site.py` pasó de `/good-news/` a `/`, y el enlace público de compartir en WhatsApp usa el dominio nuevo. Se regeneraron todas las notas con `rebuild_notes` = true. GitHub redirige las URLs viejas de `github.io/good-news/` al dominio nuevo. También se sacó `scripts/__pycache__/` del repo y se agregó `.gitignore`.
