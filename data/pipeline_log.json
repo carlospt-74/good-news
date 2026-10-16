@@ -239,9 +239,10 @@
     "link": "https://github.com/carlospt-74/good-news/actions/runs/37972234957"
   },
   {
-    "timestamp_utc": "2026-10-16T12:47:30Z",
-    "trigger": "vigia_fase_a",
+    "timestamp_utc": "2026-10-16T12:38:59Z",
+    "trigger": "fase_a",
     "status": "ok",
-    "summary": "Fase A (disparada 12:22:55 UTC, corrida todavia en curso al momento de esta revision) ya habia subido data/pending/pendiente_2026-10-16.json al repo cuando el vigia reviso; eso basta para considerar la Fase A exitosa esta semana, asi que no fue necesario esperar, reintentar ni avisar a Charly. No se encontro aun el correo de borrador semanal en Gmail, pero el archivo pendiente en el repo es evidencia suficiente por si mismo."
+    "summary": "Borrador semanal generado: 10 notas, 8 categorias (Deportes x2, Economia, Ciencia y Salud, Medio Ambiente x2, Sociedad, Tecnologia, Cultura, IA), 10 paises/territorios (Puerto Rico, EE.UU., El Salvador, Chile, Brasil, Argentina, Venezuela, Peru, Mexico, Canada). Correo de revision enviado a Charly.",
+    "link": "https://github.com/carlospt-74/good-news/commit/00b875c4689a50d357fca8dfbf1b4fbf7d56dc95"
   }
 ]
