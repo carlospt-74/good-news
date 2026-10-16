@@ -1989,7 +1989,11 @@
     "image_query": "hospital chapel mass candles",
     "fuente_unica_interesada": true,
     "date_added": "2026-10-16",
-    "slug": "el-papa-leon-xiv-agradece-con-una-misa-al-personal-del-hospital-que-lo"
+    "slug": "el-papa-leon-xiv-agradece-con-una-misa-al-personal-del-hospital-que-lo",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/7939467/pexels-photo-7939467.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "NOVIKAU ANDREI",
+    "image_source_url": "https://www.pexels.com/photo/man-in-white-thobe-standing-beside-table-7939467/"
   },
   {
     "title": "Sacerdotes compiten con sus mejores sopas para recaudar fondos a beneficio de Caridades Católicas",
@@ -2001,7 +2005,11 @@
     "image_query": "chef ladling soup competition",
     "fuente_unica_interesada": false,
     "date_added": "2026-10-16",
-    "slug": "sacerdotes-compiten-con-sus-mejores-sopas-para-recaudar-fondos-a-benef"
+    "slug": "sacerdotes-compiten-con-sus-mejores-sopas-para-recaudar-fondos-a-benef",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/12368790/pexels-photo-12368790.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Christian Thöni",
+    "image_source_url": "https://www.pexels.com/photo/a-person-holding-metal-ladle-12368790/"
   },
   {
     "title": "Cáritas construye en Chiapas una casa de descanso para quienes acompañan a un familiar hospitalizado",
@@ -2013,6 +2021,10 @@
     "image_query": "family resting hospital waiting room",
     "fuente_unica_interesada": true,
     "date_added": "2026-10-16",
-    "slug": "caritas-construye-en-chiapas-una-casa-de-descanso-para-quienes-acompan"
+    "slug": "caritas-construye-en-chiapas-una-casa-de-descanso-para-quienes-acompan",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/6129113/pexels-photo-6129113.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "RDNE Stock project",
+    "image_source_url": "https://www.pexels.com/photo/crying-women-hugging-each-other-6129113/"
   }
 ]
