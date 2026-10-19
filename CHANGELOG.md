@@ -2,6 +2,24 @@
 
 Cronología de cambios estructurales al pipeline y al sitio (no de las publicaciones semanales normales — esas quedan en `data/pipeline_log.json` y en `estado/index.html`). Cada vez que se haga un cambio de este tipo, se agrega una entrada aquí.
 
+## 2026-10-19 — Corrige dos fotos de Pexels con género equivocado y agrega filtro de género/demografía a `attach_photos.py`
+
+Charly reportó dos notas con foto de Pexels que contradecía claramente el género del sujeto de la nota: la de la poeta Silvia Tomasa Rivera (Premio Inés Arredondo) mostraba la foto de un hombre durmiendo, y la del primer título nacional de lucha femenina de la NCAA (Audrey Jimenez, Universidad de Lehigh) mostraba niños practicando sumo, a pesar de que su `image_query` ya decía "women's wrestling championship celebration". Pidió corregir ambas fotos puntualmente y, sobre todo, ajustar el mecanismo de búsqueda en Pexels para que este tipo de caso no vuelva a pasar.
+
+**Causa raíz:** `.github/scripts/attach_photos.py` tomaba siempre `photos[0]`, el primer resultado que devuelve la API de Pexels, sin verificar su contenido contra la intención de la búsqueda. La relevancia de texto de Pexels no es perfecta, así que un primer resultado puede no calzar con lo buscado aunque la palabra clave sea razonable.
+
+**Corrección de código (`.github/scripts/attach_photos.py`):** se agregaron `_detect_gender_hint()` y `_alt_contradicts_hint()`. Cuando el `image_query` de una nota menciona explícitamente un género (woman/women/female/girl/girls/lady/ladies o man/men/male/boy/boys/guy/guys), el script revisa hasta 5 candidatos de Pexels (ya se pedían con `per_page=5`) y descarta cualquiera cuyo texto alternativo (`alt`, provisto por la propia API) apunte al género opuesto sin también mencionar el buscado. Si ningún candidato pasa el filtro, no asigna foto -- el sitio usa el respaldo ilustrado por categoría -- en vez de mostrar una claramente equivocada.
+
+**Corrección puntual de datos (`data/site_data.json`):** a las dos notas afectadas se les quitaron los campos `image_url`, `image_photographer`, `image_source_url` e `image_attempted`, para que el siguiente push disparara de nuevo `attach-photos.yml` y las reprocesara ya con el filtro nuevo. La nota de Silvia Tomasa Rivera además cambió su `image_query` de "poet reading book award" (sin género explícito) a "woman poet writing", porque la palabra "poet" no está en la lista de palabras de género que reconoce el filtro nuevo -- sin este cambio, el filtro no habría tenido nada que validar para esa búsqueda.
+
+**Despliegue y verificación real (no solo "el commit funcionó"):** el commit [`39c920d`](https://github.com/carlospt-74/good-news/commit/39c920d43cb5366ed105eb51dc5b665cef138626) (datos + código) disparó automáticamente el run [`attach-photos.yml` #39212264234](https://github.com/carlospt-74/good-news/actions/runs/39212264234), que terminó con éxito y a su vez el run de `pages build and deployment` [#39212282254](https://github.com/carlospt-74/good-news/actions/runs/39212282254), también exitoso. Se volvió a leer `data/site_data.json` después de ambos runs y se confirmó que:
+- La nota de Silvia Tomasa Rivera quedó con la foto "woman typing on vintage typewriter indoors" (fotógrafo VINAYAK HARIDAS).
+- La nota de Audrey Jimenez/NCAA quedó con la foto "two women wrestling" (fotógrafo Duren Williams).
+
+Se confirmó además que ambas fotos nuevas aparecen en el HTML real ya desplegado: la página permalink de cada nota, la página de su categoría (Cultura y Deportes) y la portada (`index.html`).
+
+**Nota para el futuro:** el filtro de género es una red de seguridad a nivel de código, no un sustituto de elegir bien las palabras clave en la fase de reescritura -- si el `image_query` no menciona un género explícito cuando el sujeto de la nota sí lo tiene (como pasó aquí con "poet"), el filtro no tiene nada que validar. Ver `buenas-noticias-reescribir/SKILL.md` para la guía complementaria de incluir un descriptor de género/demografía en `image_query` cuando el sujeto central de la nota tiene un género conocido.
+
 ## 2026-10-16 — Nuevo criterio editorial: notas católicas/Vaticano cada semana, piso semanal sube a 12, y publicación manual extra de hoy
 
 Charly pidió agregar un criterio de búsqueda dedicado a temas católicos/del Vaticano/del Papa (a raíz de la recuperación del papa León XIV tras su cirugía de cáncer de pulmón), con al menos 2 a 3 notas de este tipo cada semana, y aprovechó para subir el piso semanal de notas de "entre 8 y 10" a "al menos 12". De paso corrigió una ambigüedad real en la regla de región: no es que el portal evite noticias *sobre* países de Europa, Asia u Oceanía -- es que no se toman notas de *medios/portales* de esas regiones (la cobertura de un medio americano sobre el Vaticano, por ejemplo, siempre ha sido válida).
