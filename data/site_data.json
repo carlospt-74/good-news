@@ -1868,7 +1868,11 @@
     "category": "Deportes",
     "image_query": "women's wrestling championship celebration",
     "date_added": "2026-10-16",
-    "slug": "de-pensar-en-abandonar-la-lucha-a-ganar-el-primer-titulo-nacional-de-l"
+    "slug": "de-pensar-en-abandonar-la-lucha-a-ganar-el-primer-titulo-nacional-de-l",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/11392335/pexels-photo-11392335.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "Duren Williams",
+    "image_source_url": "https://www.pexels.com/photo/two-women-wrestling-11392335/"
   },
   {
     "title": "Una empresa de turismo salvadoreña gana capital semilla para comprar su primer microbús propio",
@@ -1954,7 +1958,11 @@
     "category": "Cultura",
     "image_query": "woman poet writing",
     "date_added": "2026-10-16",
-    "slug": "la-poeta-veracruzana-silvia-tomasa-rivera-recibe-el-premio-ines-arredo"
+    "slug": "la-poeta-veracruzana-silvia-tomasa-rivera-recibe-el-premio-ines-arredo",
+    "image_attempted": true,
+    "image_url": "https://images.pexels.com/photos/32737327/pexels-photo-32737327.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    "image_photographer": "VINAYAK  HARIDAS",
+    "image_source_url": "https://www.pexels.com/photo/woman-typing-on-vintage-typewriter-indoors-32737327/"
   },
   {
     "title": "Dos jóvenes de Montreal crean una aplicación con IA para ayudar a hablar a personas con ELA",
