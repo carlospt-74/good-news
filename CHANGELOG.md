@@ -2,6 +2,18 @@
 
 Cronología de cambios estructurales al pipeline y al sitio (no de las publicaciones semanales normales — esas quedan en `data/pipeline_log.json` y en `estado/index.html`). Cada vez que se haga un cambio de este tipo, se agrega una entrada aquí.
 
+## 2026-10-23 — Fix: nota sin fecha quedaba fija para siempre en "Lo mejor de hoy"
+
+Charly reportó que la nota "En Perú se crearon casi 90.000 empresas nuevas..." (Economía, agregada el 2026-10-09) seguía en el primer lugar del bloque "Lo mejor de hoy" del home después de la publicación semanal del 2026-10-23 (25 notas nuevas), sin importar cuántas notas más recientes se agregaran.
+
+**Causa raíz:** esa nota no tiene fecha de publicación exacta en su fuente (INEI vía Public Now, un informe trimestral), y la fase de reescritura guardó en `published_date` el texto explicativo "sin fecha de publicación exacta indicada por la fuente (informe referido al segundo trimestre de 2026)" en vez de una fecha o un valor vacío. `choose_featured()` ordenaba las notas comparando `published_date` como string (`sorted(..., key=lambda a: a.get("published_date", ""), reverse=True)`); ese texto empieza con la letra "s", que en comparación de strings vale más que cualquier dígito, así que siempre "ganaba" el ordenamiento descendente frente a fechas reales tipo "2026-10-23", sin importar qué tan recientes fueran las demás notas.
+
+**Corrección de datos (`data/site_data.json`):** se reemplazó ese texto por `"2026-10-09"` (su `date_added`, la mejor aproximación disponible ya que la fuente no da fecha exacta).
+
+**Corrección de código (`scripts/build_site.py`):** `choose_featured()` ahora usa una función auxiliar (`_featured_sort_key()`) que parsea `published_date` como fecha real (`datetime.strptime(..., "%Y-%m-%d")`) en vez de comparar strings; si el valor no es una fecha ISO válida, usa `date_added` como respaldo, y si tampoco lo es, la trata como la más antigua posible (`datetime.min`) para que un dato mal formado nunca pueda ganar el ordenamiento por accidente.
+
+**Pendiente, fuera del alcance autorizado esta vez:** el mismo patrón -- ordenar `published_date` comparando strings, sin validar formato -- aparece también en `build_home_html()` (la lista `ordered` que alimenta la sección "Explora por tema") y dos veces más en la construcción de páginas de categoría (`arts_sorted`). Con el dato de esta nota ya corregido, el síntoma visible desaparece en todos lados por ahora, pero si en el futuro otra nota se guarda con un `published_date` no-ISO, podría volver a quedar fija arriba en esos otros lugares por la misma razón. Reportado a Charly junto con este fix; falta su confirmación para aplicar el mismo criterio ahí.
+
 ## 2026-10-19 — Corrige dos fotos de Pexels con género equivocado y agrega filtro de género/demografía a `attach_photos.py`
 
 Charly reportó dos notas con foto de Pexels que contradecía claramente el género del sujeto de la nota: la de la poeta Silvia Tomasa Rivera (Premio Inés Arredondo) mostraba la foto de un hombre durmiendo, y la del primer título nacional de lucha femenina de la NCAA (Audrey Jimenez, Universidad de Lehigh) mostraba niños practicando sumo, a pesar de que su `image_query` ya decía "women's wrestling championship celebration". Pidió corregir ambas fotos puntualmente y, sobre todo, ajustar el mecanismo de búsqueda en Pexels para que este tipo de caso no vuelva a pasar.

@@ -210,8 +210,25 @@ def prune_old(articles, retention_days=RETENTION_DAYS):
     return kept
 
 
+def _featured_sort_key(a):
+    """Convierte published_date a un datetime real para ordenar. Si no es una
+    fecha ISO valida (por ejemplo, una nota sin fecha exacta de la fuente, ver
+    Changelog 2026-10-23), usa date_added como respaldo; si tampoco lo es, la
+    trata como la mas antigua posible para que un dato mal formado nunca pueda
+    ganar el ordenamiento por accidente (antes se comparaba como string, y un
+    texto explicativo largo siempre "ganaba" frente a fechas reales)."""
+    for field in ("published_date", "date_added"):
+        raw = a.get(field)
+        if raw:
+            try:
+                return datetime.strptime(raw, "%Y-%m-%d")
+            except ValueError:
+                continue
+    return datetime.min
+
+
 def choose_featured(articles, count=FEATURED_COUNT):
-    ordered = sorted(articles, key=lambda a: a.get("published_date", ""), reverse=True)
+    ordered = sorted(articles, key=_featured_sort_key, reverse=True)
     return ordered[:count]
 
 # ---------------------------------------------------------------------------
