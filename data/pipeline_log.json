@@ -276,5 +276,11 @@
     "status": "ok",
     "summary": "Borrador semanal generado: 25 notas (7 categorias, 2 catolicas/Vaticano), subido a data/pending/pendiente_2026-10-23.json y correo de revision enviado a Charly.",
     "link": "https://github.com/carlospt-74/good-news/commit/c3df02e3b75760d5f96206dc871af00e77745b7d"
+  },
+  {
+    "timestamp_utc": "2026-10-23T17:03:26Z",
+    "trigger": "build-site-action",
+    "status": "ok",
+    "summary": "Reconstruccion automatica via GitHub Action: 25 notas nuevas agregadas. Total vigente: 160 notas en 8 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
   }
 ]
