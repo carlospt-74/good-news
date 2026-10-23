@@ -2,6 +2,14 @@
 
 Cronología de cambios estructurales al pipeline y al sitio (no de las publicaciones semanales normales — esas quedan en `data/pipeline_log.json` y en `estado/index.html`). Cada vez que se haga un cambio de este tipo, se agrega una entrada aquí.
 
+## 2026-10-23 — Extiende el fix de fechas a build_home_html() y a las páginas de categoría
+
+Seguimiento del fix anterior de hoy mismo. Charly pidió aplicar el mismo criterio a los otros tres lugares de `scripts/build_site.py` que habían quedado señalados como "pendiente, fuera del alcance autorizado" en esa entrada: el mismo patrón de ordenar `published_date` comparando strings, sin validar formato, también existía en `build_home_html()` (la lista `ordered` que alimenta "Explora por tema") y dos veces más en la construcción de páginas de categoría (`arts_sorted`, tanto para las tarjetas como para el listado completo).
+
+**Corrección de código (`scripts/build_site.py`):** se renombró `_featured_sort_key()` a `_date_sort_key()` (ya no es solo para "featured") y se usa ahora en los cuatro lugares que antes ordenaban por fecha: `choose_featured()`, `build_home_html()` y las dos construcciones de página de categoría. Mismo comportamiento que el fix anterior: parsea `published_date` como fecha real, usa `date_added` como respaldo si no es válida, y si tampoco lo es, la trata como la más antigua posible.
+
+**Verificación:** se comparó el orden resultante de las 160 notas vigentes con `_date_sort_key()` contra el orden que daba el `sorted()` por string anterior -- es idéntico, porque todas las fechas son ISO válidas ahora que se corrigió el dato de la nota del INEI. Es decir, este cambio no mueve ninguna nota de lugar hoy; solo evita que el mismo problema pueda repetirse en el futuro en estos otros lugares si otra nota se guarda alguna vez con un `published_date` no-ISO.
+
 ## 2026-10-23 — Fix: nota sin fecha quedaba fija para siempre en "Lo mejor de hoy"
 
 Charly reportó que la nota "En Perú se crearon casi 90.000 empresas nuevas..." (Economía, agregada el 2026-10-09) seguía en el primer lugar del bloque "Lo mejor de hoy" del home después de la publicación semanal del 2026-10-23 (25 notas nuevas), sin importar cuántas notas más recientes se agregaran.

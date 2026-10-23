@@ -210,13 +210,16 @@ def prune_old(articles, retention_days=RETENTION_DAYS):
     return kept
 
 
-def _featured_sort_key(a):
-    """Convierte published_date a un datetime real para ordenar. Si no es una
-    fecha ISO valida (por ejemplo, una nota sin fecha exacta de la fuente, ver
+def _date_sort_key(a):
+    """Convierte published_date a un datetime real para ordenar (mas reciente
+    primero). Se usa en choose_featured(), build_home_html() y en la
+    construccion de paginas de categoria -- en todos lados donde antes se
+    ordenaba comparando published_date como string. Si no es una fecha ISO
+    valida (por ejemplo, una nota sin fecha exacta de la fuente, ver
     Changelog 2026-10-23), usa date_added como respaldo; si tampoco lo es, la
     trata como la mas antigua posible para que un dato mal formado nunca pueda
-    ganar el ordenamiento por accidente (antes se comparaba como string, y un
-    texto explicativo largo siempre "ganaba" frente a fechas reales)."""
+    ganar el ordenamiento por accidente (antes un texto explicativo largo
+    siempre "ganaba" frente a fechas reales al comparar strings)."""
     for field in ("published_date", "date_added"):
         raw = a.get(field)
         if raw:
@@ -228,7 +231,7 @@ def _featured_sort_key(a):
 
 
 def choose_featured(articles, count=FEATURED_COUNT):
-    ordered = sorted(articles, key=_featured_sort_key, reverse=True)
+    ordered = sorted(articles, key=_date_sort_key, reverse=True)
     return ordered[:count]
 
 # ---------------------------------------------------------------------------
@@ -765,7 +768,7 @@ HOME_PER_CATEGORY = 6  # tarjetas por categoría en esa misma sección
 
 def build_home_html(articles, today_str):
     bp = ""
-    ordered = sorted(articles, key=lambda a: a.get("published_date", ""), reverse=True)
+    ordered = sorted(articles, key=_date_sort_key, reverse=True)
     featured = choose_featured(articles)
     featured_urls = {a["url"] for a in featured}
     rest = [a for a in ordered if a["url"] not in featured_urls]
@@ -843,7 +846,7 @@ def build_home_html(articles, today_str):
 def build_category_html(cat, arts, today_str):
     bp = "../"
     icon_id = CATEGORY_ICONS.get(cat, "i-news")
-    arts_sorted = sorted(arts, key=lambda a: a.get("published_date", ""), reverse=True)
+    arts_sorted = sorted(arts, key=_date_sort_key, reverse=True)
     chev = icon_html(bp, "i-arrow")
     switch = "".join(
         f'<a href="{bp}{slug}/"{CURRENT if name == cat else ""}>{icon_html(bp, CATEGORY_ICONS.get(name, "i-news"))}{esc(name)}</a>'
@@ -988,7 +991,7 @@ def build_site(articles, site_dir, today_str, rebuild_notes=False):
         (cat_dir / "index.html").write_text(build_category_html(cat, arts, today_str), encoding="utf-8")
         pages_written += 1
 
-        arts_sorted = sorted(arts, key=lambda a: a.get("published_date", ""), reverse=True)
+        arts_sorted = sorted(arts, key=_date_sort_key, reverse=True)
         for a in arts_sorted:
             note_dir = cat_dir / a["slug"]
             note_file = note_dir / "index.html"
