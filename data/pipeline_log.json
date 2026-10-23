@@ -269,5 +269,12 @@
     "trigger": "vigia_fase_a",
     "status": "warning",
     "summary": "Fase A (trig_01M5rAiFf2bLou3P5PRTCiLv) se disparo hoy a las 12:25:20 UTC; a las 12:47 UTC su estado aun no era definitivo y no habia ni archivo pendiente ni correo del borrador (menos de 45 min desde el disparo). Se espero sin reintentar (para no duplicar la corrida) y se envio correo informativo a Charly; si no llega nada, la Fase B de las 17:00 UTC avisara."
+  },
+  {
+    "timestamp_utc": "2026-10-23T13:00:00Z",
+    "trigger": "fase_a",
+    "status": "ok",
+    "summary": "Borrador semanal generado: 25 notas (7 categorias, 2 catolicas/Vaticano), subido a data/pending/pendiente_2026-10-23.json y correo de revision enviado a Charly.",
+    "link": "https://github.com/carlospt-74/good-news/commit/c3df02e3b75760d5f96206dc871af00e77745b7d"
   }
 ]
