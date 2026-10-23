@@ -295,5 +295,11 @@
     "status": "ok",
     "summary": "Correo de confirmacion del 2026-10-23 encontrado y verificado de forma independiente: build-site.yml (run 39991894436) y attach-photos.yml (run 39991919888) terminaron en success; home, las 7 categorias y el permalink propio de cada una de las 25 notas nuevas se revisaron y ninguno muestra photo fallback. Nota aparte, sin relacion con Fase B: a las 18:08 UTC hubo una segunda corrida independiente de build-site.yml (run 40000851023, success, 0 notas nuevas) y de attach-photos.yml (run 40000818026, success), por un fix de codigo (choose_featured, bug de la nota sin fecha fija en 'Lo mejor de hoy') que Charly subio directo a main mas una reconstruccion de mantenimiento; no afecto las fotos de las 25 notas de esta semana. Sin pendientes.",
     "link": "https://github.com/carlospt-74/good-news/actions/runs/39991894436"
+  },
+  {
+    "timestamp_utc": "2026-10-23T18:24:56Z",
+    "trigger": "build-site-action",
+    "status": "ok",
+    "summary": "Reconstruccion automatica via GitHub Action: 0 notas nuevas agregadas. Total vigente: 160 notas en 8 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
   }
 ]
