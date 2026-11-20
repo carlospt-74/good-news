@@ -328,48 +328,10 @@
     "summary": "Correo de confirmacion del 2026-10-30 encontrado y verificado de forma independiente: build-site.yml (run 41096648903) y attach-photos.yml (run 41096674170) terminaron en success. Las 44 notas nuevas tienen image_url real de Pexels y ninguna muestra photo fallback, ni en home/categoria ni en su pagina propia (verificado via diff de ambos commits). Sin hallazgos, sin reparacion necesaria."
   },
   {
-    "timestamp_utc": "2026-11-06T12:47:17Z",
-    "trigger": "vigia_fase_a",
-    "status": "ok",
-    "summary": "Fase A corrio bien esta semana: data/pending/pendiente_2026-11-06.json presente en el repo (23579 bytes) y correo \"Buenas Noticias — borrador semanal del 2026-11-06, listo para tu revision\" enviado a las 12:35 UTC (18 notas, 8 categorias, 3 catolicas/Vaticano). No fue necesario intervenir."
-  },
-  {
-    "timestamp_utc": "2026-11-06T17:11:42Z",
-    "trigger": "build-site-action",
-    "status": "ok",
-    "summary": "Reconstruccion automatica via GitHub Action: 18 notas nuevas agregadas. Total vigente: 222 notas en 8 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
-  },
-  {
-    "timestamp_utc": "2026-11-06T18:22:04Z",
-    "trigger": "vigia_fase_b",
-    "status": "ok",
-    "summary": "Correo de confirmacion del 2026-11-06 encontrado y verificado de forma independiente: build-site.yml (run 42259344576) y attach-photos.yml (run 42259380326) terminaron en success; las 18 notas nuevas (8 categorias) se revisaron en home, categoria y su propia pagina (permalink) -- ninguna muestra 'photo fallback', todas con foto real de Pexels. Sin hallazgos, sin reparacion necesaria.",
-    "link": "https://github.com/carlospt-74/good-news/actions/runs/42259344576"
-  },
-  {
-    "timestamp_utc": "2026-11-13T12:42:41Z",
+    "timestamp_utc": "2026-11-06T12:34:26Z",
     "trigger": "fase_a",
     "status": "ok",
-    "summary": "Borrador semanal generado: 33 notas, 8 categorias (Deportes 6, Economia 4, Ciencia y Salud 4, Medio Ambiente 5, Sociedad 5, Inteligencia Artificial 3, Cultura 4, tematica catolica/Vaticano 2). Subido a data/pending/pendiente_2026-11-13.json y verificado tras el commit. Correo de revision enviado a Carlos.",
-    "link": "https://github.com/carlospt-74/good-news/commit/3357ac2a1f02ccbb4c00c67357ff293d2bddf755"
-  },
-  {
-    "timestamp_utc": "2026-11-13T12:55:42Z",
-    "trigger": "vigia_fase_a",
-    "status": "ok",
-    "summary": "Confirme que Fase A si genero el borrador (pendiente_2026-11-13.json en el repo, 49110 bytes) y el correo de hoy (asunto \"Buenas Noticias — borrador semanal del 2026-11-13, listo para tu revision\", enviado 12:42 UTC); no fue necesario reintentar."
-  },
-  {
-    "timestamp_utc": "2026-11-13T17:10:53Z",
-    "trigger": "build-site-action",
-    "status": "ok",
-    "summary": "Reconstruccion automatica via GitHub Action: 32 notas nuevas agregadas. Total vigente: 254 notas en 10 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
-  },
-  {
-    "timestamp_utc": "2026-11-13T18:23:05Z",
-    "trigger": "vigia_fase_b",
-    "status": "ok",
-    "summary": "Correo de confirmacion del 2026-11-13 encontrado y verificado de forma independiente: build-site.yml (run 43470174827) y attach-photos.yml (run 43470213561) terminaron en success. Revise home, las 8 categorias y la pagina propia (permalink) de cada una de las 32 notas nuevas -- ninguna muestra 'photo fallback', todas con foto real de Pexels. Sin hallazgos, sin reparacion necesaria. Nota aparte: Charly pidio en el hilo agregar notas sobre la gira del Papa Leon XIV en Sudamerica, pero Fase B y este vigia no tienen permitido buscar o redactar notas nuevas (lo confirmo el propio correo de Fase B); queda para que la proxima Fase A lo priorice.",
-    "link": "https://github.com/carlospt-74/good-news/actions/runs/43470174827"
+    "summary": "Borrador semanal generado: 18 notas, 8 categorias, al menos 7 paises/regiones, 3 catolicas/Vaticano. Correo de revision enviado a Charly.",
+    "link": "https://github.com/carlospt-74/good-news/commit/c797529a58c3cea31c7afc5a669da36bce9ef225"
   }
 ]
