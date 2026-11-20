@@ -340,5 +340,11 @@
     "status": "ok",
     "summary": "Borrador semanal generado: 20 notas, 8 categorias, 10 paises/regiones, 3 catolicas/Vaticano. Correo de revision enviado a Charly.",
     "link": "https://github.com/carlospt-74/good-news/commit/6878f447c7317798557e33b307f6257695aba501"
+  },
+  {
+    "timestamp_utc": "2026-11-20T12:47:00Z",
+    "trigger": "vigia_fase_a",
+    "status": "ok",
+    "summary": "Fase A generó el borrador pendiente de hoy (pendiente_2026-11-20.json, 22.6 KB) en el repo sin problema; no fue necesario intervenir."
   }
 ]
