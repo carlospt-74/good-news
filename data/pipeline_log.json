@@ -352,5 +352,12 @@
     "trigger": "build-site-action",
     "status": "ok",
     "summary": "Reconstruccion automatica via GitHub Action: 20 notas nuevas agregadas. Total vigente: 274 notas en 10 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
+  },
+  {
+    "timestamp_utc": "2026-11-20T18:16:19Z",
+    "trigger": "vigia_fase_b",
+    "status": "ok",
+    "summary": "Confirme la publicacion semanal (20 notas nuevas, commit 558a7539, 274 notas vigentes) verificando de forma independiente build-site.yml (run 44780628340, success) y attach-photos.yml (run 44780658431, success); revise home, las 8 categorias y el permalink propio de cada una de las 20 notas nuevas -- ninguna muestra 'photo fallback', todas con foto real de Pexels. No fue necesario reparar nada.",
+    "link": "https://github.com/carlospt-74/good-news/actions/runs/44780628340"
   }
 ]
