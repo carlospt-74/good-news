@@ -333,5 +333,12 @@
     "status": "ok",
     "summary": "Borrador semanal generado: 18 notas, 8 categorias, al menos 7 paises/regiones, 3 catolicas/Vaticano. Correo de revision enviado a Charly.",
     "link": "https://github.com/carlospt-74/good-news/commit/c797529a58c3cea31c7afc5a669da36bce9ef225"
+  },
+  {
+    "timestamp_utc": "2026-11-20T12:30:00Z",
+    "trigger": "fase_a",
+    "status": "ok",
+    "summary": "Borrador semanal generado: 20 notas, 8 categorias, 10 paises/regiones, 3 catolicas/Vaticano. Correo de revision enviado a Charly.",
+    "link": "https://github.com/carlospt-74/good-news/commit/6878f447c7317798557e33b307f6257695aba501"
   }
 ]
