@@ -346,5 +346,11 @@
     "trigger": "vigia_fase_a",
     "status": "ok",
     "summary": "Fase A generó el borrador pendiente de hoy (pendiente_2026-11-20.json, 22.6 KB) en el repo sin problema; no fue necesario intervenir."
+  },
+  {
+    "timestamp_utc": "2026-11-20T17:10:10Z",
+    "trigger": "build-site-action",
+    "status": "ok",
+    "summary": "Reconstruccion automatica via GitHub Action: 20 notas nuevas agregadas. Total vigente: 274 notas en 10 categorias. (Registro mecanico; el resumen cualitativo de aprobacion lo agrega Claude por separado si aplica.)"
   }
 ]
